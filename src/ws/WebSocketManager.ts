@@ -74,12 +74,12 @@ export default class WebSocketManager extends EventEmitter {
 
             switch (t) {
 
-                case "READY":
+                case 'READY':
                     this.debug && console.log(`Connected to gateway!`)
                     this.emit('ready')
                     break
 
-                case "GUILD_CREATE":
+                case 'GUILD_CREATE':
                     if (!client.cache.guilds.get(d.id)) client.cache.guilds.set(d.id, d)
                     break
             }
@@ -115,10 +115,10 @@ export default class WebSocketManager extends EventEmitter {
             case true:
 
                 this.socket?.send(JSON.stringify({
-                    "op": 6,
-                    "d": {
-                        "token": token,
-                        "session_id": this.sessionID
+                    op: 6,
+                    d: {
+                        token: token,
+                        session_id: this.sessionID
                     }
                 }))
 
