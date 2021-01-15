@@ -1,4 +1,4 @@
-export interface clientOptions {
+export interface ClientOptions {
 
     bot?: boolean
     cache?: {
@@ -6,13 +6,5 @@ export interface clientOptions {
         channels?: boolean,
         guilds?: boolean
     }
-
-}
-
-export interface Cache {
-
-    channels: Map<string, any>,
-    messages: Map<string, any>,
-    guilds: Map<string, any>
 
 }
