@@ -85,7 +85,10 @@ export default class WebSocketManager extends EventEmitter {
     async module (name: string, d: any) {
 
         const exist = await existsSync(`${__dirname}/../events/${name}.js`)
-        if (exist) require(`../events/${name}`)._(name, d, this)
+        if (exist) {
+            const new_d = require(`../events/${name}`)._(d)
+            this.emit(name, new_d)
+        }
 
     }
 
