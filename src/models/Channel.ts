@@ -47,8 +47,8 @@ export default class Channel {
 
     // soon support for embeds
     send(content: string) {
-
-        sendMessage(content, this.id)
+        const object = { content: content }
+        sendMessage(object, this.id)
 
     }
 

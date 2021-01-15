@@ -1,4 +1,4 @@
-import Client from '../models/Client'
+import Client from './Client'
 import User from './User'
 import Channel from './Channel'
 
@@ -32,15 +32,18 @@ export default class Message {
         this.id = data.id
         this.content = data.content
         this.attachments = data.attachments
-        this.createdTimestamp = data.createdTimestamp
+        this.createdTimestamp = data.timestamp
         this.editedTimestamp = data.editedTimestamp
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
+
         const channel = new Channel(data.channel_id, client)
         if (!client.cache.channels.get(channel.id)) client.cache.channels.set(channel.id, channel)
         this.channel = channel
+
         //test
         this.guild_id = data.guild_id
+        this.channel.send('123')
 
     }
 
