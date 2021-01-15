@@ -18,9 +18,6 @@ export default class Client extends EventEmitter {
 
         try {
             this.ws = await new WebSocketManager(false, token, this)
-            this.ws.on('GUILD_CREATE', async (data: any) => {
-                if (!this.cache.get(data.id)) this.cache.set(data.id, data)
-            })
             Object.values(EVENTS).forEach((event: any) => {
                 this.ws.on(event, (...args) => this.emit(event, ...args))
             })
