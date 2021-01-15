@@ -1,16 +1,19 @@
 import { EVENTS } from '../constants/events'
 import { EventEmitter } from 'events'
 import WebSocketManager from '../ws/WebSocketManager'
-import { clientOptions, Cache } from '../types/clientOptions'
+import { ClientOptions } from '../types/ClientOptions'
+import { Cache } from '../types/Cache'
+
+let botToken, bot
 
 export default class Client extends EventEmitter {
 
     ws!: WebSocketManager
     cache: Cache
     token!: string
-    options?: clientOptions
+    options?: ClientOptions
 
-    constructor(options?: clientOptions) {
+    constructor(options?: ClientOptions) {
 
         super()
         this.cache = {
@@ -39,9 +42,14 @@ export default class Client extends EventEmitter {
             e && console.log(e)
         }
 
-        module.exports.token = token
-        module.exports.bot = this.options?.bot
+        botToken = token
+        bot = this.options?.bot
         
     }
 
+}
+
+export {
+  botToken as token,
+  bot
 }
