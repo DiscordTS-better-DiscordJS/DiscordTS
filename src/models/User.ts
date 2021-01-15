@@ -7,6 +7,7 @@ export default class User {
     avatar: string
     avatarURL: string
     id: string
+    bot: boolean
 
     constructor (data: any) {
         
@@ -16,6 +17,7 @@ export default class User {
         this.tag = `${data.username}#${data.discriminator}`
         this.avatar = data.avatar
         this.avatarURL = data.avatar
+        this.bot = data.bot ? true : false
 
     }
 

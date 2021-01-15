@@ -66,6 +66,7 @@ export default class WebSocketManager extends EventEmitter {
 
             }
 
+            this.debug && console.log(packet)
             this.emit('raw', packet)
             this.module(EVENTS[t], d)
 

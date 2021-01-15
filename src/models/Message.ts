@@ -2,7 +2,10 @@ import User from './User'
 
 export default class Message {
 
+    // skonczyc jak bedzie cache: tj. guild, channel itd
+    
     tts: boolean
+    type: number
     // member: Member
     author: User
     // channel: Channel
@@ -14,9 +17,11 @@ export default class Message {
     editedTimestamp: Date | null
     pinned: boolean
     // mentions: Mentions[]
+    mentionEveryone: boolean
 
     constructor(data: any) {
 
+        this.type = data.type
         this.tts = data.tts
         this.author = new User(data.author)
         this.id = data.id
@@ -25,6 +30,7 @@ export default class Message {
         this.createdTimestamp = data.createdTimestamp
         this.editedTimestamp = data.editedTimestamp
         this.pinned = data.pinned
+        this.mentionEveryone = data.mentionEveryone
 
     }
 
