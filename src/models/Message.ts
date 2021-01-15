@@ -19,6 +19,9 @@ export default class Message {
     // mentions: Mentions[]
     mentionEveryone: boolean
 
+    //for test
+    guild_id: string
+
     constructor(data: any) {
 
         this.type = data.type
@@ -31,6 +34,9 @@ export default class Message {
         this.editedTimestamp = data.editedTimestamp
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
+
+        //test
+        this.guild_id = data.guild_id
 
     }
 

@@ -5,7 +5,7 @@ import { OPCODES } from '../constants/opcodes'
 import { Constants } from '../constants/constants'
 import { EVENTS } from '../constants/events'
 import { Heartbeat, Identify } from '../constants/payloads'
-import { time } from 'console'
+import Client from '../models/Client'
 
 export default class WebSocketManager extends EventEmitter {
 
@@ -16,7 +16,7 @@ export default class WebSocketManager extends EventEmitter {
     sessionID: number
     sequence: number
 
-    constructor (reconnect: boolean, token: string) {
+    constructor (reconnect: boolean, token: string, client: Client ) {
 
         super()
 
@@ -53,7 +53,7 @@ export default class WebSocketManager extends EventEmitter {
 
                     this.socket?.on('close', () => {
                         clearInterval(this.heart)
-                        new WebSocketManager(false, this.token)
+                        new WebSocketManager(false, this.token, client)
                     })
 
                     this.socket?.on('error', (e: any) => {
@@ -73,10 +73,13 @@ export default class WebSocketManager extends EventEmitter {
             switch (t) {
 
                 case "READY":
-                    this.emit('ready')
                     this.debug && console.log(`Connected to gateway!`)
+                    this.emit('ready')
                     break
 
+                case "GUILD_CREATE":
+                    if (!client.cache.get(d.id)) client.cache.set(d.id, d)
+                    break
             }
 
         })

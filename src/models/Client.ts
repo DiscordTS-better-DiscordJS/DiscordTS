@@ -1,31 +1,33 @@
 import { EVENTS } from '../constants/events'
 import { EventEmitter } from 'events'
 import WebSocketManager from '../ws/WebSocketManager'
-import CacheManager from '../cache/main'
 
 export default class Client extends EventEmitter {
 
     ws!: WebSocketManager
-    cache: CacheManager | undefined
+    cache: Map<string, any>
 
     constructor() {
 
         super()
+        this.cache = new Map()
 
     }
 
-    connect(token: string){
+    async connect(token: string){
 
         try {
-            this.ws = new WebSocketManager(false, token)
-            this.cache = new CacheManager(this.ws)
+            this.ws = await new WebSocketManager(false, token, this)
+            this.ws.on('GUILD_CREATE', async (data: any) => {
+                if (!this.cache.get(data.id)) this.cache.set(data.id, data)
+            })
             Object.values(EVENTS).forEach((event: any) => {
                 this.ws.on(event, (...args) => this.emit(event, ...args))
             })
         } catch (e) {
             e && console.log(e)
         }
-
+        
     }
 
 }

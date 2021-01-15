@@ -11,9 +11,11 @@ class bot extends Client {
 
         this.connect(token)
 
+
         this.on('message', async (message: Message) => {
 
-            console.log(message)
+            console.log(message.content)
+            console.log(this.cache.get(message.guild_id).channels)
 
         })
 
