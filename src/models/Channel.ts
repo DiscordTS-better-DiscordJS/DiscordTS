@@ -1,6 +1,5 @@
 import Client from '../models/Client'
-import { fetchChannel } from '../utils/fetchChannel'
-import { sendMessage } from '../utils/fatchSendMessage'
+import { fetchChannel, sendMessage } from '../utils/fetch'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',
@@ -18,7 +17,7 @@ export default class Channel {
     type: string
     guild_id: string
     position: number
-    // permission_everwrites: Array<overwritePermissions>
+    // permission_overwrites: Array<overwritePermissions>
     name: string
     topic: string
     nsfw: boolean
