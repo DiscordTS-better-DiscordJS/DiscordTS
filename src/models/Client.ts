@@ -38,6 +38,9 @@ export default class Client extends EventEmitter {
         } catch (e) {
             e && console.log(e)
         }
+
+        module.exports.token = token
+        module.exports.bot = this.options?.bot
         
     }
 

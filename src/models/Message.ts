@@ -36,8 +36,9 @@ export default class Message {
         this.editedTimestamp = data.editedTimestamp
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
-        this.channel = new Channel(data.channel_id, client)
-
+        const channel = new Channel(data.channel_id, client)
+        if (!client.cache.channels.get(channel.id)) client.cache.channels.set(channel.id, channel)
+        this.channel = channel
         //test
         this.guild_id = data.guild_id
 

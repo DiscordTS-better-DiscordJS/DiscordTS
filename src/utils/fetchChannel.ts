@@ -1,11 +1,19 @@
 import fetch from 'node-fetch'
+import Client from '../models/Client'
 
-export const fetchChannel = async (id: string, token: string) => {
+export const fetchChannel = async (id: string, client: Client) => {
 
-    const channel: any = await fetch(`https://discord.com.api/v8/channels/${id}`, {
+    let token = client.options?.bot ? `Bot ${client.token}` : client.token
 
+    const channel = await fetch(`https://discord.com/api/channels/${id}`, {
 
+        method: "GET",
+        headers: {
+            'Authorization': token
+        }
 
     }) 
+
+    return await channel.json()
 
 }
