@@ -1,4 +1,6 @@
+import Client from '../models/Client'
 import User from './User'
+import Channel from './Channel'
 
 export default class Message {
 
@@ -8,7 +10,7 @@ export default class Message {
     type: number
     // member: Member
     author: User
-    // channel: Channel
+    channel: Channel
     id: number
     content: string
     // guild: Guild
@@ -22,7 +24,7 @@ export default class Message {
     //for test
     guild_id: string
 
-    constructor(data: any) {
+    constructor(data: any, client: Client) {
 
         this.type = data.type
         this.tts = data.tts
@@ -34,6 +36,7 @@ export default class Message {
         this.editedTimestamp = data.editedTimestamp
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
+        this.channel = new Channel(data.channel_id, client)
 
         //test
         this.guild_id = data.guild_id

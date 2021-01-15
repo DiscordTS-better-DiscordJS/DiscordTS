@@ -15,6 +15,7 @@ export default class WebSocketManager extends EventEmitter {
     socket: WebSocket | undefined
     sessionID: number
     sequence: number
+    client
 
     constructor (reconnect: boolean, token: string, client: Client ) {
 
@@ -26,6 +27,7 @@ export default class WebSocketManager extends EventEmitter {
         this.reconnect = reconnect
         this.sessionID = 0
         this.sequence = 0
+        this.client = client
         
         try {
             this.socket = new WebSocket(Constants.GATEWAY)
@@ -78,7 +80,7 @@ export default class WebSocketManager extends EventEmitter {
                     break
 
                 case "GUILD_CREATE":
-                    if (!client.cache.get(d.id)) client.cache.set(d.id, d)
+                    if (!client.cache.guilds.get(d.id)) client.cache.guilds.set(d.id, d)
                     break
             }
 
@@ -90,7 +92,7 @@ export default class WebSocketManager extends EventEmitter {
 
         const exist = await existsSync(`${__dirname}/../events/${name}.js`)
         if (exist) {
-            const new_d = require(`../events/${name}`)._(d)
+            const new_d = require(`../events/${name}`)._(d, this.client)
             this.emit(name, new_d)
         }
 
