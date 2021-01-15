@@ -40,6 +40,8 @@ export default class WebSocketManager extends EventEmitter {
             const packet = JSON.parse(data)
             const { op, s, t, d } = packet
 
+            s ? this.sequence = s : null
+
             switch (op) {
 
                 case OPCODES.HELLO:
@@ -65,6 +67,7 @@ export default class WebSocketManager extends EventEmitter {
             }
 
             this.emit('raw', packet)
+            this.emit(EVENTS[t], d)
 
             switch (t) {
 
