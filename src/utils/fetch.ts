@@ -5,7 +5,8 @@ import Client from '../models/Client'
 const { token, bot } = require('../models/Client')
 
 export const sendMessage = async (content: any, channel_id: string) => {
-    let TOKEN = !bot ? token : `Bot ${token}`
+
+    let TOKEN = bot ? `Bot ${token}` : token
 
     content.tts = false
 
@@ -20,38 +21,14 @@ export const sendMessage = async (content: any, channel_id: string) => {
     return await res.json()
 }
 
-export const CreateSlashCommand = async (data: any, client: Client) => {
-    let token = client.options?.bot ? `Bot ${client.token}` : client.token
-    
-    if (client.options?.appID == '') return
+export const fetchChannel = async (id: string) => {
 
-    const command = Object.assign({
-        name: 'DiscordTS',
-        type: 1,
-        description: 'No description avaible.',
-        options: []
-    }, data)
-
-    const res = await fetch(`${Constants.API}/v8/applications/${client.options?.appID}/commands`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify(command)
-    })
-    
-    return await res.json()
-}
-
-export const fetchChannel = async (id: string, client: Client) => {
-    let token = client.options?.bot ? `Bot ${client.token}` : client.token
-
+    let TOKEN = bot ? `Bot ${token}` : token
     const channel = await fetch(`${Constants.API}/channels/${id}`, {
 
         method: "GET",
         headers: {
-            'Authorization': token
+            'Authorization': TOKEN
         }
 
     }) 
