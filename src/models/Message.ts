@@ -1,6 +1,7 @@
 import Client from './Client'
 import User from './User'
 import Channel from './Channel'
+import { sendMessage } from '../utils/fetch'
 
 export default class Message {
 
@@ -11,7 +12,7 @@ export default class Message {
     // member: Member
     author: User
     channel!: Channel
-    id: number
+    id: string
     content: string
     // guild: Guild
     attachments: any[]
@@ -42,5 +43,15 @@ export default class Message {
         this.guild_id = data.guild_id
 
     }
+
+    /**
+    * @param {string | any} content
+    * @return {void} nothing.
+    * @description Reply to member messaga.
+    */
+    reply(content: string | any) {
+       content = { content: content, message_reference: { message_id: this.id, channel_id: this.channel.id, guild_id: this.guild_id } }
+       sendMessage(content, this.channel.id)
+   }
 
 }

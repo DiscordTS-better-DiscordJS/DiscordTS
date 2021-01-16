@@ -20,7 +20,6 @@ export const sendMessage = async (content: any, channel_id: string) => {
         body: JSON.stringify(content)
 
     })
-
     return await res.json()
 
 }

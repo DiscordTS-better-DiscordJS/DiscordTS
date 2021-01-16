@@ -16,8 +16,7 @@ class bot extends Client {
 
             if (message.author?.bot) return
 
-            if (message.content == '!test') message.channel.send('Test 123')
-            message.channel.send(`${message.channel.id} ${this.cache.guilds.get(message.guild_id).channels}`)
+            if (message.content == '!test') message.reply('test')
         })
 
 
