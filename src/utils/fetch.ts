@@ -20,6 +20,30 @@ export const sendMessage = async (content: any, channel_id: string) => {
     return await res.json()
 }
 
+export const CreateSlashCommand = async (data: any, client: Client) => {
+    let token = client.options?.bot ? `Bot ${client.token}` : client.token
+    
+    if (client.options?.appID == '') return
+
+    const command = Object.assign({
+        name: 'DiscordTS',
+        type: 1,
+        description: 'No description avaible.',
+        options: []
+    }, data)
+
+    const res = await fetch(`${Constants.API}/v8/applications/${client.options?.appID}/commands`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(command)
+    })
+    
+    return await res.json()
+}
+
 export const fetchChannel = async (id: string, client: Client) => {
     let token = client.options?.bot ? `Bot ${client.token}` : client.token
 

@@ -51,6 +51,9 @@ export const EVENTS: any = {
 	CHANNEL_UPDATE: 'channelUpdate',
 	CHANNEL_DELETE: 'channelDelete',
     CHANNEL_PIN_UPDATE: 'channelPinUpdate',
-    // ready event
-	READY: 'ready',
+    /**
+     * Client events
+     */
+    READY: 'ready',
+    INTERACTION_CREATE: 'interactionCreate'
 }

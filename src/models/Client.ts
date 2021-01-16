@@ -25,7 +25,8 @@ export default class Client extends EventEmitter {
             cache: {
                 channels: true, messages: true, guilds: true
             },
-            bot: true
+            bot: true,
+            appID: ''
         }, options)
 
     }
