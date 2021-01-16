@@ -10,7 +10,7 @@ export default class Message {
     type: number
     // member: Member
     author: User
-    channel: Channel
+    channel!: Channel
     id: number
     content: string
     // guild: Guild
@@ -36,14 +36,10 @@ export default class Message {
         this.editedTimestamp = data.editedTimestamp
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
-
-        this.channel = new Channel(data.channel_id, client)
+        this.channel = client.cache.channels.get(data.channel_id)
         
-        if (!client.cache.channels.get(this.channel.id)) client.cache.channels.set(this.channel.id, this.channel)
-
         //test
         this.guild_id = data.guild_id
-        this.channel.send('123')
 
     }
 
