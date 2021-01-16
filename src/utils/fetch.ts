@@ -30,8 +30,6 @@ export const CreateSlashCommand = async (data: any) => {
     
     if (options.appID == '') return
 
-    console.log(data)
-
     const res = await fetch(`${API}/v8/applications/${options.appID}/commands`, {
 
         method: 'POST',
@@ -40,6 +38,26 @@ export const CreateSlashCommand = async (data: any) => {
             'Authorization': token
         },
         body: JSON.stringify(data)
+
+    })
+
+    return await res.json()
+
+}
+
+export const DeleteSlashCommand = async (id: string) => {
+
+    const token = options.bot ? `Bot ${options.token}` : options.token
+    
+    if (options.appID == '') return
+
+    const res = await fetch(`${API}/v8/applications/${options.appID}/command/${id}`, {
+
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
 
     })
 

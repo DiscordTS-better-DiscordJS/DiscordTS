@@ -41,8 +41,6 @@ export default class Client extends EventEmitter {
             appID: ''
         }, options)
 
-        console.log(this.options)
-
     }
 
     async connect(token: string){
