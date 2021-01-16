@@ -17,6 +17,7 @@ class bot extends Client {
             if (message.author?.bot) return
 
             if (message.content == '!test') message.reply('test')
+            message.channel.send('123')
         })
 
 

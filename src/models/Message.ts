@@ -50,8 +50,8 @@ export default class Message {
     * @description Reply to member message.
     */
     reply(content: string | any) {
-       content = { content: content, message_reference: { message_id: this.id, channel_id: this.channel.id, guild_id: this.guild_id } }
-       sendMessage(content, this.channel.id)
-   }
+        content = { content: content, message_reference: { message_id: this.id, channel_id: this.channel.id, guild_id: this.guild_id } }
+        sendMessage(content, this.channel.id)
+    }
 
 }
