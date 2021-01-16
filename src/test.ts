@@ -14,11 +14,13 @@ class bot extends Client {
 
         this.on('message', async (message: Message) => {
 
-            //if (message.author.bot) return
+            if (message.author?.bot) return
 
-            //console.log(this.cache, this.options)
+            console.log(this.cache.channels, this.cache.messages)
 
-            //message.channel.send(':ok:')
+            console.log(`event message`)
+
+            message.channel?.test
 
         })
 

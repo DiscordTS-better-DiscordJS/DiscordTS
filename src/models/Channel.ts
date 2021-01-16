@@ -24,25 +24,37 @@ export default class Channel {
     bitrare: number
     icon: string
     parent_id: string
-    constructor(channelID: any, client: Client) {
-        const cache = client.cache.channels.get(channelID)
+    
+    test: any
 
-        this.id = cache.id
-        this.type = cache ? cache.type : CHANNEL_TYPES[cache.type]
-        this.guild_id = cache.guild_id
-        this.position = cache.position
-        this.name = cache.name
-        this.topic = cache.topic
-        this.nsfw = cache.nsfw
-        this.bitrare = cache.bitrare
-        this.icon = cache.icon
-        this.parent_id = cache.parent_id
+    constructor(channelID: any, client: Client, fromFetch?: any) {
+
+        const cache = client.cache.channels.get(channelID) || false
+        const data = cache ? cache : fromFetch
+
+        this.id = data.id
+        this.type = cache ? data.type : CHANNEL_TYPES[data.type]
+        this.guild_id = data.guild_id
+        this.position = data.position
+        this.name = data.name
+        this.topic = data.topic
+        this.nsfw = data.nsfw
+        this.bitrare = data.bitrare
+        this.icon = data.icon
+        this.parent_id = data.parent_id
+
+        this.test = this.send([
+            `Guild: ${client.cache.guilds.size}`,
+            `Channels: ${client.cache.channels.size}`,
+            `Messages: ${client.cache.messages.size}`,
+            `Client options: ${JSON.stringify(client.options)}`
+        ].join("\n"))
     }
 
     // soon support for embeds
-    send(content: string) {
-        const object = { content: content }
-        sendMessage(object, this.id)
+    send(content: string | any) {
+        content = { content: content }
+        sendMessage(content, this.id)
     }
 
 }

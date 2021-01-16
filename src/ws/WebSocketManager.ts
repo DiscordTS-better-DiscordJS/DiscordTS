@@ -80,7 +80,7 @@ export default class WebSocketManager extends EventEmitter {
                     break
 
                 case 'GUILD_CREATE':
-                    if (!client.cache.guilds.get(d.id)) client.cache.guilds.set(d.id, d)
+                    if (!client.cache.guilds.get(d.id) && client.options?.cache?.guilds) client.cache.guilds.set(d.id, d)
                     break
             }
 
