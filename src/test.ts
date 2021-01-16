@@ -12,17 +12,14 @@ class bot extends Client {
 
         this.connect(token)
 
-
         this.on('message', async (message: Message) => {
 
             if (message.author?.bot) return
 
-            //console.log(this.cache.channels, this.cache.messages)
-            //console.log(message)
-            //console.log(`event message`)
-
-            if (message.content == '!test') return message.channel.send('Test 123')
+            if (message.content == '!test') message.channel.send('Test 123')
+            message.channel.send(`${message.channel.id} ${this.cache.guilds.get(message.guild_id).channels}`)
         })
+
 
         this.on('ready', () => {
             /**

@@ -43,7 +43,6 @@ export default class Channel {
         this.icon = data.icon
         this.parent_id = data.parent_id
 
-        this.send('msg')
     }
 
     /**

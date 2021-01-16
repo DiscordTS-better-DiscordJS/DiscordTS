@@ -6,18 +6,13 @@ import Channel from '../models/Channel'
 
 export const _ = async (data: any, client: Client): Promise<Message> => {
 
-    // if (client.options?.cache?.channels){
-    //     if(!client.cache.channels.get(data.channel_id)){
-    //         const fromFetch = await fetchChannel(data.channel_id)
-    //         const channel = new Channel(data.channel_id, client, fromFetch)
-    //         client.cache.channels.set(data.channel_id, channel)
-    //     }
-    // }
-    const cache = client.cache.channels.get(data.channel_id)
-    if (!cache) {
-        const fromFetch = await fetchChannel(data.channel_id)
-        const channel = new Channel(data.channel_id, client, fromFetch)
-        if (channel) client.cache.channels.set(data.channel_id, channel)
+    if (client.options?.cache?.channels) {
+        const cache = client.cache.channels.get(data.channel_id)
+        if (!cache) {
+            const fromFetch = await fetchChannel(data.channel_id)
+            const channel = new Channel(data.channel_id, client, fromFetch)
+            if (channel) client.cache.channels.set(data.channel_id, channel)
+        }
     }
 
     const message: Message = new Message(data, client)
