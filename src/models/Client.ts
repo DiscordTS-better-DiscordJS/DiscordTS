@@ -4,7 +4,19 @@ import WebSocketManager from '../ws/WebSocketManager'
 import { ClientOptions } from '../types/ClientOptions'
 import { Cache } from '../types/Cache'
 
-let botToken, bot
+class Options {
+    token: string
+    bot?: boolean
+    appID?: string
+
+    constructor() {
+        this.token = ''
+        this.appID = ''
+        this.bot = true
+    }
+}
+
+const options = new Options()
 
 export default class Client extends EventEmitter {
 
@@ -25,14 +37,21 @@ export default class Client extends EventEmitter {
             cache: {
                 channels: true, messages: true, guilds: true
             },
-            bot: true
+            bot: true,
+            appID: ''
         }, options)
+
+        console.log(this.options)
 
     }
 
     async connect(token: string){
 
         this.token = token
+        options.token = this.token
+        options.bot = this.options?.bot
+        options.appID = this.options?.appID
+
         try {
             this.ws = await new WebSocketManager(false, token, this)
             Object.values(EVENTS).forEach((event: any) => {
@@ -42,14 +61,10 @@ export default class Client extends EventEmitter {
             e && console.log(e)
         }
 
-        botToken = token
-        bot = this.options?.bot
-        
     }
 
 }
 
 export {
-    botToken as token,
-    bot
+    options
 }

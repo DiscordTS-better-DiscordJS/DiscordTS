@@ -6,5 +6,6 @@ export interface ClientOptions {
         channels?: boolean,
         guilds?: boolean
     }
+    appID?: string
 
 }
