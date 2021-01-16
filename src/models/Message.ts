@@ -37,9 +37,9 @@ export default class Message {
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
 
-        const channel = new Channel(data.channel_id, client)
-        if (!client.cache.channels.get(channel.id)) client.cache.channels.set(channel.id, channel)
-        this.channel = channel
+        this.channel = new Channel(data.channel_id, client)
+        
+        if (!client.cache.channels.get(this.channel.id)) client.cache.channels.set(this.channel.id, this.channel)
 
         //test
         this.guild_id = data.guild_id
