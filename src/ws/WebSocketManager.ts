@@ -21,7 +21,7 @@ export default class WebSocketManager extends EventEmitter {
 
         super()
 
-        this.debug = true
+        this.debug = false
 
         this.token = token
         this.reconnect = reconnect
@@ -92,7 +92,7 @@ export default class WebSocketManager extends EventEmitter {
 
         const exist = await existsSync(`${__dirname}/../events/${name}.js`)
         if (exist) {
-            const new_d = require(`../events/${name}`)._(d, this.client)
+            const new_d = await require(`../events/${name}`)._(d, this.client)
             this.emit(name, new_d)
         }
 

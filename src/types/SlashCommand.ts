@@ -1,21 +1,20 @@
-export type Choices = {
+export type CommandOptionsChoices = {
     name: string
-    description?: string
-
+    value: string | number
 }
 
-export type Options = {
+export type CommandOptions = {
     name: string
-    description?: string
-    type: number
+    description: string
+    type: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+    default?: boolean
     required?: boolean
-    choices?: Choices[]
-    options?: Options[]
+    choices?: CommandOptionsChoices[]
+    options?: CommandOptions[]
 }
 
 export interface SlashCommandType {
     name: string
-    type: number,
     description: string
-    options?: Options[]
+    options?: CommandOptions[]
 }

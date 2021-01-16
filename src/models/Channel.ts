@@ -29,11 +29,11 @@ export default class Channel {
 
     constructor(channelID: any, client: Client, fromFetch?: any) {
 
-        const cache = client.cache.channels.get(channelID) || false
+        const cache = client.cache.channels.get(channelID)
         const data = cache ? cache : fromFetch
 
         this.id = data.id
-        this.type = cache ? data.type : CHANNEL_TYPES[data.type]
+        this.type = CHANNEL_TYPES[data.type]
         this.guild_id = data.guild_id
         this.position = data.position
         this.name = data.name
@@ -43,15 +43,15 @@ export default class Channel {
         this.icon = data.icon
         this.parent_id = data.parent_id
 
-        this.test = this.send([
-            `Guild: ${client.cache.guilds.size}`,
-            `Channels: ${client.cache.channels.size}`,
-            `Messages: ${client.cache.messages.size}`,
-            `Client options: ${JSON.stringify(client.options)}`
-        ].join("\n"))
+        this.send('msg')
     }
 
-    // soon support for embeds
+    /**
+     * @TODO add embed support.
+     * @param {string | any} content
+     * @return {void} nothing.
+     * @description Send message to channel.
+     */
     send(content: string | any) {
         content = { content: content }
         sendMessage(content, this.id)
