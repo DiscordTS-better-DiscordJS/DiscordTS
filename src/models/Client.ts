@@ -26,7 +26,7 @@ export default class Client extends EventEmitter {
                 channels: true, messages: true, guilds: true
             },
             bot: true
-        },options)
+        }, options)
 
     }
 
@@ -50,6 +50,6 @@ export default class Client extends EventEmitter {
 }
 
 export {
-  botToken as token,
-  bot
+    botToken as token,
+    bot
 }
