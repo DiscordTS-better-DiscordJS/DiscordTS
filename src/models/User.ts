@@ -6,7 +6,7 @@ export default class User {
     avatar: string
     avatarURL: string
     id: string
-    bot: boolean
+    //bot: boolean
 
     constructor (data: any) {
         
@@ -16,8 +16,12 @@ export default class User {
         this.tag = `${data.username}#${data.discriminator}`
         this.avatar = data.avatar
         this.avatarURL = data.avatar
-        this.bot = data.bot ? true : false
 
+        /**
+         * @TODO
+         * Check if user is bot. (it's not returned from discord's api)
+         * this.bot = data.bot ? true : false
+         */
     }
 
 }

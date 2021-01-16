@@ -1,5 +1,5 @@
 import Client from '../models/Client'
-import { fetchChannel, sendMessage } from '../utils/fetch'
+import { sendMessage } from '../utils/fetch'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',
@@ -24,32 +24,25 @@ export default class Channel {
     bitrare: number
     icon: string
     parent_id: string
-
     constructor(channelID: any, client: Client) {
+        const cache = client.cache.channels.get(channelID)
 
-        const cache = client.cache.channels.get(channelID) || undefined
-
-        const data = cache ? cache : fetchChannel(channelID, client)
-
-        this.id = data.id
-        this.type = cache ? data.type : CHANNEL_TYPES[data.type]
-        this.guild_id = data.guild_id
-        this.position = data.position
-        this.name = data.name
-        this.topic = data.topic
-        this.nsfw = data.nsfw
-        this.bitrare = data.bitrare
-        this.icon = data.icon
-        this.parent_id = data.parent_id
-
-
+        this.id = cache.id
+        this.type = cache ? cache.type : CHANNEL_TYPES[cache.type]
+        this.guild_id = cache.guild_id
+        this.position = cache.position
+        this.name = cache.name
+        this.topic = cache.topic
+        this.nsfw = cache.nsfw
+        this.bitrare = cache.bitrare
+        this.icon = cache.icon
+        this.parent_id = cache.parent_id
     }
 
     // soon support for embeds
     send(content: string) {
         const object = { content: content }
         sendMessage(object, this.id)
-
     }
 
 }
