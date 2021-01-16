@@ -26,7 +26,7 @@ class bot extends Client {
              * This code comes from official discord docs.
              * https://discord.com/developers/docs/interactions/slash-commands
              */
-            new SlashCommand({
+            /*new SlashCommand({
                 "name": "permissions",
                 "description": "Get or edit permissions for a user or a role",
                 "options": [
@@ -65,8 +65,18 @@ class bot extends Client {
                         ]
                     }
                 ]
+            })*/
+            new SlashCommand({
+                name: "test",
+                description: "Test command"
             })
             console.log('Bot is ready!')
+        })
+
+        this.on('interactionCreate', e => {
+            e.name == 'test' ? 
+                e.channel.send('Detected interaction with slash command!') 
+                : undefined
         })
 
     }
