@@ -30,7 +30,7 @@ export const CreateSlashCommand = async (data: any) => {
     
     if (options.appID == '') return
 
-    const res = await fetch(`${API}/v8/applications/${options.appID}/commands`, {
+    const res = await fetch(`${API}/applications/${options.appID}/commands`, {
 
         method: 'POST',
         headers: {
@@ -41,17 +41,47 @@ export const CreateSlashCommand = async (data: any) => {
 
     })
 
-    return await res.json()
+    try {
+        return await res.json()
+    } catch {
+        return undefined
+    }
 
 }
 
-export const DeleteSlashCommand = async (id: string) => {
+export const ListAllSlashCommands = async () => {
 
     const token = options.bot ? `Bot ${options.token}` : options.token
     
     if (options.appID == '') return
 
-    const res = await fetch(`${API}/v8/applications/${options.appID}/command/${id}`, {
+    const res = await fetch(`${API}/applications/${options.appID}/commands`, {
+
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+
+    })
+
+    try {
+        return await res.json()
+    } catch {
+        return undefined
+    }
+
+}
+
+export const DeleteSlashCommand = async (id: string, guildID?: string) => {
+
+    const token = options.bot ? `Bot ${options.token}` : options.token
+
+    if (options.appID == '') return
+    
+    const url = guildID ? `${API}/v8/applications/${options.appID}/guilds/${guildID}/commands/${id}` : `${API}/applications/${options.appID}/commands/${id}`
+
+    const res = await fetch(url, {
 
         method: 'DELETE',
         headers: {
@@ -61,7 +91,11 @@ export const DeleteSlashCommand = async (id: string) => {
 
     })
 
-    return await res.json()
+    try {
+        return await res.json()
+    } catch {
+        return undefined
+    }
 
 }
 
@@ -77,6 +111,10 @@ export const fetchChannel = async (id: string) => {
 
     }) 
 
-    return await channel.json()
+    try {
+        return await channel.json()
+    } catch {
+        return undefined
+    }
 
 }
