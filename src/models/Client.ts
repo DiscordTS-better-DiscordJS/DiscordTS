@@ -1,8 +1,9 @@
+import WebSocketManager from '../ws/WebSocketManager'
 import { EVENTS } from '../constants/events'
 import { EventEmitter } from 'events'
-import WebSocketManager from '../ws/WebSocketManager'
 import { ClientOptions } from '../types/ClientOptions'
 import { Cache } from '../types/Cache'
+// import { StatusOptions } from '../types/StatusOptions'
 
 class Options {
     token: string
@@ -60,6 +61,17 @@ export default class Client extends EventEmitter {
         }
 
     }
+    /**
+     * @TODO add client methods.
+     */
+    /* 
+    setStatus(options: StatusOptions) {
+    } 
+    setUsername(username: string) {
+    }
+    setAvatar(avatarURL: string) {
+    }
+    */
 
 }
 
