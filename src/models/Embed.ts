@@ -20,7 +20,7 @@ export default class Embed {
         this.options.color ? this.embed.color = this.options.color : null
         if (this.options.footer) {
             this.embed.footer = {}
-            this.options.footer?.text ? this.embed.footer?.text = this.options.footer?.text : null
+            this.options.footer?.text ? this.embed.footer.text = this.options.footer?.text : null
         }
 
     }
