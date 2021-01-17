@@ -1,4 +1,5 @@
 import Channel from './Channel'
+import Role from './Role'
 
 export interface guildHashes {
     version: number,
@@ -28,7 +29,7 @@ export default class Guild {
     discoverySplash: any
     unavailable: boolean
     explicitContentFilter: number
-    roles: Map<string, any> // soon role model
+    roles: Map<string, Role> // soon role model
     channels: string[]
     ownerID: number
     banner: any
@@ -69,7 +70,6 @@ export default class Guild {
         this.rulesChannelID = data.rules_channel_id
         this.premiumSubscriptions = data.premium_subscription_count
         this.splash = data.splash
-        this.roles = data.roles
         this.large = data.large
         this.name = data.name
         this.region = data.region
@@ -92,6 +92,11 @@ export default class Guild {
         this.id = data.id
         this.vanityUrlCode = data.vanity_url_code
         this.threads = data.threads
+        this.roles = new Map()
+        data.roles.forEach((r: any) => {
+            let newRole = new Role(r)
+            if (!this.roles.get(r.id)) this.roles.set(r.id, newRole)
+        })
 
     }
 
