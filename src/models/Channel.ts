@@ -15,7 +15,7 @@ export default class Channel {
 
     id: string
     type: string
-    guild_id: string
+    guildID: string
     position: number
     // permission_overwrites: Array<overwritePermissions>
     name: string
@@ -23,7 +23,7 @@ export default class Channel {
     nsfw: boolean
     bitrare: number
     icon: string
-    parent_id: string
+    parentID: string
     
     test: any
 
@@ -34,14 +34,14 @@ export default class Channel {
 
         this.id = data.id
         this.type = CHANNEL_TYPES[data.type]
-        this.guild_id = data.guild_id
+        this.guildID = data.guild_id
         this.position = data.position
         this.name = data.name
         this.topic = data.topic
         this.nsfw = data.nsfw
         this.bitrare = data.bitrare
         this.icon = data.icon
-        this.parent_id = data.parent_id
+        this.parentID = data.parent_id
 
     }
 
