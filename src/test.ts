@@ -1,7 +1,7 @@
 const token: string = require('../token.json').token
 
 import Message from './models/Message'
-import { Client, SlashCommand } from './index'
+import { Client, SlashCommand, Collection } from './index'
 import { ClientOptions } from './types/ClientOptions'
 
 class bot extends Client {
@@ -16,8 +16,13 @@ class bot extends Client {
 
             if (message.author?.bot) return
 
-            if (message.content == '!test') message.reply(':ok:')
-            console.log(message.guild)
+            if (message.content == '!test') {
+                const x = new Collection()
+                x.set('a', 'b')
+                const y = x.find(key => key == 'a')
+                message.reply(y)
+            }
+
         })
 
 
