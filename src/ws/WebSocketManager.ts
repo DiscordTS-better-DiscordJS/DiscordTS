@@ -6,6 +6,7 @@ import { Constants } from '../constants/constants'
 import { EVENTS } from '../constants/events'
 import { Heartbeat, Identify } from '../constants/payloads'
 import Client from '../models/Client'
+import Guild from '../models/Guild'
 
 export default class WebSocketManager extends EventEmitter {
 
@@ -21,7 +22,7 @@ export default class WebSocketManager extends EventEmitter {
 
         super()
 
-        this.debug = true
+        this.debug = false
 
         this.token = token
         this.reconnect = reconnect
@@ -83,8 +84,10 @@ export default class WebSocketManager extends EventEmitter {
                     break
 
                 case 'GUILD_CREATE':
-                    console.log(JSON.stringify(d.channels))
-                    if (!client.cache.guilds.get(d.id) && client.options?.cache?.guilds) client.cache.guilds.set(d.id, d)
+                    if (!client.cache.guilds.get(d.id) && client.options?.cache?.guilds) {
+                        const new_d = new Guild(d)
+                        client.cache.guilds.set(d.id, new_d)
+                    }
                     break
             }
 

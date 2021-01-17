@@ -2,6 +2,7 @@ import Client from './Client'
 import User from './User'
 import Channel from './Channel'
 import { sendMessage } from '../utils/fetch'
+import Guild from './Guild'
 
 export default class Message {
 
@@ -14,16 +15,13 @@ export default class Message {
     channel!: Channel
     id: string
     content: string
-    // guild: Guild
+    guild: Guild
     attachments: any[]
     createdTimestamp: Date
     editedTimestamp: Date | null
     pinned: boolean
     // mentions: Mentions[]
     mentionEveryone: boolean
-
-    //for test
-    guild_id: string
 
     constructor(data: any, client: Client) {
 
@@ -38,9 +36,7 @@ export default class Message {
         this.pinned = data.pinned
         this.mentionEveryone = data.mentionEveryone
         this.channel = client.cache.channels.get(data.channel_id)
-        
-        //test
-        this.guild_id = data.guild_id
+        this.guild = client.cache.guilds.get(data.guild_id)
 
     }
 
@@ -50,7 +46,7 @@ export default class Message {
     * @description Reply to member message.
     */
     reply(content: string | any) {
-        content = { content: content, message_reference: { message_id: this.id, channel_id: this.channel.id, guild_id: this.guild_id } }
+        content = { content: content, message_reference: { message_id: this.id, channel_id: this.channel.id, guild_id: this.guild.id } }
         sendMessage(content, this.channel.id)
     }
 
