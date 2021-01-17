@@ -17,15 +17,16 @@ class bot extends Client {
             if (message.author?.bot) return
 
             if (message.content == '!test') {
+
                 const x = new Collection()
                 x.set('a', 'b')
+                x.set('XD', message.author.tag)
                 const y = x.find(key => key == 'a')
-                message.reply(y)
-            }
 
-            if (message.content == '!embed') {
-                const embed = new Embed({ title: 'Test' })
-                message.channel.send(embed)
+                const embed = new Embed({ title: y, description: `${x.find(XD => XD == "XD")}` })
+                message.reply(embed)
+                message.channel.send('Thats cool!')
+
             }
 
         })
