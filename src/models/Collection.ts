@@ -2,7 +2,7 @@
 
 export default class Collection<K, V> extends Map<K ,V> {
 
-                // maby in future some options?
+    // maybe in future some options?
     constructor (options?: any) {
         super()
     }
