@@ -53,6 +53,7 @@ export default class Channel {
      */
     send(content: string | any) {
         content = { content: content }
+        if (content.EmbedData) content = { embed: content }
         sendMessage(content, this.id)
     }
 

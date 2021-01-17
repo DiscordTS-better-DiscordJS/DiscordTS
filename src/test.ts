@@ -1,7 +1,7 @@
 const token: string = require('../token.json').token
 
 import Message from './models/Message'
-import { Client, SlashCommands, Collection } from './index'
+import { Client, SlashCommands, Collection, Embed } from './index'
 import { ClientOptions } from './types/ClientOptions'
 
 class bot extends Client {
@@ -23,6 +23,11 @@ class bot extends Client {
                 message.reply(y)
             }
 
+            if (message.content == '!embed') {
+                const embed = new Embed({ title: 'Test' })
+                message.channel.send(embed)
+            }
+
         })
 
 
@@ -31,7 +36,7 @@ class bot extends Client {
             const all = await Slash.all()
 
             // Delete all cached commands.
-            all.forEach((slash: any) => Slash.delete(slash.id))
+            // all.forEach((slash: any) => Slash.delete(slash.id))
 
             // Create new Slash command.
             Slash.create({
