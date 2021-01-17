@@ -41,6 +41,7 @@ export default class Message {
     }
 
     /**
+    * @TODO add embed support.
     * @param {string | any} content
     * @return {void} nothing.
     * @description Reply to member message.
