@@ -1,6 +1,6 @@
 import { options } from './Client'
 import { SlashCommandType } from '../types/SlashCommand'
-import { CreateSlashCommand, DeleteSlashCommands } from '../utils/fetch'
+import { CreateSlashCommand, DeleteSlashCommand } from '../utils/fetch'
 
 export default class SlashCommand {
 
@@ -13,6 +13,6 @@ export default class SlashCommand {
     }
 
     delete(id: string) {
-        DeleteSlashCommands(id)
+        DeleteSlashCommand(id)
     }
 }

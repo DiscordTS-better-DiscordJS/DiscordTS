@@ -11,6 +11,7 @@ export const Identify = {
 	op: OPCODES.IDENTIFY,
 	d: {
 		token: '',
+		intents: 513,
 		properties: {
 			$os: 'linux',
 			$browser: 'discord.ts',

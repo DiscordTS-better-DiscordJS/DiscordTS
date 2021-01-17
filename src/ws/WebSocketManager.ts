@@ -21,7 +21,7 @@ export default class WebSocketManager extends EventEmitter {
 
         super()
 
-        this.debug = false
+        this.debug = true
 
         this.token = token
         this.reconnect = reconnect
@@ -45,6 +45,9 @@ export default class WebSocketManager extends EventEmitter {
             s ? this.sequence = s : null
 
             switch (op) {
+
+                case OPCODES.INVALID_SESSION:
+                    throw new Error("[OPCODE: 9]: Gateway INVALID session.")
 
                 case OPCODES.HELLO:
 
@@ -80,6 +83,7 @@ export default class WebSocketManager extends EventEmitter {
                     break
 
                 case 'GUILD_CREATE':
+                    console.log(JSON.stringify(d.channels))
                     if (!client.cache.guilds.get(d.id) && client.options?.cache?.guilds) client.cache.guilds.set(d.id, d)
                     break
             }
