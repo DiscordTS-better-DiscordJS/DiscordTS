@@ -1,18 +1,31 @@
 import { options } from './Client'
 import { SlashCommandType } from '../types/SlashCommand'
-import { CreateSlashCommand, DeleteSlashCommand } from '../utils/fetch'
+import { CreateSlashCommand, DeleteSlashCommand, ListAllSlashCommands } from '../utils/fetch'
 
-export default class SlashCommand {
+export default class SlashCommands {
 
     constructor() {
         if (!options.token) console.log('You must to login first. Client.connect(token: string)')
     }
 
     create(data: SlashCommandType) {
-        CreateSlashCommand(data)
+        return CreateSlashCommand(data)
     }
 
-    delete(id: string) {
-        DeleteSlashCommand(id)
+    delete(id: string, guildID?: string) {
+        return DeleteSlashCommand(id, guildID)
+    }
+
+    /**
+     * @TODO Add reply function to slash command.
+     * @param id 
+     * @param message 
+     */
+    /*reply(id: string, message: string) {
+        return ReplySlashCommand(id)
+    }*/
+
+    all() {
+        return ListAllSlashCommands()
     }
 }
