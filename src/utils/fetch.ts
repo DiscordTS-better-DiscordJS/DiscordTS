@@ -111,10 +111,6 @@ export const fetchChannel = async (id: string) => {
 
     }) 
 
-    try {
-        return await channel.json()
-    } catch {
-        return undefined
-    }
+    return await channel.json()
 
 }
