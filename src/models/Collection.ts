@@ -7,9 +7,9 @@ export default class Collection<K, V> extends Map<K ,V> {
         super()
     }
     
-    find(method: (value: V, key: K, collection: this) => boolean): V | any {
+    find(method: (key: K, value: V, collection: this) => boolean): V | any {
         for (let [k, v] of this){
-            if (method(v, k, this)) return v
+            if (method(k, v, this)) return v
         }
     }
 
