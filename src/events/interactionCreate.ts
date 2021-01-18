@@ -9,7 +9,7 @@ export const _ = async (data: any, client: Client): Promise<any> => {
     object.name = data.data.name
     object.channel = new Channel(data.channel_id, client, await fetchChannel(data.channel_id))
     object.user = new User(data.member.user)
-    object.roles = data.member.roles
+    object.roles = data.member.roles // add roles model
     object.guild = data.guild
     object.interaction = data.data
 
