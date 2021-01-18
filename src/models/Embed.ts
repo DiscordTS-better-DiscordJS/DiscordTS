@@ -86,32 +86,75 @@ export default class Embed {
 
     }
 
+    /**
+     * 
+     * @param {string} title
+     * @description Set new value of title in embed or set it if not exists.
+     * @returns null
+     */
     title (title: string) {
         this.data.title = title
     }
-    
+
+    /**
+     * 
+     * @param {string} type
+     * @description Set new value of embed type or set it if not exists.
+     * @returns null 
+     */
     type (type: string) {
         this.data.type = type
     }
 
+    /**
+     * 
+     * @param {string} description 
+     * @description Set new value of description in embed or set it if not exists.
+     * @returns null
+     */
     description (description: string) {
         this.data.description = description
     }
 
+    /**
+     * 
+     * @param {string} url
+     * @description Set new url in embed or set it if not exists. 
+     */
     url (url: string) {
         this.data.url = url
     }
 
+    /**
+     * 
+     * @param {Date | boolean} timestamp 
+     * @description Chance timestamp in embed or set it if not exists or remove. (false)
+     * @returns null
+     */
     timestamp (timestamp: Date | boolean) {
         if (typeof timestamp == 'boolean' && timestamp) this.data.timestamp = new Date()
         else if (this.data.timestamp) this.data.timestamp = timestamp
         else delete this.data.timestamp
     }
 
+    /**
+     * 
+     * @param {string | number} color
+     * @description Set new color of embed or set it if not exists. 
+     */
     color (color: string | number) {
         this.data.color = color
     }
 
+    /**
+     * 
+     * @param {EmbedOptions['footer']} footer
+     * @description Change embed footer values of set it if not exists.
+     * @param {string} text 
+     * @param {string} icon
+     * @param {string} proxyIcon
+     * @returns null
+     */
     footer(footer: EmbedOptions['footer']) {
         this.data.footer ? null : this.data.footer = {}
         if (footer?.icon) this.data.footer.icon = footer.icon
