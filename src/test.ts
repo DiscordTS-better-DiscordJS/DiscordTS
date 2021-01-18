@@ -18,17 +18,29 @@ class bot extends Client {
 
             if (message.content == '!test') {
 
-                const x = new Collection()
-                x.set('a', 'b')
-                x.set('XD', message.author.tag)
-                const y = x.find(key => key == 'a')
-
-                const embed = new Embed({ title: y, description: `${x.find(XD => XD == "XD")}` })
-                message.reply(embed)
-                message.channel.send('Thats cool!')
-                new Embed({
-                    fields: [{ name: 'ok' }]
+                const embed = new Embed({
+                    title: message.author.tag,
+                    description: 'Some description i think. And more stupis words!',
+                    timestamp: true,
+                    footer: {
+                        text: `For ${message.author.id}`,
+                        icon: 'https://cdn.discordapp.com/emojis/794668680905752616.gif?v=1'
+                    },
+                    thumbnail: {
+                        url: 'https://cdn.discordapp.com/emojis/794668680905752616.gif?v=1'
+                    },
+                    author: {
+                        name: message.channel.name,
+                        iconUrl: 'https://cdn.discordapp.com/emojis/794668680905752616.gif?v=1'
+                    },
+                    field: { name: 'test', inline: false, value: '1' },
+                    fields: [
+                        { name: 'test2', value: '2', inline: true },
+                        { name: 'test3', value: '3', inline: true },
+                        { name: 'test4', value: '4', inline: true },
+                    ]
                 })
+                message.channel.send(embed)
 
             }
 

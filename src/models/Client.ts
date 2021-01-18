@@ -3,7 +3,7 @@ import { EVENTS } from '../constants/events'
 import { EventEmitter } from 'events'
 import { ClientOptions } from '../types/ClientOptions'
 import { Cache } from '../types/Cache'
-import Collection from '../models/Collection'
+import Collection from './Collection'
 // import { StatusOptions } from '../types/StatusOptions'
 
 class Options {

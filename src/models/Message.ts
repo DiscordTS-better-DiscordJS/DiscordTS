@@ -47,8 +47,8 @@ export default class Message {
     * @description Reply to member message.
     */
     reply(content: string | any) {
-        if (!content.EmbedData) content = { content: content }
-        else content = { embed: content.EmbedData }
+        if (!content.data) content = { content: content }
+        else content = { embed: content.data }
         content.message_reference = { message_id: this.id, channel_id: this.channel.id, guild_id: this.guild.id }
         sendMessage(content, this.channel.id)
     }

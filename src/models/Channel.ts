@@ -52,8 +52,8 @@ export default class Channel {
      * @description Send message to channel.
      */
     send(content: string | any) {
-        if (!content.EmbedData) content = { content: content }
-        else content = { embed: content.EmbedData }
+        if (!content.data) content = { content: content }
+        else content = { embed: content.data }
         sendMessage(content, this.id)
     }
 
