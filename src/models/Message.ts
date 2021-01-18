@@ -4,6 +4,11 @@ import Channel from './Channel'
 import { sendMessage } from '../utils/fetch'
 import Guild from './Guild'
 
+export interface MessageArgsOptions {
+    ClientPrefix?: string
+    RegExp?: RegExp
+}
+
 export default class Message {
 
     // skonczyc jak bedzie cache: tj. guild, channel itd
@@ -54,12 +59,15 @@ export default class Message {
     }
 
     /**
-     * @param {RegExp} RegExp RegExp to split message content in to array of arguments (not required, basic RegExp is: "/ +/gm" )
+     * @param {MessageArgsOptions} data Data to split message content in to array of arguments 
+     * @argument {string} ClientPrefix If you use prefix it can return arg[0] slice prefix lenght
+     * @argument {RegExp} RegExp RegExp to split message content, (not required, basic RegExp is: "/ +/gm" )
      * @return {string[]} Array with string elements from messag.content
      */
-    args(RegExp?: RegExp) {
+    args(data?: MessageArgsOptions) {
         let args: string[] = []
-        RegExp ? args = this.content.split(RegExp) : args = this.content.split(/ +/gm)
+        data?.RegExp ? args = this.content.split(data.RegExp) : args = this.content.split(/ +/gm)
+        data?.ClientPrefix ? args[0] = args[0].slice(data.ClientPrefix.length) : null
         return args
     }
 

@@ -16,9 +16,9 @@ class bot extends Client {
 
             if (message.author?.bot) return
 
-            const args = message.args()
+            const args = message.args({ ClientPrefix: '!' })
 
-            if (args[0] == '!test') {
+            if (args[0] == 'test') {
 
                 const embed = new Embed({
                     description: 'Some description i think. And more stupis words!',
