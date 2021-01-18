@@ -14,25 +14,24 @@ class bot extends Client {
 
         this.on('message', async (message: Message) => {
 
+            const prefix: string = '!! '
+
             if (message.author?.bot) return
+            if (!message.content.startsWith(prefix)) return
 
-            const args = message.args({ ClientPrefix: '!' })
-
+            const args = message.args({ prefix: prefix })
+            
             if (args[0] == 'test') {
 
                 const embed = new Embed({
                     description: 'Some description i think. And more stupis words!',
+                    field: { name: 'Args', value: `${args}` }
                 })
 
                 args[1] == '1' ? embed.title('1') : null
                 args[1] == '2' ? embed.title('2') : null
 
                 await message.channel.send(embed)
-
-                embed.footer({ text: 'text' })
-                embed.description('hmmmmm')
-                
-                message.reply(embed)
 
             }
 
