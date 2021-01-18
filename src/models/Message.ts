@@ -53,6 +53,10 @@ export default class Message {
         sendMessage(content, this.channel.id)
     }
 
+    /**
+     * @param {RegExp} RegExp RegExp to split message content in to array of arguments (not required, basic RegExp is: "/ +/gm" )
+     * @return {string[]} Array with string elements from messag.content
+     */
     args(RegExp?: RegExp) {
         let args: string[] = []
         RegExp ? args = this.content.split(RegExp) : args = this.content.split(/ +/gm)
