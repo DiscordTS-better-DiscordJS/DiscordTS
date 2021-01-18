@@ -1,11 +1,11 @@
-import { EmbedOptions } from '../types/embed'
+import { EmbedOptions, ClearEmbedOptions } from '../types/embed'
 
-type footerArray = [text: string, icon: string]
 
 export default class Embed {
 
     #options: EmbedOptions = {}
     data: EmbedOptions = {}
+    clear: ClearEmbedOptions
 
     constructor(embedConfig: EmbedOptions) {
 
@@ -69,6 +69,21 @@ export default class Embed {
             })
         }
 
+        this.clear = {
+            footer: () => delete this.data.footer,
+            title: () => delete this.data.title,
+            description: () => delete this.data.description,
+            url: () => delete this.data.url,
+            timestamp: () => delete this.data.timestamp,
+            color: () => delete this.data.color,
+            image: () => delete this.data.image,
+            thumbnail: () => delete this.data.thumbnail,
+            video: () => delete this.data.video,
+            providier: () => delete this.data.provider,
+            author: () => delete this.data.author,
+            field: (name) => this.data.fields = this.data.fields?.filter(field => field.name !== name)
+        }
+
     }
 
     title (title: string) {
@@ -89,7 +104,8 @@ export default class Embed {
 
     timestamp (timestamp: Date | boolean) {
         if (typeof timestamp == 'boolean' && timestamp) this.data.timestamp = new Date()
-        else this.data.timestamp = timestamp
+        else if (this.data.timestamp) this.data.timestamp = timestamp
+        else delete this.data.timestamp
     }
 
     color (color: string | number) {
@@ -101,6 +117,52 @@ export default class Embed {
         if (footer?.icon) this.data.footer.icon = footer.icon
         if (footer?.text) this.data.footer.text = footer.text
         if (footer?.proxyIcon) this.data.footer.proxyIcon = footer.proxyIcon
+    }
+
+    field(field: EmbedOptions['field']) {
+        this.data.fields ? null : this.data.fields = []
+        let fieldData: EmbedOptions['field'] = { name: '' }
+        field?.name ? fieldData.name = field.name : null
+        field?.value ? fieldData.value = field.value : null
+        field?.inline ? fieldData.inline = field.inline : null
+        this.data.fields.push(fieldData)
+    }
+
+    image(image: EmbedOptions['image']) {
+        this.data.image ? null : this.data.image = {}
+        if (image?.url) this.data.image.url = image.url
+        if (image?.proxyUrl) this.data.image.proxyUrl = image.proxyUrl
+        if (image?.height) this.data.image.height = image.height
+        if (image?.width) this.data.image.width = image.width
+    }
+
+    thumbnail(thumbnail: EmbedOptions['thumbnail']) {
+        this.data.thumbnail ? null : this.data.thumbnail = {}
+        if (thumbnail?.url) this.data.thumbnail.url = thumbnail.url
+        if (thumbnail?.proxyUrl) this.data.thumbnail.proxyUrl = thumbnail.proxyUrl
+        if (thumbnail?.width) this.data.thumbnail.width = thumbnail.width
+        if (thumbnail?.height) this.data.thumbnail.height = thumbnail.height
+    }
+
+    video(video: EmbedOptions['video']) {
+        this.data.video ? null : this.data.video = {}
+        if (video?.url) this.data.video.url = video.url
+        if (video?.height) this.data.video.height = video.height
+        if (video?.width) this.data.video.width = video.width
+    }
+
+    provider(provider: EmbedOptions['provider']) {
+        this.data.provider ? null : this.data.provider = {}
+        if (provider?.name) this.data.provider.name = provider.name
+        if (provider?.url) this.data.provider.url = provider.url
+    }
+
+    author(author: EmbedOptions['author']) {
+        this.data.author ? null : this.data.author = {}
+        if (author?.name) this.data.author.name = author.name
+        if (author?.url) this.data.author.url = author.url
+        if (author?.iconUrl) this.data.author.iconUrl = author.url
+        if (author?.proxyIconUrl) this.data.author.proxyIconUrl = author.proxyIconUrl
     }
 
 }

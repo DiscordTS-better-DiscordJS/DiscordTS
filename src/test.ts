@@ -28,10 +28,13 @@ class bot extends Client {
                     field: { name: 'Args', value: `${args}` }
                 })
 
-                args[1] == '1' ? embed.title('1') : null
-                args[1] == '2' ? embed.title('2') : null
+                embed.clear.description()
 
-                await message.channel.send(embed)
+                embed.author({ name: 'test' })
+                embed.field({ name: 'ok', value: 'ok2' })
+                embed.clear.field('Args')
+                
+                message.reply(embed)
 
             }
 

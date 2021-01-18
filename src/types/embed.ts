@@ -48,3 +48,19 @@ export interface EmbedOptions {
     fields?: Array<field>
 
 }
+
+export interface ClearEmbedOptions {
+    footer: () => void
+    title: () => void
+    description: () => void
+    url: () => void
+    timestamp: () => void
+    color: () => void
+    image: () => void
+    thumbnail: () => void
+    video: () => void
+    providier: () => void
+    author: () => void
+    field: (name: string) => void
+
+}
