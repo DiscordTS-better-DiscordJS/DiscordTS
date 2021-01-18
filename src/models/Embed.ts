@@ -1,5 +1,7 @@
 import { EmbedOptions } from '../types/embed'
 
+type footerArray = [text: string, icon: string]
+
 export default class Embed {
 
     #options: EmbedOptions = {}
@@ -67,6 +69,38 @@ export default class Embed {
             })
         }
 
+    }
+
+    title (title: string) {
+        this.data.title = title
+    }
+    
+    type (type: string) {
+        this.data.type = type
+    }
+
+    description (description: string) {
+        this.data.description = description
+    }
+
+    url (url: string) {
+        this.data.url = url
+    }
+
+    timestamp (timestamp: Date | boolean) {
+        if (typeof timestamp == 'boolean' && timestamp) this.data.timestamp = new Date()
+        else this.data.timestamp = timestamp
+    }
+
+    color (color: string | number) {
+        this.data.color = color
+    }
+
+    footer(footer: EmbedOptions['footer']) {
+        this.data.footer ? null : this.data.footer = {}
+        if (footer?.icon) this.data.footer.icon = footer.icon
+        if (footer?.text) this.data.footer.text = footer.text
+        if (footer?.proxyIcon) this.data.footer.proxyIcon = footer.proxyIcon
     }
 
 }

@@ -53,4 +53,10 @@ export default class Message {
         sendMessage(content, this.channel.id)
     }
 
+    args(RegExp?: RegExp) {
+        let args: string[] = []
+        RegExp ? args = this.content.split(RegExp) : args = this.content.split(/ +/gm)
+        return args
+    }
+
 }
