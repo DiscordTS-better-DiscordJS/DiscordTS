@@ -26,6 +26,9 @@ class bot extends Client {
                 const embed = new Embed({ title: y, description: `${x.find(XD => XD == "XD")}` })
                 message.reply(embed)
                 message.channel.send('Thats cool!')
+                new Embed({
+                    fields: [{ name: 'ok' }]
+                })
 
             }
 

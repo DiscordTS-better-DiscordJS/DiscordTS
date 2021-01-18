@@ -3,6 +3,7 @@ import { EVENTS } from '../constants/events'
 import { EventEmitter } from 'events'
 import { ClientOptions } from '../types/ClientOptions'
 import { Cache } from '../types/Cache'
+import Collection from '../models/Collection'
 // import { StatusOptions } from '../types/StatusOptions'
 
 class Options {
@@ -30,9 +31,9 @@ export default class Client extends EventEmitter {
 
         super()
         this.cache = {
-            channels: new Map(),
-            messages: new Map(),
-            guilds: new Map()
+            channels: new Collection(),
+            messages: new Collection(),
+            guilds: new Collection()
         }
         this.options = Object.assign({
             cache: {
