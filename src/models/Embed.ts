@@ -1,4 +1,4 @@
-import { EmbedOptions, ClearEmbedOptions } from '../types/embed'
+import { EmbedOptions, ClearEmbedOptions } from '../types/Embed'
 
 
 export default class Embed {
