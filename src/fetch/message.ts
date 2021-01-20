@@ -9,7 +9,9 @@ export const sendMessage = async (content: any, channelID: string) => {
     const token = options.bot ? `Bot ${options.token}` : options.token
 
     content.tss = false
-
+    
+    if (!content.embed && content.content.length >= 2000) return console.log(`fetchError: Maximum message length is 2000 chars.`)
+    
     const res = await fetch(`${API}/channels/${channelID}/messages`, {
 
         method: 'POST',
