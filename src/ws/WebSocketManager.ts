@@ -9,21 +9,17 @@ import Client from '../models/Client'
 import Guild from '../models/Guild'
 
 export default class WebSocketManager extends EventEmitter {
-
     debug: boolean
-
     token: string; reconnect: boolean; heart: any
     socket: WebSocket | undefined
     sessionID: number
     sequence: number
     client
 
-    constructor (reconnect: boolean, token: string, client: Client ) {
-
+    constructor (reconnect: boolean, token: string, client: Client) {
         super()
 
         this.debug = false
-
         this.token = token
         this.reconnect = reconnect
         this.sessionID = 0
@@ -32,14 +28,13 @@ export default class WebSocketManager extends EventEmitter {
         
         try {
             this.socket = new WebSocket(Constants.GATEWAY)
-        } catch {}
+        } catch(error) { console.error(error) }
 
         this.socket?.on('open', () => {
             this.debug && console.log('WebSocket send OPEN')
         })
 
         this.socket?.on('message', async (data: string) => {
-
             const packet = JSON.parse(data)
             const { op, s, t, d } = packet
 
@@ -90,35 +85,27 @@ export default class WebSocketManager extends EventEmitter {
                     }
                     break
             }
-
         })
-
     }
 
     async module (name: string, d: any) {
-
         const exist = await existsSync(`${__dirname}/../events/${name}.js`)
         if (exist) {
             const new_d = await require(`../events/${name}`)._(d, this.client)
             this.emit(name, new_d)
         }
-
     }
 
     heartbeat (interval: number, s: any, d: any) {
-
         this.heart = setInterval(() => {
             Heartbeat.s = s
             Heartbeat.d = d
             this.socket?.send(JSON.stringify(Heartbeat))
         }, interval)
-
     }
 
     identify (token: string) {
-
         switch (this.reconnect) {
-
             case true:
 
                 this.socket?.send(JSON.stringify({
@@ -137,9 +124,6 @@ export default class WebSocketManager extends EventEmitter {
                 this.socket?.send(JSON.stringify(Identify))
 
                 break
-
         }
-
     }
-
 }
