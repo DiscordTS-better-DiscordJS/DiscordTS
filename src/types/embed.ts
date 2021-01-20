@@ -62,5 +62,4 @@ export interface ClearEmbedOptions {
     providier: () => void
     author: () => void
     field: (name: string) => void
-
 }

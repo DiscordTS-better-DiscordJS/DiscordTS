@@ -9,12 +9,12 @@ export type CommandOptions = {
     type: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
     default?: boolean
     required?: boolean
-    choices?: CommandOptionsChoices[]
-    options?: CommandOptions[]
+    choices?: Array<CommandOptionsChoices>
+    options?: Array<CommandOptions>
 }
 
 export interface SlashCommandType {
     name: string
     description: string
-    options?: CommandOptions[]
+    options?: Array<CommandOptions>
 }
