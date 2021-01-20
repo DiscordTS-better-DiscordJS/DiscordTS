@@ -21,7 +21,24 @@ export const sendMessage = async (content: any, channelID: string) => {
 
     })
 
+    console.log(await res.json())
     return await res.json()
 
 }
 
+export const fetchMessage = async (channelID: string, messageID: string) => {
+
+    const token = options.bot ? `Bot ${options.token}` : options.token
+
+    const res = await fetch(`${API}/channels/${channelID}/messages/${messageID}`, {
+
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        },
+
+    })
+
+    return await res.json()
+
+}

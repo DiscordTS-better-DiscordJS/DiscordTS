@@ -1,5 +1,6 @@
 import Client from '../models/Client'
-import { sendMessage } from '../fetch/message'
+import { sendMessage, fetchMessage } from '../fetch/message'
+import Message from '../models/Message'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',
@@ -27,7 +28,10 @@ export default class Channel {
     
     test: any
 
+    #client: Client
+
     constructor(channelID: any, client: Client, fromFetch?: any) {
+        this.#client = client
 
         const cache = client.cache.channels.get(channelID)
         const data = cache ? cache : fromFetch
@@ -55,6 +59,11 @@ export default class Channel {
         if (!content.data) content = { content: content }
         else content = { embed: content.data }
         sendMessage(content, this.id)
+    }
+
+    async fetchMessage(id: string) {
+        const message = await fetchMessage(this.id, id)
+        return new Message(message, this.#client)
     }
 
 }
