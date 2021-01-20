@@ -61,6 +61,12 @@ export default class Channel {
         sendMessage(content, this.id)
     }
 
+    /**
+     * 
+     * @param {string} id
+     * @returns {Message} Message object
+     * @description Fetch message from channel. 
+     */
     async fetchMessage(id: string) {
         const message = await fetchMessage(this.id, id)
         return new Message(message, this.#client)

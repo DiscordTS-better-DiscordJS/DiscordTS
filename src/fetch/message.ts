@@ -14,14 +14,13 @@ export const sendMessage = async (content: any, channelID: string) => {
 
         method: 'POST',
         headers: {
-            'Content-Type': 'aplication/json',
+            'Content-Type': 'application/json',
             'Authorization': token
         },
         body: JSON.stringify(content)
 
     })
 
-    console.log(await res.json())
     return await res.json()
 
 }

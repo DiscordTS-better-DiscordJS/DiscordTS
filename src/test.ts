@@ -24,18 +24,11 @@ class bot extends Client {
             
             if (args[0] == 'test') {
 
-                const embed = new Embed({
-                    description: 'Some description i think. And more stupis words!',
-                    field: { name: 'Args', value: `${args}` }
-                })
+                const oldMessageID: string = '800652737875410955'
 
-                embed.clear.description()
+                const oldMessage: Message = await message.channel.fetchMessage(oldMessageID)
 
-                embed.author({ name: 'test' })
-                embed.field({ name: 'ok', value: 'ok2' })
-                embed.clear.field('Args')
-                
-                message.reply(embed)
+                message.reply(new Embed({description: `${oldMessage.content} / ${oldMessage.author.tag}`}))
 
             }
 

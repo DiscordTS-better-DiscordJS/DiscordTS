@@ -75,5 +75,6 @@ export default class Message {
         data?.RegExp ? args = content.split(data.RegExp) : args = content.split(/ +/gm)
         return args
     }
+    
 
 }
