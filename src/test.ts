@@ -3,6 +3,7 @@ const token: string = require('../token.json').token
 import Message from './models/Message'
 import { Client, SlashCommands, Collection, Embed } from './index'
 import { ClientOptions } from './types/ClientOptions'
+import Permissions, { Perms } from './models/Permissions'
 
 class bot extends Client {
 
@@ -44,7 +45,7 @@ class bot extends Client {
         this.on('ready', async() => {
             const Slash = new SlashCommands()
             const all = await Slash.all()
-
+            const permissions = new Permissions([Perms.CONNECT])
             // Delete all cached commands.
             // all.forEach((slash: any) => Slash.delete(slash.id))
 
