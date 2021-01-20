@@ -1,6 +1,6 @@
 import { options } from './Client'
 import { SlashCommandType } from '../types/SlashCommand'
-import { CreateSlashCommand, DeleteSlashCommand, ListAllSlashCommands } from '../utils/fetch'
+import { CreateSlashCommand, DeleteSlashCommand, ListAllSlashCommands } from '../fetch/SlashCommand'
 
 export default class SlashCommands {
 

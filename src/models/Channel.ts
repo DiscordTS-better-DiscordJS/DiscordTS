@@ -1,5 +1,5 @@
 import Client from '../models/Client'
-import { sendMessage } from '../utils/fetch'
+import { sendMessage } from '../fetch/message'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',
