@@ -1,5 +1,6 @@
 import Channel from './Channel'
 import Role from './Role'
+import { fetchClientLeave } from '../fetch/client'
 
 export interface guildHashes {
     version: number,
@@ -98,6 +99,14 @@ export default class Guild {
             if (!this.roles.get(r.id)) this.roles.set(r.id, newRole)
         })
 
+    }
+
+    /**
+     * @return {void} nothing
+     * @description If you want to leave from guild your client, use this.
+     */
+    async leave() {
+        await fetchClientLeave(this.id)
     }
 
 }
