@@ -1,5 +1,3 @@
-
-
 export default class Collection<K, V> extends Map<K ,V> {
     constructor (options?: any) {
         super()

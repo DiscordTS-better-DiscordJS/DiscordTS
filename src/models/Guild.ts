@@ -1,6 +1,5 @@
-import Channel from './Channel'
 import Role from './Role'
-import { fetchClientLeave } from '../fetch/client'
+import { fetchClientLeave } from '../fetch/Client'
 
 export interface guildHashes {
     version: number,
