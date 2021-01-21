@@ -36,17 +36,17 @@ class bot extends Client {
 
 
         this.on('ready', async() => {
-            const Slash = new SlashCommands()
-            const all = await Slash.all()
+            /*const Slash = new SlashCommands()
+            const all = await Slash.all()*/
             const permissions = new Permissions([Perms.CONNECT])
             // Delete all cached commands.
             // all.forEach((slash: any) => Slash.delete(slash.id))
 
             // Create new Slash command.
-            Slash.create({
-                name: "test",
-                description: "Test command"
-            })
+            // Slash.create({
+            //     name: "test",
+            //     description: "Test command"
+            // })
 
             console.log('Bot is ready!')
         })
