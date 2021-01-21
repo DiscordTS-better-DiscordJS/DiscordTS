@@ -1,45 +1,23 @@
-import fetch from 'node-fetch'
-import { options } from '../models/Client'
-import { Constants } from '../constants/constants'
-
-const API = Constants.API
+import fetch from '../utils/fetch'
 
 export const sendMessage = async (content: any, channelID: string) => {
 
-    const token = options.bot ? `Bot ${options.token}` : options.token
-
     content.tss = false
-    
-    if (!content.embed && content.content.length >= 2000) return console.log(`fetchError: Maximum message length is 2000 chars.`)
-    
-    const res = await fetch(`${API}/channels/${channelID}/messages`, {
 
+    return await fetch({
+        url: `/channels${channelID}/messages`,
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify(content)
-
+        ContentType: 'application/json',
+        body: content
     })
-
-    return await res.json()
 
 }
 
 export const fetchMessage = async (channelID: string, messageID: string) => {
 
-    const token = options.bot ? `Bot ${options.token}` : options.token
-
-    const res = await fetch(`${API}/channels/${channelID}/messages/${messageID}`, {
-
+    return await fetch({
+        url: `/channels/${channelID}/messages/${messageID}`,
         method: 'GET',
-        headers: {
-            'Authorization': token
-        },
-
     })
-
-    return await res.json()
 
 }
