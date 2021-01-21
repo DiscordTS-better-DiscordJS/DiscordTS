@@ -20,6 +20,10 @@ class Options {
 
 const options = new Options()
 
+/**
+ * Class representing a Client.
+ * @extends EventEmitter
+ */
 export default class Client extends EventEmitter {
 
     ws!: WebSocketManager
@@ -27,6 +31,10 @@ export default class Client extends EventEmitter {
     token!: string
     options?: ClientOptions
 
+    /**
+     * Create a Client.
+     * @param {ClientOptions} [options] - Client options.
+     */
     constructor(options?: ClientOptions) {
 
         super()
@@ -45,6 +53,10 @@ export default class Client extends EventEmitter {
 
     }
 
+    /**
+     * Connect with Discord WebSocket.
+     * @param {string} token - Bot token.
+     */
     async connect(token: string){
 
         this.token = token

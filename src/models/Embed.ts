@@ -1,12 +1,18 @@
 import { EmbedOptions, ClearEmbedOptions } from '../types/Embed'
 
-
+/**
+ * Class representing a Embed.
+ */
 export default class Embed {
 
     #options: EmbedOptions = {}
     data: EmbedOptions = {}
     clear: ClearEmbedOptions
 
+    /**
+     * Create a Embed.
+     * @param {EmbedOptions} embedConfig - Embed arguments.
+     */
     constructor(embedConfig: EmbedOptions) {
 
         this.#options = embedConfig
@@ -87,49 +93,45 @@ export default class Embed {
     }
 
     /**
-     * 
-     * @param {string} title
+     * Update embed title.
      * @description Set new value of title in embed or set it if not exists.
-     * @returns null
+     * @param {string} title
      */
     title (title: string) {
         this.data.title = title
     }
 
     /**
-     * 
-     * @param {string} type
+     * Update embed type.
      * @description Set new value of embed type or set it if not exists.
-     * @returns null 
+     * @param {string} type
      */
     type (type: string) {
         this.data.type = type
     }
 
     /**
-     * 
-     * @param {string} description 
+     * Update embed description
      * @description Set new value of description in embed or set it if not exists.
-     * @returns null
+     * @param {string} description 
      */
     description (description: string) {
         this.data.description = description
     }
 
     /**
-     * 
-     * @param {string} url
+     * Update embed url.
      * @description Set new url in embed or set it if not exists. 
+     * @param {string} url
      */
     url (url: string) {
         this.data.url = url
     }
 
     /**
-     * 
-     * @param {Date | boolean} timestamp 
+     * Update embed timestamp.
      * @description Chance timestamp in embed or set it if not exists or remove. (false)
-     * @returns null
+     * @param {Date | string | boolean} timestamp 
      */
     timestamp (timestamp: Date | boolean) {
         if (typeof timestamp == 'boolean' && timestamp) this.data.timestamp = new Date()
@@ -138,7 +140,7 @@ export default class Embed {
     }
 
     /**
-     * 
+     * Update embed color.
      * @param {string | number} color
      * @description Set new color of embed or set it if not exists. 
      */
@@ -147,13 +149,12 @@ export default class Embed {
     }
 
     /**
-     * 
-     * @param {EmbedOptions['footer']} footer
+     * Update embed footer.
      * @description Change embed footer values of set it if not exists.
-     * @param {string} text 
-     * @param {string} icon
-     * @param {string} proxyIcon
-     * @returns null
+     * @param {EmbedOptions.footer} footer
+     * @param {string} footer.text 
+     * @param {string} footer.icon
+     * @param {string} footer.proxyIcon
      */
     footer(footer: EmbedOptions['footer']) {
         this.data.footer ? null : this.data.footer = {}
@@ -162,6 +163,14 @@ export default class Embed {
         if (footer?.proxyIcon) this.data.footer.proxyIcon = footer.proxyIcon
     }
 
+    /**
+     * Update embed field.
+     * @description Change embed field content.
+     * @param {EmbedOptions.field} field
+     * @param {string} field.name 
+     * @param {string} field.value
+     * @param {boolean} field.inline
+     */
     field(field: EmbedOptions['field']) {
         this.data.fields ? null : this.data.fields = []
         let fieldData: EmbedOptions['field'] = { name: '' }
@@ -171,6 +180,15 @@ export default class Embed {
         this.data.fields.push(fieldData)
     }
 
+    /**
+     * Update embed image.
+     * @description Change embed image.
+     * @param {EmbedOptions.image} image
+     * @param {string} image.url 
+     * @param {string} image.proxyUrl
+     * @param {number} image.height
+     * @param {number} image.width
+     */
     image(image: EmbedOptions['image']) {
         this.data.image ? null : this.data.image = {}
         if (image?.url) this.data.image.url = image.url
@@ -178,7 +196,16 @@ export default class Embed {
         if (image?.height) this.data.image.height = image.height
         if (image?.width) this.data.image.width = image.width
     }
-
+    
+    /**
+     * Update embed thumbnail.
+     * @description Change embed thumbnail.
+     * @param {EmbedOptions.thumbnail} thumbnail
+     * @param {string} thumbnail.url 
+     * @param {string} thumbnail.proxyUrl
+     * @param {number} thumbnail.width
+     * @param {number} thumbnail.height
+     */
     thumbnail(thumbnail: EmbedOptions['thumbnail']) {
         this.data.thumbnail ? null : this.data.thumbnail = {}
         if (thumbnail?.url) this.data.thumbnail.url = thumbnail.url
@@ -187,6 +214,14 @@ export default class Embed {
         if (thumbnail?.height) this.data.thumbnail.height = thumbnail.height
     }
 
+    /**
+     * Update embed video.
+     * @description Change embed video.
+     * @param {EmbedOptions.video} video
+     * @param {string} video.url 
+     * @param {number} video.height
+     * @param {number} video.width
+     */
     video(video: EmbedOptions['video']) {
         this.data.video ? null : this.data.video = {}
         if (video?.url) this.data.video.url = video.url
@@ -194,12 +229,28 @@ export default class Embed {
         if (video?.width) this.data.video.width = video.width
     }
 
+    /**
+     * Update embed provider.
+     * @description Change embed provider.
+     * @param {EmbedOptions.provider} provider
+     * @param {string} provider.name
+     * @param {string} provider.url
+     */
     provider(provider: EmbedOptions['provider']) {
         this.data.provider ? null : this.data.provider = {}
         if (provider?.name) this.data.provider.name = provider.name
         if (provider?.url) this.data.provider.url = provider.url
     }
 
+    /**
+     * Update embed author.
+     * @description Change embed author.
+     * @param {EmbedOptions.author} author
+     * @param {string} author.name 
+     * @param {string} author.url
+     * @param {string} author.iconUrl
+     * @param {string} author.proxyIconUrl
+     */
     author(author: EmbedOptions['author']) {
         this.data.author ? null : this.data.author = {}
         if (author?.name) this.data.author.name = author.name

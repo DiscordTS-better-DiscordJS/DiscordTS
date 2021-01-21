@@ -1,13 +1,16 @@
+/**
+ * Class representing a Collection.
+ * @extends Map
+ */
 export default class Collection<K, V> extends Map<K ,V> {
-    constructor (options?: any) {
+    constructor () {
         super()
     }
     
     /**
      * Find key in Collection.
-     * @param {Function} Function to test with.
-     * @param {*} Value to use.
-     * @returns {*}
+     * @param {Function} function - Function to test with.
+     * @param {*} value - Value to use.
      * @example new Collection().find(a => a.name === 'hello')
      */
     find(method: (key: K, value: V, collection: this) => boolean): V | any {
@@ -15,6 +18,4 @@ export default class Collection<K, V> extends Map<K ,V> {
             if (method(k, v, this)) return v
         }
     }
-
-
 }

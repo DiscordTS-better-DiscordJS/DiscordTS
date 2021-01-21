@@ -1,3 +1,6 @@
+/**
+ * Class representing a Role.
+ */
 export default class Role {
 
     position: number
@@ -10,7 +13,11 @@ export default class Role {
     color: number
     hexColor: string
     mention: string
-
+    
+    /**
+     * Create a Role.
+     * @param {any} data - Data from Discord API.
+     */
     constructor(data: any){
 
         this.position = data.position

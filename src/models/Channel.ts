@@ -1,6 +1,7 @@
 import Client from '../models/Client'
 import { sendMessage, fetchMessage } from '../fetch/Message'
 import Message from '../models/Message'
+import Embed from './Embed'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',
@@ -12,6 +13,9 @@ export const CHANNEL_TYPES: any = {
     '6': "GUILD_STORE"
 }
 
+/**
+ * Class representing a Channel.
+ */
 export default class Channel {
 
     id: string
@@ -25,12 +29,17 @@ export default class Channel {
     bitrare: number
     icon: string
     parentID: string
-    
     test: any
-
     #client: Client
 
-    constructor(channelID: any, client: Client, fromFetch?: any) {
+    /**
+     * Create a Channel
+     * @param {string} channelID - Channel ID.
+     * @param {Client} client - Client.
+     * @param {any} [fromFetch]
+     */
+    constructor(channelID: string, client: Client, fromFetch?: any) {
+
         this.#client = client
 
         const cache = client.cache.channels.get(channelID)
@@ -50,19 +59,21 @@ export default class Channel {
     }
 
     /**
-     * @TODO add embed support.
-     * @param {string | any} content
-     * @return {void} nothing.
+     * Send message to channel.
+     * @param {string | Embed} content - Content of message.
      * @description Send message to channel.
      */
-    send(content: string | any) {
-        if (!content.data) content = { content: content }
-        else content = { embed: content.data }
-        sendMessage(content, this.id)
+    send(content: string | Embed) {
+        let msg = {}
+
+        if (typeof content == 'string') msg = { content: content }
+        else msg = { embed: content }
+
+        sendMessage(msg, this.id)
     }
 
     /**
-     * 
+     * Fetch message from Discord API.
      * @param {string} id
      * @returns {Message} Message object
      * @description Fetch message from channel. 

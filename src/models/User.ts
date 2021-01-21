@@ -1,3 +1,6 @@
+/**
+ * Class representing a User.
+ */
 export default class User {
 
     username: string
@@ -8,6 +11,10 @@ export default class User {
     id: string
     bot: boolean
 
+    /**
+     * Create a User.
+     * @param {any} data - Data from Discord API.
+     */
     constructor (data: any) {
         
         this.username = data.username

@@ -8,6 +8,9 @@ export interface guildHashes {
     channels: any
 }
 
+/**
+ * Class representing a Guild.
+ */
 export default class Guild {
 
     description: string | null
@@ -51,6 +54,10 @@ export default class Guild {
     systemChannelID: string
     verificationLevel: number
 
+    /**
+     * Create a Guild.
+     * @param {any} data - Data from Discord API.
+     */
     constructor(data: any) {
 
         this.description = data.description
@@ -101,8 +108,8 @@ export default class Guild {
     }
 
     /**
-     * @return {void} nothing
-     * @description If you want to leave from guild your client, use this.
+     * Leave guild.
+     * @description Use this method to leave guild.
      */
     async leave() {
         await fetchClientLeave(this.id)
