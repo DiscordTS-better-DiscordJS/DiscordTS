@@ -1,6 +1,6 @@
 import Message from '../models/Message'
 import Client from '../models/Client'
-import { fetchChannel } from '../fetch/channel'
+import { fetchChannel } from '../fetch/Channel'
 import Channel from '../models/Channel'
 
 

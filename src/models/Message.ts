@@ -1,7 +1,7 @@
 import Client from './Client'
 import User from './User'
 import Channel from './Channel'
-import { sendMessage } from '../fetch/message'
+import { sendMessage } from '../fetch/Message'
 import Guild from './Guild'
 
 export interface MessageArgsOptions {

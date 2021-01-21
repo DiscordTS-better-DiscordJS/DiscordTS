@@ -1,5 +1,3 @@
-
-
 export default class Role {
 
     position: number

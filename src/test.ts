@@ -15,7 +15,7 @@ class bot extends Client {
 
         this.on('message', async (message: Message) => {
 
-            const prefix: string = '!! '
+            const prefix: string = '!!'
 
             if (message.author?.bot) return
             if (!message.content.startsWith(prefix)) return

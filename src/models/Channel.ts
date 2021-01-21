@@ -1,5 +1,5 @@
 import Client from '../models/Client'
-import { sendMessage, fetchMessage } from '../fetch/message'
+import { sendMessage, fetchMessage } from '../fetch/Message'
 import Message from '../models/Message'
 
 export const CHANNEL_TYPES: any = {
