@@ -5,7 +5,7 @@ export const sendMessage = async (content: any, channelID: string) => {
     content.tss = false
 
     return await fetch({
-        url: `/channels${channelID}/messages`,
+        url: `/channels/${channelID}/messages`,
         method: 'POST',
         ContentType: 'application/json',
         body: content
