@@ -1,19 +1,28 @@
-/*import WebSocket from 'ws'
-import { EventEmitter } from 'events'
-import { existsSync } from 'fs'
-import { OPCODES } from '../constants/opcodes'
-import { Constants } from '../constants/constants'
-import { EVENTS } from '../constants/events'
-import { Heartbeat, Identify } from '../constants/payloads'
-import Client from '../models/Client'
-import Guild from '../models/Guild'
+import Client from '../models/Client.ts'
 
+import * as events from '../events/eventsExports.ts'
+
+import { 
+    WebSocket 
+} from 'https://deno.land/std@0.84.0/ws/mod.ts'
+
+import EventEmitter from "https://deno.land/std@0.84.0/node/events.ts"
+import { Constants } from "../constants/constants.ts"
+import { OPCODES } from "../constants/opcodes.ts"
+import { Heartbeat, Identify } from "../constants/payloads.ts"
+import { existsSync } from 'https://deno.land/std@0.84.0/fs/mod.ts'
+import { EVENTS } from "../constants/events.ts"
+import Guild from "../models/Guild.ts"
+
+/**
+ * WebSocket class.
+ */
 export default class WebSocketManager extends EventEmitter {
     debug: boolean
     token: string; reconnect: boolean; heart: any
-    socket: WebSocket | undefined
+    socket: WebSocket | any
     sessionID: number
-    sequence: number
+    sequenct: number
     client
 
     constructor (reconnect: boolean, token: string, client: Client) {
@@ -22,29 +31,29 @@ export default class WebSocketManager extends EventEmitter {
         this.debug = false
         this.token = token
         this.reconnect = reconnect
+        this.sequenct = 0
         this.sessionID = 0
-        this.sequence = 0
         this.client = client
-        
+
         try {
             this.socket = new WebSocket(Constants.GATEWAY)
-        } catch(error) { console.error(error) }
+        } catch (error) { error && console.log(error) }
 
         this.socket?.on('open', () => {
-            this.debug && console.log('WebSocket send OPEN')
+            this.debug && console.log(`WebSocket send OPEN`)
         })
 
         this.socket?.on('message', async (data: string) => {
             const packet = JSON.parse(data)
             const { op, s, t, d } = packet
 
-            s ? this.sequence = s : null
+            s ? this.sequenct = s : null
 
             switch (op) {
 
                 case OPCODES.INVALID_SESSION:
-                    throw new Error("[OPCODE: 9]: Gateway INVALID session.")
-
+                    throw new Error("[OPCODE: 9]: Gateway INVALID session.");
+                    
                 case OPCODES.HELLO:
 
                     this.debug && console.log(`WebSocket send HELLO`)
@@ -69,13 +78,13 @@ export default class WebSocketManager extends EventEmitter {
 
             this.debug && console.log(packet)
             this.emit('raw', packet)
-            this.module(EVENTS[t], d)
+            // this.module(EVENTS[t], d)
 
             switch (t) {
 
                 case 'READY':
-                    this.debug && console.log(`Connected to gateway!`)
-                    this.emit('ready')
+                    this.debug && console.log('Connected to gateway')
+                    this.emit('READY')
                     break
 
                 case 'GUILD_CREATE':
@@ -84,17 +93,18 @@ export default class WebSocketManager extends EventEmitter {
                         client.cache.guilds.set(d.id, new_d)
                     }
                     break
+
             }
+
         })
     }
 
-    async module (name: string, d: any) {
-        const exist = await existsSync(`${__dirname}/../events/${name}.js`)
-        if (exist) {
-            const new_d = await require(`../events/${name}`)._(d, this.client)
-            this.emit(name, new_d)
-        }
-    }
+    /**
+     * @TODO need fixes !
+     */
+    // async module (name: string, d: any) {
+    //     if (events)
+    // }
 
     heartbeat (interval: number, s: any, d: any) {
         this.heart = setInterval(() => {
@@ -106,8 +116,7 @@ export default class WebSocketManager extends EventEmitter {
 
     identify (token: string) {
         switch (this.reconnect) {
-            case true:
-
+            case true: 
                 this.socket?.send(JSON.stringify({
                     op: 6,
                     d: {
@@ -115,25 +124,12 @@ export default class WebSocketManager extends EventEmitter {
                         session_id: this.sessionID
                     }
                 }))
-
                 break
-
             case false:
-
                 Identify.d.token = token
                 this.socket?.send(JSON.stringify(Identify))
-
                 break
         }
     }
-}*/
 
-import { 
-    WebSocket 
-} from 'https://deno.land/std@0.84.0/ws/mod.ts'
-
-/**
- * WebSocket class.
- */
-export default class WebSocketManager {
 }

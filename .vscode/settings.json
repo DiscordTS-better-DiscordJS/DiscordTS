@@ -1,4 +1,7 @@
 {
     "typescript.tsdk": "node_modules\\typescript\\lib",
     "deno.enable": true,
+    "deno.import_intellisense_origins": {
+        "https://deno.land": false
+    },
 }
