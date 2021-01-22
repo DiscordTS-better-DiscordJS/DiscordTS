@@ -2,6 +2,7 @@ import Client from '../models/Client.ts'
 import { sendMessage, fetchMessage } from '../fetch/Message.ts'
 import Message from '../models/Message.ts'
 import Embed from './Embed.ts'
+import { fetchChannelModify } from '../fetch/channel.ts'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',
@@ -75,12 +76,24 @@ export default class Channel {
     /**
      * Fetch message from Discord API.
      * @param {string} id
-     * @returns {Message} Message object
+     * @returns {Promise<Message>} Message object
      * @description Fetch message from channel. 
      */
     async fetchMessage(id: string) {
         const message = await fetchMessage(this.id, id)
         return new Message(message, this.#client)
+    }
+
+    /**
+     * Set new channel name.
+     * @param {string} newName
+     * @returns {Promise<Channel>} Channel objet
+     * @description Change channel name.
+     */
+    async changeName(newName: string) {
+        if (newName.length < 2 || newName.length > 100) throw new Error('Channel name length must have from 2 to 100 chars.')
+        const channel: Channel = await fetchChannelModify(this.id, { name: newName })
+        return channel
     }
 
 }
