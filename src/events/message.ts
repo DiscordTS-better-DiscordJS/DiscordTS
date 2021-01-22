@@ -3,9 +3,7 @@ import Client from '../models/Client.ts'
 import { fetchChannel } from '../fetch/Channel.ts'
 import Channel from '../models/Channel.ts'
 
-
 export const _ = async (data: any, client: Client): Promise<Message> => {
-
     if (client.options?.cache?.channels) {
         const cache = client.cache.channels.get(data.channel_id)
         if (!cache) {

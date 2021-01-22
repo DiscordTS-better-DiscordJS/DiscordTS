@@ -2,7 +2,8 @@ import Client from '../models/Client.ts'
 import EventEmitter from 'https://deno.land/std@0.84.0/node/events.ts'
 import Guild from "../models/Guild.ts"
 import * as events from '../events/eventsExports.ts'
-import { WebSocket } from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
+import { ensureFileSync } from 'https://deno.land/std@0.84.0/fs/mod.ts'
+// import { WebSocket } from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
 import { Constants } from "../constants/constants.ts"
 import { OPCODES } from "../constants/opcodes.ts"
 import { Heartbeat, Identify } from "../constants/payloads.ts"
@@ -22,7 +23,7 @@ export default class WebSocketManager extends EventEmitter {
     constructor (reconnect: boolean, token: string, client: Client) {
         super()
 
-        this.debug = true
+        this.debug = false
         this.token = token
         this.reconnect = reconnect
         this.sequence = 0
@@ -30,17 +31,17 @@ export default class WebSocketManager extends EventEmitter {
         this.client = client
         this.socket = new WebSocket(Constants.GATEWAY)
 
-        console.log(this.socket)
+        console.log(events)
 
         // try {
         // } catch (error) { error && console.log(`>> SOCKET ASSIGN ERROR: ${error}`) }
 
-        this.socket?.on('open', () => {
+        this.socket?.addEventListener('open', () => {
             this.debug && console.log('WebSocket send OPEN')
         })
 
-        this.socket?.on('message', async (data: string) => {
-            const packet = JSON.parse(data)
+        this.socket?.addEventListener('message', async (data: any) => {
+            const packet = JSON.parse(data.data)
             const { op, s, t, d } = packet
 
             s ? this.sequence = s : 0
@@ -56,12 +57,12 @@ export default class WebSocketManager extends EventEmitter {
 
                     this.heartbeat(d.heartbeat_interval, s, d)
 
-                    this.socket?.on('close', () => {
+                    this.socket?.addEventListener('close', () => {
                         clearInterval(this.heart)
                         new WebSocketManager(false, this.token, client)
                     })
 
-                    this.socket?.on('error', (e: any) => {
+                    this.socket?.addEventListener('error', (e: any) => {
                         this.debug && console.log(e)
                     })
 
@@ -73,7 +74,7 @@ export default class WebSocketManager extends EventEmitter {
 
             this.debug && console.log(packet)
             this.emit('raw', packet)
-            // this.module(EVENTS[t], d)
+            this.module(EVENTS[t], d)
 
             switch (t) {
 
@@ -96,13 +97,14 @@ export default class WebSocketManager extends EventEmitter {
     /**
      * @TODO need fixes !
      */
-    // async module (name: string, d: any) {
-    //     if (events)
-    // }
+    async module (name: string, d: any) {
+        if (events && (events as any)[name]) {
+            const res = await (events as any)[name](d, this.client)
+            this.emit(name, res)
+        }
+    }
 
     heartbeat (interval: number, s: any, d: any) {
-        console.log(`>> Creating new heartbeat interval`)
-        console.log(`${s}, ${JSON.stringify(d)}`)
         this.heart = setInterval(() => {
             Heartbeat.s = s
             Heartbeat.d = d
@@ -114,7 +116,7 @@ export default class WebSocketManager extends EventEmitter {
         console.log(`>> identify << ${this.reconnect}`)
         switch (this.reconnect) {
             case true:
-                
+
                 this.socket?.send(JSON.stringify({
                     op: 6,
                     d: {
@@ -127,10 +129,7 @@ export default class WebSocketManager extends EventEmitter {
 
             case false:
 
-                console.log(token)
-                
                 Identify.d.token = token
-                console.log(Identify)
                 this.socket?.send(JSON.stringify(Identify))
 
                 break

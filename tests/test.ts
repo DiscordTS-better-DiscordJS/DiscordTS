@@ -14,24 +14,26 @@ class bot extends Client {
         this.connect(token)
 
         this.on('message', async (message: Message) => {
-
             const prefix: string = '!!'
+            console.log(message)
 
-            if (message.author?.bot) return
-            if (!message.guild.id) return
-            if (!message.content.startsWith(prefix)) return
+            //if (message.author?.bot) return
+            //if (!message.guild.id) return
+            // if (!message.content.startsWith(prefix)) return
 
             const args = message.args({ prefix: prefix })
-
+            console.log(args)
             switch (args[0]){
 
                 case 'test':
-                    const oldMessageID: string = '800652737875410955'
-                    const oldMessage: Message = await message.channel.fetchMessage(oldMessageID)
-
-                    message.reply(new Embed({
-                        description: `${oldMessage.content} - ${oldMessage.author.tag}`
-                    }))
+                    // console.log('here!')
+                    // const oldMessageID: string = '802245287783038996'
+                    // const oldMessage: Message = await message.channel.fetchMessage(oldMessageID)
+                    // message.reply(new Embed({
+                    //     description: `${oldMessage.content} - ${oldMessage.author.tag}`
+                    // }))
+                    message.channel.send('Hello!')
+                    message.reply('hellov2')
 
                     break
 
