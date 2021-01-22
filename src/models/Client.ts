@@ -1,6 +1,6 @@
+import EventEmitter from 'https://deno.land/x/events/mod.ts'
 import WebSocketManager from '../ws/WebSocketManager.ts'
 import { EVENTS } from '../constants/events.ts'
-import { EventEmitter } from 'events'
 import { ClientOptions } from '../types/ClientOptions.ts'
 import { Cache } from '../types/Cache.ts'
 import Collection from './Collection.ts'

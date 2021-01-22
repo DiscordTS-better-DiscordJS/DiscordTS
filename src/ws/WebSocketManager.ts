@@ -131,9 +131,19 @@ export default class WebSocketManager extends EventEmitter {
 import { 
     WebSocket 
 } from 'https://deno.land/std@0.84.0/ws/mod.ts'
+import Client from '../models/Client.ts'
 
 /**
  * WebSocket class.
  */
 export default class WebSocketManager {
+    token: string; reconnect: boolean; heart: any
+    socket: WebSocket | undefined
+    client: Client
+
+    constructor (reconnect: boolean, token: string, client: Client) {
+        this.token = token
+        this.reconnect = reconnect
+        this.client = client
+    }
 }
