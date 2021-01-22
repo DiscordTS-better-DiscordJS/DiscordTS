@@ -1,7 +1,7 @@
 import Message from './models/Message.ts'
 import { Client, SlashCommands, Collection, Embed } from './index.ts'
 import { ClientOptions } from './types/ClientOptions.ts'
-import token from '../token.ts'
+import token from '../tokens.ts'
 import Permissions, { Perms } from './models/Permissions.ts'
 
 class bot extends Client {
