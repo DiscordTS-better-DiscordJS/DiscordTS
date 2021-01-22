@@ -94,9 +94,6 @@ export default class WebSocketManager extends EventEmitter {
         })
     }
 
-    /**
-     * @TODO need fixes !
-     */
     async module (name: string, d: any) {
         if (events && (events as any)[name]) {
             const res = await (events as any)[name](d, this.client)
