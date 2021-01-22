@@ -28,5 +28,5 @@ export {
 export * from './types/Cache.ts'
 export * from './types/SlashCommand.ts'
 export * from './types/StatusOptions.ts'
-export * from './types/clientOptions.ts'
-export * from './types/embed.ts'
+export * from './types/ClientOptions.ts'
+export * from './types/Embed.ts'

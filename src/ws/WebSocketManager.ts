@@ -3,14 +3,13 @@ import Client from '../models/Client.ts'
 import * as events from '../events/eventsExports.ts'
 
 import { 
-    WebSocket 
-} from 'https://deno.land/std@0.84.0/ws/mod.ts'
+    WebSocket
+} from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
 
 import EventEmitter from "https://deno.land/std@0.84.0/node/events.ts"
 import { Constants } from "../constants/constants.ts"
 import { OPCODES } from "../constants/opcodes.ts"
 import { Heartbeat, Identify } from "../constants/payloads.ts"
-import { existsSync } from 'https://deno.land/std@0.84.0/fs/mod.ts'
 import { EVENTS } from "../constants/events.ts"
 import Guild from "../models/Guild.ts"
 
@@ -20,40 +19,39 @@ import Guild from "../models/Guild.ts"
 export default class WebSocketManager extends EventEmitter {
     debug: boolean
     token: string; reconnect: boolean; heart: any
-    socket: WebSocket | any
+    socket: WebSocket
     sessionID: number
-    sequenct: number
+    sequence: number
     client: Client
 
     constructor (reconnect: boolean, token: string, client: Client) {
         super()
 
-        this.debug = false
+        this.debug = true
         this.token = token
         this.reconnect = reconnect
-        this.sequenct = 0
+        this.sequence = 0
         this.sessionID = 0
         this.client = client
+        this.socket = new WebSocket(Constants.GATEWAY)
 
-        try {
-            this.socket = new WebSocket(Constants.GATEWAY)
-        } catch (error) { error && console.log(error) }
+        // try {
+        // } catch (error) { error && console.log(`>> SOCKET ASSIGN ERROR: ${error}`) }
 
         this.socket?.on('open', () => {
-            this.debug && console.log(`WebSocket send OPEN`)
+            this.debug && console.log('WebSocket send OPEN')
         })
 
         this.socket?.on('message', async (data: string) => {
             const packet = JSON.parse(data)
             const { op, s, t, d } = packet
 
-            s ? this.sequenct = s : null
-
+            s ? this.sequence = s : null
             switch (op) {
 
                 case OPCODES.INVALID_SESSION:
-                    throw new Error("[OPCODE: 9]: Gateway INVALID session.");
-                    
+                    throw new Error("[OPCODE: 9]: Gateway INVALID session.")
+
                 case OPCODES.HELLO:
 
                     this.debug && console.log(`WebSocket send HELLO`)
@@ -83,8 +81,8 @@ export default class WebSocketManager extends EventEmitter {
             switch (t) {
 
                 case 'READY':
-                    this.debug && console.log('Connected to gateway')
-                    this.emit('READY')
+                    this.debug && console.log(`Connected to gateway!`)
+                    this.emit('ready')
                     break
 
                 case 'GUILD_CREATE':
@@ -93,7 +91,6 @@ export default class WebSocketManager extends EventEmitter {
                         client.cache.guilds.set(d.id, new_d)
                     }
                     break
-
             }
 
         })
@@ -107,6 +104,8 @@ export default class WebSocketManager extends EventEmitter {
     // }
 
     heartbeat (interval: number, s: any, d: any) {
+        console.log(`>> Creating new heartbeat interval`)
+        console.log(`${s}, ${JSON.stringify(d)}`)
         this.heart = setInterval(() => {
             Heartbeat.s = s
             Heartbeat.d = d
@@ -115,8 +114,10 @@ export default class WebSocketManager extends EventEmitter {
     }
 
     identify (token: string) {
+        console.log(`>> identify << ${this.reconnect}`)
         switch (this.reconnect) {
-            case true: 
+            case true:
+
                 this.socket?.send(JSON.stringify({
                     op: 6,
                     d: {
@@ -124,12 +125,16 @@ export default class WebSocketManager extends EventEmitter {
                         session_id: this.sessionID
                     }
                 }))
+
                 break
+
             case false:
+
+                console.log(token)
                 Identify.d.token = token
                 this.socket?.send(JSON.stringify(Identify))
+
                 break
         }
-    
     }
 }
