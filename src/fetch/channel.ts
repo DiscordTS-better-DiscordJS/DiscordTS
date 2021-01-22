@@ -1,4 +1,4 @@
-import fetch from '../utils/fetch'
+import fetch from '../utils/fetch.ts'
 
 export const fetchChannel = async (id: string) => {
 

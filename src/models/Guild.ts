@@ -1,5 +1,5 @@
-import Role from './Role'
-import { fetchClientLeave } from '../fetch/Client'
+import Role from './Role.ts'
+import { fetchClientLeave } from '../fetch/Client.ts'
 
 export interface guildHashes {
     version: number,

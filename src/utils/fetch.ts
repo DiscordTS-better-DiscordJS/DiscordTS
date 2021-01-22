@@ -1,7 +1,5 @@
-import FETCH, { RequestInit } from 'node-fetch'
-import { options } from '../models/Client'
-import { Constants } from '../constants/constants'
-const API = Constants.API
+import { options } from '../models/Client.ts'
+import { Constants } from '../constants/constants.ts'
 
 export interface fetchUtil {
     url: string
@@ -10,18 +8,19 @@ export interface fetchUtil {
     method: string
 }
 
-const fetch = async (data: fetchUtil) => {
+const API = Constants.API
+
+const Fetch = async (data: fetchUtil) => {
 
     const token = options.bot ? `Bot ${options.token}` : options.token
-
-    const HEADER: RequestInit['headers'] = {
+    const HEADER: any = {
         'Authorization': token,
         'Content-Type': `${data.ContentType}`
     }
 
     data.ContentType ? null : delete HEADER['Content-Type']
 
-    const res = await FETCH(`${API}${data.url}`, {
+    const res = await fetch(`${API}${data.url}`, {
         method: data.method,
         headers: HEADER,
         body: JSON.stringify(data.body)
@@ -31,4 +30,4 @@ const fetch = async (data: fetchUtil) => {
 
 }
 
-export default fetch
+export default Fetch

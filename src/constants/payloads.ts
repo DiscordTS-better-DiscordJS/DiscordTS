@@ -1,4 +1,4 @@
-import { OPCODES } from './opcodes'
+import { OPCODES } from './opcodes.ts'
 
 export const Heartbeat = {
 	op: OPCODES.HEARTBEAT,

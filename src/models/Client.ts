@@ -1,9 +1,9 @@
-import WebSocketManager from '../ws/WebSocketManager'
-import { EVENTS } from '../constants/events'
+import WebSocketManager from '../ws/WebSocketManager.ts'
+import { EVENTS } from '../constants/events.ts'
 import { EventEmitter } from 'events'
-import { ClientOptions } from '../types/ClientOptions'
-import { Cache } from '../types/Cache'
-import Collection from './Collection'
+import { ClientOptions } from '../types/ClientOptions.ts'
+import { Cache } from '../types/Cache.ts'
+import Collection from './Collection.ts'
 // import { StatusOptions } from '../types/StatusOptions'
 
 class Options {

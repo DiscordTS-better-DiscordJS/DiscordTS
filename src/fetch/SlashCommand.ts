@@ -1,6 +1,6 @@
-import fetch from '../utils/fetch'
-import { options } from '../models/Client'
-import { Constants } from '../constants/constants'
+import fetch from '../utils/fetch.ts'
+import { options } from '../models/Client.ts'
+import { Constants } from '../constants/constants.ts'
 
 import nodeFetch from 'node-fetch'
 

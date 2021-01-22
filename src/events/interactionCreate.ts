@@ -1,7 +1,7 @@
-import User from '../models/User'
-import Channel from '../models/Channel'
-import Client from '../models/Client'
-import { fetchChannel } from '../fetch/Channel'
+import User from '../models/User.ts'
+import Channel from '../models/Channel.ts'
+import Client from '../models/Client.ts'
+import { fetchChannel } from '../fetch/Channel.ts'
 
 export const _ = async (data: any, client: Client): Promise<any> => {
     const object = { name: '', guild: {}, user: {}, roles: [], interaction: {}, channel: {} }

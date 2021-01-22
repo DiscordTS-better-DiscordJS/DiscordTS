@@ -1,4 +1,4 @@
-import WebSocket from 'ws'
+/*import WebSocket from 'ws'
 import { EventEmitter } from 'events'
 import { existsSync } from 'fs'
 import { OPCODES } from '../constants/opcodes'
@@ -126,4 +126,14 @@ export default class WebSocketManager extends EventEmitter {
                 break
         }
     }
+}*/
+
+import { 
+    WebSocket 
+} from 'https://deno.land/std@0.84.0/ws/mod.ts'
+
+/**
+ * WebSocket class.
+ */
+export default class WebSocketManager {
 }

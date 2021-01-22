@@ -1,7 +1,7 @@
-import Message from '../models/Message'
-import Client from '../models/Client'
-import { fetchChannel } from '../fetch/Channel'
-import Channel from '../models/Channel'
+import Message from '../models/Message.ts'
+import Client from '../models/Client.ts'
+import { fetchChannel } from '../fetch/Channel.ts'
+import Channel from '../models/Channel.ts'
 
 
 export const _ = async (data: any, client: Client): Promise<Message> => {

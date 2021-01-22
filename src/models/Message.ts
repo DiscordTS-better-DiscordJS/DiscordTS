@@ -1,9 +1,9 @@
-import Client from './Client'
-import User from './User'
-import Channel from './Channel'
-import { sendMessage } from '../fetch/Message'
-import Guild from './Guild'
-import Embed from './Embed'
+import Client from './Client.ts'
+import User from './User.ts'
+import Channel from './Channel.ts'
+import { sendMessage } from '../fetch/Message.ts'
+import Guild from './Guild.ts'
+import Embed from './Embed.ts'
 
 export interface MessageArgsOptions {
     prefix?: string

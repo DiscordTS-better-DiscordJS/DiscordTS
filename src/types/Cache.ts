@@ -1,4 +1,4 @@
-import Collection from '../models/Collection'
+import Collection from '../models/Collection.ts'
 
 export interface Cache {
     channels: Collection<string, any>

@@ -1,6 +1,6 @@
-import { options } from './Client'
-import { SlashCommandType } from '../types/SlashCommand'
-import { CreateSlashCommand, DeleteSlashCommand, ListAllSlashCommands } from '../fetch/SlashCommand'
+import { options } from './Client.ts'
+import { SlashCommandType } from '../types/SlashCommand.ts'
+import { CreateSlashCommand, DeleteSlashCommand, ListAllSlashCommands } from '../fetch/SlashCommand.ts'
 
 /**
  * Class representing a slash command.

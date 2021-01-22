@@ -1,4 +1,4 @@
-import { EmbedOptions, ClearEmbedOptions } from '../types/Embed'
+import { EmbedOptions, ClearEmbedOptions } from '../types/Embed.ts'
 
 /**
  * Class representing a Embed.
