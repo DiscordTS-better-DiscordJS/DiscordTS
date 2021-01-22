@@ -20,6 +20,12 @@ export default class WebSocketManager extends EventEmitter {
     sequence: number
     client: Client
 
+    /**
+     * Create WebSocket Manager.
+     * @param {boolean} reconnect 
+     * @param {string} token 
+     * @param {Client} client 
+     */
     constructor (reconnect: boolean, token: string, client: Client) {
         super()
 
@@ -94,13 +100,23 @@ export default class WebSocketManager extends EventEmitter {
         })
     }
 
+    /**
+     * Load event.
+     * @param {string} name 
+     * @param {*} d
+     */
     async module (name: string, d: any) {
         if (events && (events as any)[name]) {
             const res = await (events as any)[name](d, this.client)
             this.emit(name, res)
         }
     }
-
+    /**
+     * Creates heatbeat.
+     * @param {number} interval - Heart interval from Discord gateway. 
+     * @param {*} s - S from Discord gateway. 
+     * @param {*} d - D from Discord gateway. 
+     */
     heartbeat (interval: number, s: any, d: any) {
         this.heart = setInterval(() => {
             Heartbeat.s = s
@@ -109,6 +125,10 @@ export default class WebSocketManager extends EventEmitter {
         }, interval)
     }
 
+    /**
+     * Identify to Discord gateway.
+     * @param {string} token - Bot's token.
+     */
     identify (token: string) {
         console.log(`>> identify << ${this.reconnect}`)
         switch (this.reconnect) {
