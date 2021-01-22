@@ -2,12 +2,9 @@ import fetch from '../utils/fetch.ts'
 import { options } from '../models/Client.ts'
 import { Constants } from '../constants/constants.ts'
 
-import nodeFetch from 'node-fetch'
-
 const API = Constants.API
 
 export const CreateSlashCommand = async (data: any) => {
-
     if (options.appID == '') return
 
     try {
@@ -22,11 +19,9 @@ export const CreateSlashCommand = async (data: any) => {
     } catch {
         return undefined
     }
-
 }
 
 export const ListAllSlashCommands = async () => {
-
     if (options.appID == '') return
 
     try {
@@ -40,27 +35,18 @@ export const ListAllSlashCommands = async () => {
     } catch {
         return undefined
     }
-
 }
 
 export const DeleteSlashCommand = async (id: string, guildID?: string) => {
-
-    
-    const token = options.bot ? `Bot ${options.token}` : options.token
-
     if (options.appID == '') return
-    
+
                              // ↓↓↓↓                                                                        ↓↓↓↓
     const url = guildID ? `${API}/v8/applications/${options.appID}/guilds/${guildID}/commands/${id}` : `${API}/applications/${options.appID}/commands/${id}`
 
-    const res = await nodeFetch(url, {
-
+    const res = await fetch({
+        url: url,
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-
+        ContentType: 'application/json'
     })
 
     try {
@@ -68,5 +54,4 @@ export const DeleteSlashCommand = async (id: string, guildID?: string) => {
     } catch {
         return undefined
     }
-
 }
