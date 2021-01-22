@@ -2,7 +2,7 @@ import Client from '../models/Client.ts'
 import { sendMessage, fetchMessage } from '../fetch/Message.ts'
 import Message from '../models/Message.ts'
 import Embed from './Embed.ts'
-import { fetchChannelModify } from '../fetch/channel.ts'
+import { fetchChannelModify } from '../fetch/Channel.ts'
 
 export const CHANNEL_TYPES: any = {
     '0': 'GUILD_TEXT',

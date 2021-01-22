@@ -110,7 +110,6 @@ export default class WebSocketManager extends EventEmitter {
     }
 
     identify (token: string) {
-        console.log(`>> identify << ${this.reconnect}`)
         switch (this.reconnect) {
             case true:
 
