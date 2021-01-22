@@ -15,7 +15,7 @@ export const Identify = {
 		properties: {
 			$os: 'linux',
 			$browser: 'discord.ts',
-			$device: 'discord.ts',
-		},
-	},
+			$device: 'discord.ts'
+		}
+	}
 }

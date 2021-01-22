@@ -1,17 +1,12 @@
 import Client from '../models/Client.ts'
-
+import EventEmitter from 'https://deno.land/std@0.84.0/node/events.ts'
+import Guild from "../models/Guild.ts"
 import * as events from '../events/eventsExports.ts'
-
-import { 
-    WebSocket
-} from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
-
-import EventEmitter from "https://deno.land/std@0.84.0/node/events.ts"
+import { WebSocket } from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
 import { Constants } from "../constants/constants.ts"
 import { OPCODES } from "../constants/opcodes.ts"
 import { Heartbeat, Identify } from "../constants/payloads.ts"
 import { EVENTS } from "../constants/events.ts"
-import Guild from "../models/Guild.ts"
 
 /**
  * WebSocket class.
@@ -35,6 +30,8 @@ export default class WebSocketManager extends EventEmitter {
         this.client = client
         this.socket = new WebSocket(Constants.GATEWAY)
 
+        console.log(this.socket)
+
         // try {
         // } catch (error) { error && console.log(`>> SOCKET ASSIGN ERROR: ${error}`) }
 
@@ -46,11 +43,11 @@ export default class WebSocketManager extends EventEmitter {
             const packet = JSON.parse(data)
             const { op, s, t, d } = packet
 
-            s ? this.sequence = s : null
+            s ? this.sequence = s : 0
             switch (op) {
 
                 case OPCODES.INVALID_SESSION:
-                    throw new Error("[OPCODE: 9]: Gateway INVALID session.")
+                    throw new Error('[OPCODE: 9]: Gateway INVALID session.')
 
                 case OPCODES.HELLO:
 
@@ -117,7 +114,7 @@ export default class WebSocketManager extends EventEmitter {
         console.log(`>> identify << ${this.reconnect}`)
         switch (this.reconnect) {
             case true:
-
+                
                 this.socket?.send(JSON.stringify({
                     op: 6,
                     d: {
@@ -131,7 +128,9 @@ export default class WebSocketManager extends EventEmitter {
             case false:
 
                 console.log(token)
+                
                 Identify.d.token = token
+                console.log(Identify)
                 this.socket?.send(JSON.stringify(Identify))
 
                 break
