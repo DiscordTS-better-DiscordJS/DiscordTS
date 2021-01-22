@@ -1,9 +1,8 @@
-const token: string = require('../token.json').token
-
-import Message from './models/Message'
-import { Client, SlashCommands, Collection, Embed } from './index'
-import { ClientOptions } from './types/ClientOptions'
-import Permissions, { Perms } from './models/Permissions'
+import Message from './models/Message.ts'
+import { Client, SlashCommands, Collection, Embed } from './index.ts'
+import { ClientOptions } from './types/ClientOptions.ts'
+import token from '../token.ts'
+import Permissions, { Perms } from './models/Permissions.ts'
 
 class bot extends Client {
 

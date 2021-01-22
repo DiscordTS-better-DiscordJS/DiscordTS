@@ -23,7 +23,7 @@ export default class WebSocketManager extends EventEmitter {
     socket: WebSocket | any
     sessionID: number
     sequenct: number
-    client
+    client: Client
 
     constructor (reconnect: boolean, token: string, client: Client) {
         super()
