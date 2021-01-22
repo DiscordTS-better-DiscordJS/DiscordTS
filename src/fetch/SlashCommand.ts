@@ -1,8 +1,5 @@
 import fetch from '../utils/fetch.ts'
 import { options } from '../models/Client.ts'
-import { Constants } from '../constants/constants.ts'
-
-const API = Constants.API
 
 export const CreateSlashCommand = async (data: any) => {
     if (options.appID == '') return
@@ -40,18 +37,15 @@ export const ListAllSlashCommands = async () => {
 export const DeleteSlashCommand = async (id: string, guildID?: string) => {
     if (options.appID == '') return
 
-                             // ↓↓↓↓                                                                        ↓↓↓↓
-    const url = guildID ? `${API}/v8/applications/${options.appID}/guilds/${guildID}/commands/${id}` : `${API}/applications/${options.appID}/commands/${id}`
-
-    const res = await fetch({
-        url: url,
-        method: 'DELETE',
-        ContentType: 'application/json'
-    })
-
     try {
-        return await res.json()
+        const res = await fetch({
+            url: `/applications/${options.appID}/guilds/${guildID}/commands/${id}`,
+            method: 'DELETE',
+            ContentType: 'application/json'
+        })
+        return res
     } catch {
         return undefined
     }
+
 }
