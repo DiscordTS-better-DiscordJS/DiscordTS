@@ -130,6 +130,6 @@ export default class WebSocketManager extends EventEmitter {
                 this.socket?.send(JSON.stringify(Identify))
                 break
         }
+    
     }
-
 }
