@@ -1,8 +1,5 @@
 import fetch from '../utils/fetch.ts'
 import { options } from '../models/Client.ts'
-import { Constants } from '../constants/constants.ts'
-
-const API = Constants.API
 
 export const CreateSlashCommand = async (data: any) => {
     if (options.appID == '') return
