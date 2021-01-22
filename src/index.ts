@@ -3,5 +3,30 @@ import Client from './models/Client.ts'
 import SlashCommands from './models/SlashCommand.ts'
 import Collection from './models/Collection.ts'
 import Embed from './models/Embed.ts'
+import Channel from './models/Channel.ts'
+import Guild from './models/Guild.ts'
+import Message from './models/Message.ts'
+import Permissions, { Perms } from './models/Permissions.ts'
+import Role from './models/Role.ts'
+import User from './models/User.ts'
 
-export { WebSocketManager, Client, SlashCommands, Collection, Embed }
+export { 
+    WebSocketManager,
+    Client,
+    SlashCommands,
+    Collection,
+    Embed,
+    Channel,
+    Guild,
+    Message,
+    Permissions,
+    Role,
+    User,
+    Perms
+}
+
+export * from './types/Cache.ts'
+export * from './types/SlashCommand.ts'
+export * from './types/StatusOptions.ts'
+export * from './types/clientOptions.ts'
+export * from './types/embed.ts'

@@ -1,12 +1,13 @@
-import Message from './models/Message.ts'
-import { Client, SlashCommands, Collection, Embed } from './index.ts'
-import { ClientOptions } from './types/ClientOptions.ts'
 import token from '../tokens.ts'
-import Permissions, { Perms } from './models/Permissions.ts'
+
+import { 
+    Client, ClientOptions, Embed, Message, Permissions, Perms
+} from '../src/index.ts'
+
 
 class bot extends Client {
 
-    constructor(options?: ClientOptions){
+    constructor (options: ClientOptions) {
 
         super(options)
 
@@ -17,24 +18,28 @@ class bot extends Client {
             const prefix: string = '!!'
 
             if (message.author?.bot) return
+            if (!message.guild.id) return
             if (!message.content.startsWith(prefix)) return
 
             const args = message.args({ prefix: prefix })
-            
-            if (args[0] == 'test') {
 
-                const oldMessageID: string = '800652737875410955'
+            switch (args[0]){
 
-                const oldMessage: Message = await message.channel.fetchMessage(oldMessageID)
+                case 'test':
+                    const oldMessageID: string = '800652737875410955'
+                    const oldMessage: Message = await message.channel.fetchMessage(oldMessageID)
 
-                message.reply(new Embed({description: `${oldMessage.content} / ${oldMessage.author.tag}`}))
+                    message.reply(new Embed({
+                        description: `${oldMessage.content} - ${oldMessage.author.tag}`
+                    }))
+
+                    break
 
             }
 
         })
 
-
-        this.on('ready', async() => {
+        this.on('ready', async () => {
             /*const Slash = new SlashCommands()
             const all = await Slash.all()*/
             const permissions = new Permissions([Perms.CONNECT])
