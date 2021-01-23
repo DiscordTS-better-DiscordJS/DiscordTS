@@ -8,3 +8,16 @@ export const fetchClientLeave = async (id: string) => {
     })
 
 }
+
+export const changeClientAvatar = async (avatarURL: string) => {
+    // avatarURL = makeURI(avatarURL)
+
+    return await fetch({
+        url: `/users/@me`,
+        method: 'PATCH',
+        body: JSON.stringify({
+            avatar: avatarURL
+        })
+    })
+
+}

@@ -14,6 +14,7 @@ class bot extends Client {
 
         this.connect(token)
 
+
         this.on('message', async (message: Message) => {
             const prefix: string = '!!'
 
@@ -27,7 +28,7 @@ class bot extends Client {
                 case 'test':
 
                         // no cos nie dziala xDD - w sensie fetch tego konkretnie sam w sobie, naprawie to
-                        const newNameChannel: Channel = await message.channel.changeName('test123')
+                        const newNameChannel: Channel = await message.channel.setName('test123')
                         message.reply(`Renamed from ${message.channel.name} to ${newNameChannel.name}`)
 
                     break

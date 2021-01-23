@@ -4,6 +4,7 @@ import EventEmitter from "https://deno.land/std@0.84.0/node/events.ts"
 import { ClientOptions } from '../types/ClientOptions.ts'
 import { Cache } from '../types/Cache.ts'
 import Collection from './Collection.ts'
+import { changeClientAvatar } from '../fetch/client.ts'
 // import { StatusOptions } from '../types/StatusOptions'
 
 class Options {
@@ -74,6 +75,17 @@ export default class Client extends EventEmitter {
         }
 
     }
+
+    /**
+     * Change client user avatar
+     * @param {string} avatarURL
+     * @returns null
+     * @description Change client user avatar 
+     */
+    setAvatar(avatarURL: string) {
+        changeClientAvatar(avatarURL)
+    }
+
     /**
      * @TODO add client methods.
      */
