@@ -90,7 +90,7 @@ export default class Channel {
      * @returns {Promise<Channel>} Channel objet
      * @description Change channel name.
      */
-    async changeName(newName: string) {
+    async setName(newName: string) {
         if (newName.length < 2 || newName.length > 100) throw new Error('Channel name length must have from 2 to 100 chars.')
         const channel: Channel = await fetchChannelModify(this.id, { name: newName })
         return channel
