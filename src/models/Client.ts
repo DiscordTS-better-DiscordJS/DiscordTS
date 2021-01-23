@@ -1,10 +1,10 @@
 import WebSocketManager from '../ws/WebSocketManager.ts'
-import { EVENTS } from '../constants/events.ts'
 import EventEmitter from "https://deno.land/std@0.84.0/node/events.ts"
+import Collection from './Collection.ts'
+import { EVENTS } from '../constants/events.ts'
 import { ClientOptions } from '../types/ClientOptions.ts'
 import { Cache } from '../types/Cache.ts'
-import Collection from './Collection.ts'
-import { changeClientAvatar } from '../fetch/client.ts'
+import { changeClientAvatar } from '../fetch/Client.ts'
 // import { StatusOptions } from '../types/StatusOptions'
 
 class Options {

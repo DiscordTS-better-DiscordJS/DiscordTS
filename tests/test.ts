@@ -8,12 +8,11 @@ import {
 
 class bot extends Client {
 
-    constructor (options: ClientOptions) {
+    constructor (options?: ClientOptions) {
 
         super(options)
 
         this.connect(token)
-
 
         this.on('message', async (message: Message) => {
             const prefix: string = '!!'
@@ -22,7 +21,6 @@ class bot extends Client {
             if (!message.content.startsWith(prefix)) return
 
             const args = message.args({ prefix: prefix })
-            console.log(args)
             switch (args[0]){
 
                 case 'test':
@@ -63,4 +61,4 @@ class bot extends Client {
 
 }
 
-new bot({ appID: '728985551394570302' })
+new bot({ appID: '' })
