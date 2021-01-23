@@ -3,4 +3,5 @@ package-lock.json
 build
 token.json
 yarn-error.log
-tokens.ts
+tests/tokens.ts
+out

@@ -1,64 +1,64 @@
-import token from '../tokens.ts'
+import token from "./tokens.ts";
 
-import { 
-    Channel,
-    Client, ClientOptions, Embed, Message, Permissions, Perms
-} from '../src/index.ts'
-
+import {
+  Channel,
+  Client,
+  ClientOptions,
+  Embed,
+  Message,
+  Permissions,
+  Perms,
+} from "../src/index.ts";
 
 class bot extends Client {
+  constructor(options?: ClientOptions) {
+    super(options);
 
-    constructor (options?: ClientOptions) {
+    this.connect(token);
 
-        super(options)
+    this.on("message", async (message: Message) => {
+      const prefix: string = "!!";
 
-        this.connect(token)
+      if (message.author?.bot) return;
+      if (!message.content.startsWith(prefix)) return;
 
-        this.on('message', async (message: Message) => {
-            const prefix: string = '!!'
+      const args = message.args({ prefix: prefix });
+      switch (args[0]) {
+        case "test":
+          // no cos nie dziala xDD - w sensie fetch tego konkretnie sam w sobie, naprawie to
+          const newNameChannel: Channel = await message.channel.setName(
+            "test123",
+          );
+          message.reply(
+            `Renamed from ${message.channel.name} to ${newNameChannel.name}`,
+          );
 
-            if (message.author?.bot) return
-            if (!message.content.startsWith(prefix)) return
+          break;
+      }
+    });
 
-            const args = message.args({ prefix: prefix })
-            switch (args[0]){
-
-                case 'test':
-
-                        // no cos nie dziala xDD - w sensie fetch tego konkretnie sam w sobie, naprawie to
-                        const newNameChannel: Channel = await message.channel.setName('test123')
-                        message.reply(`Renamed from ${message.channel.name} to ${newNameChannel.name}`)
-
-                    break
-
-            }
-
-        })
-
-        this.on('ready', async () => {
-            /*const Slash = new SlashCommands()
+    this.on("ready", async () => {
+      /*const Slash = new SlashCommands()
             const all = await Slash.all()*/
-            const permissions = new Permissions([Perms.CONNECT])
-            // Delete all cached commands.
-            // all.forEach((slash: any) => Slash.delete(slash.id))
+      const permissions = new Permissions([Perms.CONNECT]);
+      // Delete all cached commands.
+      // all.forEach((slash: any) => Slash.delete(slash.id))
 
-            // Create new Slash command.
-            // Slash.create({
-            //     name: "test",
-            //     description: "Test command"
-            // })
+      // Create new Slash command.
+      // Slash.create({
+      //     name: "test",
+      //     description: "Test command"
+      // })
 
-            console.log('Bot is ready!')
-        })
+      console.log("Bot is ready!");
+    });
 
-        this.on('interactionCreate', e => {
-            e.name == 'test' ? 
-                e.channel.send('Detected interaction with slash command!') 
-                : undefined
-        })
-
-    }
-
+    this.on("interactionCreate", (e) => {
+      e.name == "test"
+        ? e.channel.send("Detected interaction with slash command!")
+        : undefined;
+    });
+  }
 }
 
-new bot({ appID: '' })
+new bot({ appID: "" });
