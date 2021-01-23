@@ -32,7 +32,7 @@ export default class Message {
 
     /**
      * Create a Message.
-     * @param {any} data - Data from Discord API.
+     * @param {*} data - Data from Discord API.
      * @param {Client} client - Client.
      */
     constructor(data: any, client: Client) {

@@ -13,7 +13,7 @@ export default class User {
 
     /**
      * Create a User.
-     * @param {any} data - Data from Discord API.
+     * @param {*} data - Data from Discord API.
      */
     constructor (data: any) {
         

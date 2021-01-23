@@ -56,7 +56,7 @@ export default class Guild {
 
     /**
      * Create a Guild.
-     * @param {any} data - Data from Discord API.
+     * @param {*} data - Data from Discord API.
      */
     constructor(data: any) {
 

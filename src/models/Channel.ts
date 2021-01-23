@@ -37,7 +37,7 @@ export default class Channel {
      * Create a Channel
      * @param {string} channelID - Channel ID.
      * @param {Client} client - Client.
-     * @param {any} [fromFetch]
+     * @param {*} [fromFetch]
      */
     constructor(channelID: string, client: Client, fromFetch?: any) {
 
