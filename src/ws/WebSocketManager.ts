@@ -130,7 +130,6 @@ export default class WebSocketManager extends EventEmitter {
      * @param {string} token - Bot's token.
      */
     identify (token: string) {
-        console.log(`>> identify << ${this.reconnect}`)
         switch (this.reconnect) {
             case true:
 

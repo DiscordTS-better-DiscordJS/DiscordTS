@@ -1,6 +1,7 @@
 import token from '../tokens.ts'
 
 import { 
+    Channel,
     Client, ClientOptions, Embed, Message, Permissions, Perms
 } from '../src/index.ts'
 
@@ -15,25 +16,19 @@ class bot extends Client {
 
         this.on('message', async (message: Message) => {
             const prefix: string = '!!'
-            console.log(message)
 
-            //if (message.author?.bot) return
-            //if (!message.guild.id) return
-            // if (!message.content.startsWith(prefix)) return
+            if (message.author?.bot) return
+            if (!message.content.startsWith(prefix)) return
 
             const args = message.args({ prefix: prefix })
             console.log(args)
             switch (args[0]){
 
                 case 'test':
-                    // console.log('here!')
-                    // const oldMessageID: string = '802245287783038996'
-                    // const oldMessage: Message = await message.channel.fetchMessage(oldMessageID)
-                    // message.reply(new Embed({
-                    //     description: `${oldMessage.content} - ${oldMessage.author.tag}`
-                    // }))
-                    message.channel.send('Hello!')
-                    message.reply('hellov2')
+
+                        // no cos nie dziala xDD - w sensie fetch tego konkretnie sam w sobie, naprawie to
+                        const newNameChannel: Channel = await message.channel.changeName('test123')
+                        message.reply(`Renamed from ${message.channel.name} to ${newNameChannel.name}`)
 
                     break
 

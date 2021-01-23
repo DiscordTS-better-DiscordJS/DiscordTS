@@ -8,3 +8,13 @@ export const fetchChannel = async (id: string) => {
     })
 
 }
+
+export const fetchChannelModify = async (id: string, options: any) => {
+
+    return await fetch({
+        url: `/channels/${id}`,
+        method: 'PATCH',
+        body: options
+    })
+
+}
