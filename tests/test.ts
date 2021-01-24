@@ -8,6 +8,8 @@ import {
   Message,
   Permissions,
   Perms,
+  Member,
+  fMember
 } from '../src/index.ts';
 
 class bot extends Client {
@@ -28,12 +30,15 @@ class bot extends Client {
 
       switch (args[0]) {
         case 'test':
-          const newNameChannel: Channel = await message.channel.setName(
-            'test123',
-          );
-          message.reply(
-            `Renamed from ${message.channel.name} to ${newNameChannel.name}`,
-          );
+          // const newNameChannel: Channel = await message.channel.setName(
+          //   'test123',
+          // );
+          // message.reply(
+          //   `Renamed from ${message.channel.name} to ${newNameChannel.name}`,
+          // );
+
+          const member = message.member.ban()
+          console.log(member)
 
           break;
       }

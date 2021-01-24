@@ -9,6 +9,12 @@ import Message from './models/Message.ts'
 import Permissions, { Perms } from './models/Permissions.ts'
 import Role from './models/Role.ts'
 import User from './models/User.ts'
+import Member from './models/Member.ts'
+import * as fChannel from './fetch/Channel.ts'
+import * as fMessage from './fetch/Message.ts'
+import * as fMember from './fetch/member.ts'
+import * as fSlashCommand from './fetch/SlashCommand.ts'
+import * as fClient from './fetch/Client.ts'
 
 export { 
     WebSocketManager,
@@ -22,7 +28,13 @@ export {
     Permissions,
     Role,
     User,
-    Perms
+    Perms,
+    Member,
+    fChannel,
+    fClient,
+    fMember,
+    fSlashCommand,
+    fMessage
 }
 
 export * from './types/Cache.ts'

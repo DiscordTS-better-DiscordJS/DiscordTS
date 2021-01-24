@@ -12,7 +12,7 @@ export interface BanOptions {
  */
 export default class Member {
     nickname: string
-    roles: string[]
+    roles!: string[]
     joinedAt: string
     mute: boolean
     deaf: boolean
