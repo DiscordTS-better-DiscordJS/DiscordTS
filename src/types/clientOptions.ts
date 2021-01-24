@@ -4,6 +4,7 @@ export interface ClientOptions {
         messages?: boolean
         channels?: boolean
         guilds?: boolean
+        users?: boolean
     }
     appID?: string
 }

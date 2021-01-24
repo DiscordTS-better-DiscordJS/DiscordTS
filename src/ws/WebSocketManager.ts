@@ -1,13 +1,13 @@
 import Client from '../models/Client.ts'
 import EventEmitter from 'https://deno.land/std@0.84.0/node/events.ts'
-import Guild from "../models/Guild.ts"
+import Guild from '../models/Guild.ts'
 import * as events from '../events/eventsExports.ts'
 import { ensureFileSync } from 'https://deno.land/std@0.84.0/fs/mod.ts'
 // import { WebSocket } from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
-import { Constants } from "../constants/constants.ts"
-import { OPCODES } from "../constants/opcodes.ts"
-import { Heartbeat, Identify } from "../constants/payloads.ts"
-import { EVENTS } from "../constants/events.ts"
+import { Constants } from '../constants/constants.ts'
+import { OPCODES } from '../constants/opcodes.ts'
+import { Heartbeat, Identify } from '../constants/payloads.ts'
+import { EVENTS } from '../constants/events.ts'
 
 /**
  * WebSocket class.
@@ -103,7 +103,7 @@ export default class WebSocketManager extends EventEmitter {
     /**
      * Load event.
      * @param {string} name 
-     * @param {*} d
+     * @param {*} d - Event name (from Discord Gateway).
      */
     async module (name: string, d: any) {
         if (events && (events as any)[name]) {

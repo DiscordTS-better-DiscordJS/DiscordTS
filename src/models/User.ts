@@ -26,5 +26,8 @@ export default class User {
         this.bot = data?.bot ? true : false
 
     }
-
+    /**
+     * @TODO
+     * send()
+     */
 }

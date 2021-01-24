@@ -1,5 +1,5 @@
 import WebSocketManager from '../ws/WebSocketManager.ts'
-import EventEmitter from "https://deno.land/std@0.84.0/node/events.ts"
+import EventEmitter from 'https://deno.land/std@0.84.0/node/events.ts'
 import Collection from './Collection.ts'
 import { EVENTS } from '../constants/events.ts'
 import { ClientOptions } from '../types/ClientOptions.ts'
@@ -30,7 +30,7 @@ export default class Client extends EventEmitter {
     ws!: WebSocketManager
     cache: Cache
     token!: string
-    options?: ClientOptions
+    options: any
 
     /**
      * Create a Client.
@@ -40,17 +40,20 @@ export default class Client extends EventEmitter {
 
         super()
         this.cache = {
+            users: new Collection(),
             channels: new Collection(),
             messages: new Collection(),
             guilds: new Collection()
         }
-        this.options = Object.assign({
-            cache: {
-                channels: true, messages: true, guilds: true
-            },
-            bot: true,
-            appID: ''
-        }, options)
+        this.options = { bot: '', appID: '', cache: {} }
+        this.options.appID = options?.appID || ''
+        this.options.bot = options?.bot == false ? false : true
+        this.options.cache.channels = options?.cache?.channels == false ? false : true
+        this.options.cache.messages = options?.cache?.messages == false ? false : true
+        this.options.cache.guilds = options?.cache?.guilds == false ? false : true
+        this.options.cache.users = options?.cache?.users == false ? false : true
+
+        console.log(this.options)
 
     }
 

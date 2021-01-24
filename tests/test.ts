@@ -1,4 +1,4 @@
-import token from "./tokens.ts";
+import token from './tokens.ts';
 
 import {
   Channel,
@@ -8,7 +8,7 @@ import {
   Message,
   Permissions,
   Perms,
-} from "../src/index.ts";
+} from '../src/index.ts';
 
 class bot extends Client {
   constructor(options?: ClientOptions) {
@@ -16,18 +16,20 @@ class bot extends Client {
 
     this.connect(token);
 
-    this.on("message", async (message: Message) => {
-      const prefix: string = "!!";
+    this.on('message', async (message: Message) => {
+      const prefix: string = '!!';
+
+      console.log(message)
 
       if (message.author?.bot) return;
       if (!message.content.startsWith(prefix)) return;
 
       const args = message.args({ prefix: prefix });
+
       switch (args[0]) {
-        case "test":
-          // no cos nie dziala xDD - w sensie fetch tego konkretnie sam w sobie, naprawie to
+        case 'test':
           const newNameChannel: Channel = await message.channel.setName(
-            "test123",
+            'test123',
           );
           message.reply(
             `Renamed from ${message.channel.name} to ${newNameChannel.name}`,
@@ -37,7 +39,7 @@ class bot extends Client {
       }
     });
 
-    this.on("ready", async () => {
+    this.on('ready', async () => {
       /*const Slash = new SlashCommands()
             const all = await Slash.all()*/
       const permissions = new Permissions([Perms.CONNECT]);
@@ -46,19 +48,19 @@ class bot extends Client {
 
       // Create new Slash command.
       // Slash.create({
-      //     name: "test",
-      //     description: "Test command"
+      //     name: 'test',
+      //     description: 'Test command'
       // })
 
-      console.log("Bot is ready!");
+      console.log('Bot is ready!');
     });
 
-    this.on("interactionCreate", (e) => {
-      e.name == "test"
-        ? e.channel.send("Detected interaction with slash command!")
+    this.on('interactionCreate', (e) => {
+      e.name == 'test'
+        ? e.channel.send('Detected interaction with slash command!')
         : undefined;
     });
   }
 }
 
-new bot({ appID: "" });
+new bot({ appID: '', cache: { users: false } });

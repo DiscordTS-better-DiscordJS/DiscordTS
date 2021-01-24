@@ -4,6 +4,7 @@ import Channel from './Channel.ts'
 import { sendMessage } from '../fetch/Message.ts'
 import Guild from './Guild.ts'
 import Embed from './Embed.ts'
+import Member from "./Member.ts"
 
 export interface MessageArgsOptions {
     prefix?: string
@@ -26,7 +27,7 @@ export default class Message {
     createdTimestamp: Date
     editedTimestamp: Date | null
     pinned: boolean
-    // member: Member
+    member: Member
     // mentions: Mentions[]
     mentionEveryone: boolean
 
@@ -49,7 +50,8 @@ export default class Message {
         this.mentionEveryone = data.mentionEveryone
         this.channel = client.cache.channels.get(data.channel_id)
         this.guild = client.cache.guilds.get(data.guild_id)
-
+        this.member = new Member(data, client)
+    
     }
 
     /**
