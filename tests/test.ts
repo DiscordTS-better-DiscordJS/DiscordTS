@@ -47,7 +47,7 @@ class bot extends Client {
     this.on('ready', async () => {
       /*const Slash = new SlashCommands()
             const all = await Slash.all()*/
-      const permissions = new Permissions([Perms.CONNECT]);
+      // const permissions = new Permissions([Perms.CONNECT]);
       // Delete all cached commands.
       // all.forEach((slash: any) => Slash.delete(slash.id))
 

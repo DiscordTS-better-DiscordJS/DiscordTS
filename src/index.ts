@@ -6,7 +6,7 @@ import Embed from './models/Embed.ts'
 import Channel from './models/Channel.ts'
 import Guild from './models/Guild.ts'
 import Message from './models/Message.ts'
-import Permissions, { Perms } from './models/Permissions.ts'
+import Permissions from './models/Permissions.ts'
 import Role from './models/Role.ts'
 import User from './models/User.ts'
 import Member from './models/Member.ts'
@@ -28,7 +28,6 @@ export {
     Permissions,
     Role,
     User,
-    Perms,
     Member,
     fChannel,
     fClient,
@@ -42,3 +41,4 @@ export * from './types/SlashCommand.ts'
 export * from './types/StatusOptions.ts'
 export * from './types/ClientOptions.ts'
 export * from './types/Embed.ts'
+export * from './types/PermissionsTypes.ts'
