@@ -1,4 +1,5 @@
 import { WebhookClientOptions } from '../types/WebhookClient.ts'
+import Embed from './Embed.ts'
 
 export default class WebhookClient {
 
@@ -9,9 +10,11 @@ export default class WebhookClient {
     }
 
     /**
-     * 
+     * Send message via Webhook.
+     * @param {string | Embed} content - Content of message.
+     * @async
      */
-    async send() {
+    async send(content: string | Embed) {
 
     }
 

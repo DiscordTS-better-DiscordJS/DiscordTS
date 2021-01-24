@@ -57,6 +57,7 @@ export default class Member {
 
     /**
      * Kick member.
+     * @async
      * @returns {Member} Member
      */
     async kick() {
@@ -66,6 +67,7 @@ export default class Member {
 
     /**
      * Ban member.
+     * @async
      * @param {object} [param] - Options.
      * @param {string} [param.reason] - Reason.
      * @param {number} [param.del] - delete messages from last X days by that user.

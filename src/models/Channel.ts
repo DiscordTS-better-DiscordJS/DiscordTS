@@ -75,6 +75,7 @@ export default class Channel {
 
     /**
      * Fetch message from Discord API.
+     * @async
      * @param {string} id - Channel ID.
      * @returns {Promise<Message>} Message object
      * @description Fetch message from channel. 
@@ -86,6 +87,7 @@ export default class Channel {
 
     /**
      * Set new channel name.
+     * @async
      * @param {string} newName - New channel name.
      * @returns {Promise<Channel>} Channel objet
      * @description Change channel name.

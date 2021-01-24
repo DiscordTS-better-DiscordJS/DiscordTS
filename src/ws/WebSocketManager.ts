@@ -97,8 +97,9 @@ export default class WebSocketManager extends EventEmitter {
 
     /**
      * Load event.
-     * @param {string} name 
-     * @param {*} d - Event name (from Discord Gateway).
+     * @async
+     * @param {string} name - Event name.
+     * @param {*} d - D from Discord gateway.
      */
     async module (name: string, d: any) {
         if (events && (events as any)[name]) {

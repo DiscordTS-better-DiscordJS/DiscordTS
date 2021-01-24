@@ -57,6 +57,7 @@ export default class Client extends EventEmitter {
 
     /**
      * Connect with Discord WebSocket.
+     * @async
      * @param {string} token - Bot token.
      */
     async connect(token: string){

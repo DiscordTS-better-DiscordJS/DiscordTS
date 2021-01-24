@@ -109,6 +109,7 @@ export default class Guild {
 
     /**
      * Leave guild.
+     * @async
      * @description Use this method to leave guild.
      * @example message.guild.leave()
      */
