@@ -1,3 +1,5 @@
+import PermissionsBitField from '../models/PermissionsBitField.ts'
+
 export const PermissionFlags: { [key: string]: number } = {
     CREATE_INSTANT_INVITE: 1 << 0,
     KICK_MEMBERS: 1 << 1,
@@ -67,3 +69,4 @@ export enum Perms {
 }
 
 export type PermissionsType = Array<Perms>
+export type BitFieldResolvable = number | PermissionsBitField | string | Array<PermissionsBitField>

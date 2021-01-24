@@ -1,10 +1,12 @@
+import Permissions from './Permissions.ts'
+
 /**
  * Class representing a Role.
  */
 export default class Role {
 
     position: number
-    permissions: string // soon permissios names and Model + manager????
+    permissions: Permissions
     name: string
     mentionable: boolean
     managed: boolean
@@ -21,7 +23,7 @@ export default class Role {
     constructor(data: any){
 
         this.position = data.position
-        this.permissions = data.permissions
+        this.permissions = new Permissions(data.permissions)
         this.name = data.name
         this.mention = `@${data.name}`
         this.mentionable = data.mentionable
