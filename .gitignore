@@ -5,4 +5,3 @@ token.json
 yarn-error.log
 tests/tokens.ts
 out
-docs

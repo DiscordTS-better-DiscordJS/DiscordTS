@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/Embed.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/Embed.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+var __classPrivateFieldSet = (this &amp;&amp; this.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (this &amp;&amp; this.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var _options;
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Class representing a Embed.
+ * @class
+ */
+class Embed {
+    /**
+     * Create a Embed.
+     * @constructs
+     * @param {EmbedOptions} embedConfig - Embed arguments.
+     */
+    constructor(embedConfig) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x;
+        _options.set(this, {});
+        this.data = {};
+        __classPrivateFieldSet(this, _options, embedConfig);
+        if (__classPrivateFieldGet(this, _options).field || __classPrivateFieldGet(this, _options).fields) {
+            this.data.fields = [];
+        }
+        __classPrivateFieldGet(this, _options).title ? this.data.title = __classPrivateFieldGet(this, _options).title : null;
+        __classPrivateFieldGet(this, _options).type ? this.data.type = __classPrivateFieldGet(this, _options).type : null;
+        __classPrivateFieldGet(this, _options).description ? this.data.description = __classPrivateFieldGet(this, _options).description : null;
+        __classPrivateFieldGet(this, _options).url ? this.data.url = __classPrivateFieldGet(this, _options).url : null;
+        if (__classPrivateFieldGet(this, _options).timestamp) {
+            if (typeof __classPrivateFieldGet(this, _options).timestamp == 'boolean' &amp;&amp; __classPrivateFieldGet(this, _options).timestamp)
+                this.data.timestamp = new Date();
+            else
+                this.data.timestamp = __classPrivateFieldGet(this, _options).timestamp;
+        }
+        __classPrivateFieldGet(this, _options).color ? this.data.color = __classPrivateFieldGet(this, _options).color : null;
+        if (__classPrivateFieldGet(this, _options).footer) {
+            this.data.footer = {};
+            ((_a = __classPrivateFieldGet(this, _options).footer) === null || _a === void 0 ? void 0 : _a.text) ? this.data.footer.text = (_b = __classPrivateFieldGet(this, _options).footer) === null || _b === void 0 ? void 0 : _b.text : null;
+            ((_c = __classPrivateFieldGet(this, _options).footer) === null || _c === void 0 ? void 0 : _c.icon) ? this.data.footer.icon = (_d = __classPrivateFieldGet(this, _options).footer) === null || _d === void 0 ? void 0 : _d.icon : null;
+        }
+        if (__classPrivateFieldGet(this, _options).image) {
+            this.data.image = {};
+            ((_e = __classPrivateFieldGet(this, _options).image) === null || _e === void 0 ? void 0 : _e.url) ? this.data.image.url = __classPrivateFieldGet(this, _options).image.url : null;
+            ((_f = __classPrivateFieldGet(this, _options).image) === null || _f === void 0 ? void 0 : _f.proxyUrl) ? this.data.image.proxyUrl = __classPrivateFieldGet(this, _options).image.proxyUrl : null;
+            ((_g = __classPrivateFieldGet(this, _options).image) === null || _g === void 0 ? void 0 : _g.height) ? this.data.image.height = __classPrivateFieldGet(this, _options).image.height : null;
+            ((_h = __classPrivateFieldGet(this, _options).image) === null || _h === void 0 ? void 0 : _h.width) ? this.data.image.width = __classPrivateFieldGet(this, _options).image.width : null;
+        }
+        if (__classPrivateFieldGet(this, _options).thumbnail) {
+            this.data.thumbnail = {};
+            ((_j = __classPrivateFieldGet(this, _options).thumbnail) === null || _j === void 0 ? void 0 : _j.url) ? this.data.thumbnail.url = __classPrivateFieldGet(this, _options).thumbnail.url : null;
+            ((_k = __classPrivateFieldGet(this, _options).thumbnail) === null || _k === void 0 ? void 0 : _k.proxyUrl) ? this.data.thumbnail.proxyUrl = __classPrivateFieldGet(this, _options).thumbnail.proxyUrl : null;
+            ((_l = __classPrivateFieldGet(this, _options).thumbnail) === null || _l === void 0 ? void 0 : _l.height) ? this.data.thumbnail.height = __classPrivateFieldGet(this, _options).thumbnail.height : null;
+            ((_m = __classPrivateFieldGet(this, _options).thumbnail) === null || _m === void 0 ? void 0 : _m.width) ? this.data.thumbnail.width = __classPrivateFieldGet(this, _options).thumbnail.width : null;
+        }
+        if (__classPrivateFieldGet(this, _options).video) {
+            this.data.video = {};
+            ((_o = __classPrivateFieldGet(this, _options).video) === null || _o === void 0 ? void 0 : _o.url) ? this.data.video.url = __classPrivateFieldGet(this, _options).video.url : null;
+            ((_p = __classPrivateFieldGet(this, _options).video) === null || _p === void 0 ? void 0 : _p.height) ? this.data.video.height = __classPrivateFieldGet(this, _options).video.height : null;
+            ((_q = __classPrivateFieldGet(this, _options).video) === null || _q === void 0 ? void 0 : _q.width) ? this.data.video.width = __classPrivateFieldGet(this, _options).video.width : null;
+        }
+        if (__classPrivateFieldGet(this, _options).provider) {
+            this.data.provider = {};
+            ((_r = __classPrivateFieldGet(this, _options).provider) === null || _r === void 0 ? void 0 : _r.name) ? this.data.provider.name = __classPrivateFieldGet(this, _options).provider.name : null;
+            ((_s = __classPrivateFieldGet(this, _options).provider) === null || _s === void 0 ? void 0 : _s.url) ? this.data.provider.url = __classPrivateFieldGet(this, _options).provider.url : null;
+        }
+        if (__classPrivateFieldGet(this, _options).author) {
+            this.data.author = {};
+            ((_t = __classPrivateFieldGet(this, _options).author) === null || _t === void 0 ? void 0 : _t.name) ? this.data.author.name = __classPrivateFieldGet(this, _options).author.name : null;
+            ((_u = __classPrivateFieldGet(this, _options).author) === null || _u === void 0 ? void 0 : _u.url) ? this.data.author.url = __classPrivateFieldGet(this, _options).author.url : null;
+            ((_v = __classPrivateFieldGet(this, _options).author) === null || _v === void 0 ? void 0 : _v.iconUrl) ? this.data.author.iconUrl = __classPrivateFieldGet(this, _options).author.iconUrl : null;
+            ((_w = __classPrivateFieldGet(this, _options).author) === null || _w === void 0 ? void 0 : _w.proxyIconUrl) ? this.data.author.proxyIconUrl = __classPrivateFieldGet(this, _options).author.proxyIconUrl : null;
+        }
+        if (__classPrivateFieldGet(this, _options).field) {
+            (_x = this.data.fields) === null || _x === void 0 ? void 0 : _x.push(__classPrivateFieldGet(this, _options).field);
+        }
+        if (__classPrivateFieldGet(this, _options).fields) {
+            __classPrivateFieldGet(this, _options).fields.forEach(field => {
+                var _a;
+                (_a = this.data.fields) === null || _a === void 0 ? void 0 : _a.push(field);
+            });
+        }
+        this.clear = {
+            footer: () => delete this.data.footer,
+            title: () => delete this.data.title,
+            description: () => delete this.data.description,
+            url: () => delete this.data.url,
+            timestamp: () => delete this.data.timestamp,
+            color: () => delete this.data.color,
+            image: () => delete this.data.image,
+            thumbnail: () => delete this.data.thumbnail,
+            video: () => delete this.data.video,
+            providier: () => delete this.data.provider,
+            author: () => delete this.data.author,
+            field: (name) => { var _a; return this.data.fields = (_a = this.data.fields) === null || _a === void 0 ? void 0 : _a.filter(field => field.name !== name); }
+        };
+    }
+    /**
+     * Update embed title.
+     * @description Set new value of title in embed or set it if not exists.
+     * @param {string} title
+     */
+    title(title) {
+        this.data.title = title;
+    }
+    /**
+     * Update embed type.
+     * @description Set new value of embed type or set it if not exists.
+     * @param {string} type
+     */
+    type(type) {
+        this.data.type = type;
+    }
+    /**
+     * Update embed description
+     * @description Set new value of description in embed or set it if not exists.
+     * @param {string} description
+     */
+    description(description) {
+        this.data.description = description;
+    }
+    /**
+     * Update embed url.
+     * @description Set new url in embed or set it if not exists.
+     * @param {string} url
+     */
+    url(url) {
+        this.data.url = url;
+    }
+    /**
+     * Update embed timestamp.
+     * @description Chance timestamp in embed or set it if not exists or remove. (false)
+     * @param {Date | string | boolean} timestamp
+     */
+    timestamp(timestamp) {
+        if (typeof timestamp == 'boolean' &amp;&amp; timestamp)
+            this.data.timestamp = new Date();
+        else if (this.data.timestamp)
+            this.data.timestamp = timestamp;
+        else
+            delete this.data.timestamp;
+    }
+    /**
+     * Update embed color.
+     * @param {string | number} color
+     * @description Set new color of embed or set it if not exists.
+     */
+    color(color) {
+        this.data.color = color;
+    }
+    /**
+     * Update embed footer.
+     * @description Change embed footer values of set it if not exists.
+     * @param {EmbedOptions.footer} footer
+     * @param {string} footer.text
+     * @param {string} footer.icon
+     * @param {string} footer.proxyIcon
+     */
+    footer(footer) {
+        this.data.footer ? null : this.data.footer = {};
+        if (footer === null || footer === void 0 ? void 0 : footer.icon)
+            this.data.footer.icon = footer.icon;
+        if (footer === null || footer === void 0 ? void 0 : footer.text)
+            this.data.footer.text = footer.text;
+        if (footer === null || footer === void 0 ? void 0 : footer.proxyIcon)
+            this.data.footer.proxyIcon = footer.proxyIcon;
+    }
+    /**
+     * Update embed field.
+     * @description Change embed field content.
+     * @param {EmbedOptions.field} field
+     * @param {string} field.name
+     * @param {string} field.value
+     * @param {boolean} field.inline
+     */
+    field(field) {
+        this.data.fields ? null : this.data.fields = [];
+        let fieldData = { name: '' };
+        (field === null || field === void 0 ? void 0 : field.name) ? fieldData.name = field.name : null;
+        (field === null || field === void 0 ? void 0 : field.value) ? fieldData.value = field.value : null;
+        (field === null || field === void 0 ? void 0 : field.inline) ? fieldData.inline = field.inline : null;
+        this.data.fields.push(fieldData);
+    }
+    /**
+     * Update embed image.
+     * @description Change embed image.
+     * @param {EmbedOptions.image} image
+     * @param {string} image.url
+     * @param {string} image.proxyUrl
+     * @param {number} image.height
+     * @param {number} image.width
+     */
+    image(image) {
+        this.data.image ? null : this.data.image = {};
+        if (image === null || image === void 0 ? void 0 : image.url)
+            this.data.image.url = image.url;
+        if (image === null || image === void 0 ? void 0 : image.proxyUrl)
+            this.data.image.proxyUrl = image.proxyUrl;
+        if (image === null || image === void 0 ? void 0 : image.height)
+            this.data.image.height = image.height;
+        if (image === null || image === void 0 ? void 0 : image.width)
+            this.data.image.width = image.width;
+    }
+    /**
+     * Update embed thumbnail.
+     * @description Change embed thumbnail.
+     * @param {EmbedOptions.thumbnail} thumbnail
+     * @param {string} thumbnail.url
+     * @param {string} thumbnail.proxyUrl
+     * @param {number} thumbnail.width
+     * @param {number} thumbnail.height
+     */
+    thumbnail(thumbnail) {
+        this.data.thumbnail ? null : this.data.thumbnail = {};
+        if (thumbnail === null || thumbnail === void 0 ? void 0 : thumbnail.url)
+            this.data.thumbnail.url = thumbnail.url;
+        if (thumbnail === null || thumbnail === void 0 ? void 0 : thumbnail.proxyUrl)
+            this.data.thumbnail.proxyUrl = thumbnail.proxyUrl;
+        if (thumbnail === null || thumbnail === void 0 ? void 0 : thumbnail.width)
+            this.data.thumbnail.width = thumbnail.width;
+        if (thumbnail === null || thumbnail === void 0 ? void 0 : thumbnail.height)
+            this.data.thumbnail.height = thumbnail.height;
+    }
+    /**
+     * Update embed video.
+     * @description Change embed video.
+     * @param {EmbedOptions.video} video
+     * @param {string} video.url
+     * @param {number} video.height
+     * @param {number} video.width
+     */
+    video(video) {
+        this.data.video ? null : this.data.video = {};
+        if (video === null || video === void 0 ? void 0 : video.url)
+            this.data.video.url = video.url;
+        if (video === null || video === void 0 ? void 0 : video.height)
+            this.data.video.height = video.height;
+        if (video === null || video === void 0 ? void 0 : video.width)
+            this.data.video.width = video.width;
+    }
+    /**
+     * Update embed provider.
+     * @description Change embed provider.
+     * @param {EmbedOptions.provider} provider
+     * @param {string} provider.name
+     * @param {string} provider.url
+     */
+    provider(provider) {
+        this.data.provider ? null : this.data.provider = {};
+        if (provider === null || provider === void 0 ? void 0 : provider.name)
+            this.data.provider.name = provider.name;
+        if (provider === null || provider === void 0 ? void 0 : provider.url)
+            this.data.provider.url = provider.url;
+    }
+    /**
+     * Update embed author.
+     * @description Change embed author.
+     * @param {EmbedOptions.author} author
+     * @param {string} author.name
+     * @param {string} author.url
+     * @param {string} author.iconUrl
+     * @param {string} author.proxyIconUrl
+     */
+    author(author) {
+        this.data.author ? null : this.data.author = {};
+        if (author === null || author === void 0 ? void 0 : author.name)
+            this.data.author.name = author.name;
+        if (author === null || author === void 0 ? void 0 : author.url)
+            this.data.author.url = author.url;
+        if (author === null || author === void 0 ? void 0 : author.iconUrl)
+            this.data.author.iconUrl = author.url;
+        if (author === null || author === void 0 ? void 0 : author.proxyIconUrl)
+            this.data.author.proxyIconUrl = author.proxyIconUrl;
+    }
+}
+exports.default = Embed;
+_options = new WeakMap();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Embed.html">Embed</a></li><li><a href="Guild.html">Guild</a></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Role.html">Role</a></li><li><a href="SlashCommand.html">SlashCommand</a></li><li><a href="User.html">User</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Jan 24 2021 12:01:22 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/Channel.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/Channel.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __classPrivateFieldSet = (this &amp;&amp; this.__classPrivateFieldSet) || function (receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+};
+var __classPrivateFieldGet = (this &amp;&amp; this.__classPrivateFieldGet) || function (receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+};
+var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
+    return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
+};
+var _client;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CHANNEL_TYPES = void 0;
+const Message_ts_1 = require("../fetch/Message.ts");
+const Message_ts_2 = __importDefault(require("../models/Message.ts"));
+const Channel_ts_1 = require("../fetch/Channel.ts");
+exports.CHANNEL_TYPES = {
+    '0': 'GUILD_TEXT',
+    '1': "DM",
+    '2': "GUILD_VOICE",
+    '3': "GROUP_DM",
+    '4': "GUILD_CATEGORY",
+    '5': "GUILD_NEWS",
+    '6': "GUILD_STORE"
+};
+/**
+ * Class representing a Channel.
+ * @class
+ */
+class Channel {
+    /**
+     * Create a Channel
+     * @constructs
+     * @param {string} channelID - Channel ID.
+     * @param {Client} client - Client.
+     * @param {*} [fromFetch]
+     */
+    constructor(channelID, client, fromFetch) {
+        _client.set(this, void 0);
+        __classPrivateFieldSet(this, _client, client);
+        const cache = client.cache.channels.get(channelID);
+        const data = cache ? cache : fromFetch;
+        this.id = data.id;
+        this.type = exports.CHANNEL_TYPES[data.type];
+        this.guildID = data.guild_id;
+        this.position = data.position;
+        this.name = data.name;
+        this.topic = data.topic;
+        this.nsfw = data.nsfw;
+        this.bitrare = data.bitrare;
+        this.icon = data.icon;
+        this.parentID = data.parent_id;
+    }
+    /**
+     * Send message to channel.
+     * @param {string | Embed} content - Content of message.
+     * @description Send message to channel.
+     */
+    send(content) {
+        let msg = {};
+        if (typeof content == 'string')
+            msg = { content: content };
+        else
+            msg = { embed: content };
+        Message_ts_1.sendMessage(msg, this.id);
+    }
+    /**
+     * Fetch message from Discord API.
+     * @param {string} id
+     * @returns {Promise&lt;Message>} Message object
+     * @description Fetch message from channel.
+     */
+    fetchMessage(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const message = yield Message_ts_1.fetchMessage(this.id, id);
+            return new Message_ts_2.default(message, __classPrivateFieldGet(this, _client));
+        });
+    }
+    /**
+     * Set new channel name.
+     * @param {string} newName
+     * @returns {Promise&lt;Channel>} Channel objet
+     * @description Change channel name.
+     */
+    setName(newName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (newName.length &lt; 2 || newName.length > 100)
+                throw new Error('Channel name length must have from 2 to 100 chars.');
+            const channel = yield Channel_ts_1.fetchChannelModify(this.id, { name: newName });
+            return channel;
+        });
+    }
+}
+exports.default = Channel;
+_client = new WeakMap();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Embed.html">Embed</a></li><li><a href="Guild.html">Guild</a></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Role.html">Role</a></li><li><a href="SlashCommand.html">SlashCommand</a></li><li><a href="User.html">User</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Jan 24 2021 12:01:22 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
