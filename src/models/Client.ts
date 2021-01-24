@@ -53,8 +53,6 @@ export default class Client extends EventEmitter {
         this.options.cache.guilds = options?.cache?.guilds == false ? false : true
         this.options.cache.users = options?.cache?.users == false ? false : true
 
-        console.log(this.options)
-
     }
 
     /**

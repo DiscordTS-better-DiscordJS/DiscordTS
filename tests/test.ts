@@ -37,8 +37,12 @@ class bot extends Client {
           //   `Renamed from ${message.channel.name} to ${newNameChannel.name}`,
           // );
 
-          const member = message.member.ban()
-          console.log(member)
+          // const member = message.member.ban()
+          // console.log(member)
+
+          // message.channel.send('123')
+
+          console.log(message)
 
           break;
       }
@@ -47,7 +51,7 @@ class bot extends Client {
     this.on('ready', async () => {
       /*const Slash = new SlashCommands()
             const all = await Slash.all()*/
-      const permissions = new Permissions([Perms.CONNECT]);
+      // const permissions = new Permissions([Perms.CONNECT]);
       // Delete all cached commands.
       // all.forEach((slash: any) => Slash.delete(slash.id))
 

@@ -23,7 +23,7 @@ export default class Member {
     premiumSince!: string 
     passed!: boolean
     fetched: any
-    user: User
+    user?: User
     // permissions: Permissions
 
     /**
@@ -33,7 +33,7 @@ export default class Member {
      */
     constructor (data: any, client: Client) {
 
-        const isOwner_guild = client.cache.guilds.get(data.guild.id).ownerID == data.author.id ? true : false
+        // const isOwner_guild = client.cache.guilds.get(data.guild.id).ownerID == data.author.id ? true : false
 
         let roles: Array<Role> = client.cache.guilds.get(data.guild.id).roles
         roles.filter((r: Role) => data.member.roles.includes(r.id))
@@ -41,7 +41,6 @@ export default class Member {
         /**
          * @TODO fetch nickname and createdAt from API.
          */
-        console.log(data)
         this.nickname = ''
         this.roles = data.member.roles
         this.joinedAt = data.member.joined_at
@@ -53,6 +52,7 @@ export default class Member {
         this.id = data.author.id
         this.user = client.cache.users.get(this.id)
         // this.permissions = new Permissions(isOwner_guild, undefined, this.roles)
+
     }
 
     /**
