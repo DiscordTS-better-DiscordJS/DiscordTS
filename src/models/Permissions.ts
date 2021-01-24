@@ -11,6 +11,7 @@ export default class Permissions extends PermissionsBitField {
         super(bits, PermissionFlags)
 
         console.log(this.bitfield)
+        console.log(PermissionFlags[this.bitfield])
 
     }
 
