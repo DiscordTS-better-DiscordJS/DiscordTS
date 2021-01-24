@@ -17,7 +17,7 @@
         "systemName": "Discord.ts",
         "copyright": "Nimplex & Mateuszkdev",
         "theme": "Simplex",
-        "includeDate": false,
+        "includeDate": false
     },
     "opts": {
         "destination": "./docs/",
