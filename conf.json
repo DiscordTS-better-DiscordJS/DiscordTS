@@ -1,0 +1,26 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "source": {
+        "excludePattern": "",
+        "includePattern": ".*\\.(js|html)$",
+        "include": [
+            "./build"
+        ]
+    },
+    "plugins": [],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "systemName": "Discord.ts",
+        "copyright": "Nimplex & Mateuszkdev",
+        "theme": "Simplex",
+        "includeDate": false,
+    },
+    "opts": {
+        "destination": "./docs/",
+        "encoding": "utf8"
+    }
+}

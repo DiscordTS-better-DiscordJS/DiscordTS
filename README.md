@@ -2,9 +2,10 @@
 ![Stars](https://img.shields.io/github/stars/DiscordTS-better-DiscordJS/DiscordTS)
 ![licence](https://img.shields.io/github/license/DiscordTS-better-DiscordJS/DiscordTS)
 ___
-#### Deno library for interaction with Discord API.
+<p>Deno library for interaction with Discord API.</p>
+
 Example:
-```js
+```javascript
 import {
   Client,
   ClientOptions,
