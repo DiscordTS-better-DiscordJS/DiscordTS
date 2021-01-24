@@ -1,5 +1,5 @@
 import PermissionsBitField from './PermissionsBitField.ts'
-import { PermissionFlags } from '../types/PermissionsTypes.ts'
+import { PermissionFlags, Perms } from '../types/PermissionsTypes.ts'
 
 export default class Permissions extends PermissionsBitField {
 
@@ -11,7 +11,7 @@ export default class Permissions extends PermissionsBitField {
         super(bits, PermissionFlags)
 
         console.log(this.bitfield)
-        console.log(PermissionFlags[this.bitfield])
+        console.log(Perms[this.bitfield])
 
     }
 
