@@ -35,8 +35,8 @@ export default class Member {
 
         // const isOwner_guild = client.cache.guilds.get(data.guild.id).ownerID == data.author.id ? true : false
 
-        let roles: Array<Role> = client.cache.guilds.get(data.guild.id).roles
-        roles.filter((r: Role) => data.member.roles.includes(r.id))
+        // let roles: Array<Role> = client.cache.guilds.get(data.guild.id).roles
+        // roles.filter((r: Role) => data.member.roles.includes(r.id))
 
         /**
          * @TODO fetch nickname and createdAt from API.

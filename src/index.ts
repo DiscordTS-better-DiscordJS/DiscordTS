@@ -29,7 +29,6 @@ export {
     Permissions,
     Role,
     User,
-    Perms,
     Member,
     fChannel,
     fClient,
@@ -43,3 +42,4 @@ export * from './types/SlashCommand.ts'
 export * from './types/StatusOptions.ts'
 export * from './types/ClientOptions.ts'
 export * from './types/Embed.ts'
+export * from './types/PermissionsTypes.ts'
