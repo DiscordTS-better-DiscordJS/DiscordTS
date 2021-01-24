@@ -55,9 +55,9 @@ export default class Member {
 
     /**
      * Ban member.
-     * @param {object} [param]
-     * @param {string} [param.reason]
-     * @param {number} [param.del]
+     * @param {object} [param] - Options.
+     * @param {string} [param.reason] - Reason.
+     * @param {number} [param.del] - delete messages from last X days by that user.
      * @returns {Member} Member
      */
     async ban(options?: BanOptions) {

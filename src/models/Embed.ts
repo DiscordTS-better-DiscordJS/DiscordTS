@@ -95,7 +95,7 @@ export default class Embed {
     /**
      * Update embed title.
      * @description Set new value of title in embed or set it if not exists.
-     * @param {string} title
+     * @param {string} title - New title.
      */
     title (title: string) {
         this.data.title = title
@@ -104,7 +104,7 @@ export default class Embed {
     /**
      * Update embed type.
      * @description Set new value of embed type or set it if not exists.
-     * @param {string} type
+     * @param {string} type - New type.
      */
     type (type: string) {
         this.data.type = type
@@ -113,7 +113,7 @@ export default class Embed {
     /**
      * Update embed description
      * @description Set new value of description in embed or set it if not exists.
-     * @param {string} description 
+     * @param {string} description - New description.
      */
     description (description: string) {
         this.data.description = description
@@ -122,7 +122,7 @@ export default class Embed {
     /**
      * Update embed url.
      * @description Set new url in embed or set it if not exists. 
-     * @param {string} url
+     * @param {string} url - New URL.
      */
     url (url: string) {
         this.data.url = url
@@ -131,7 +131,7 @@ export default class Embed {
     /**
      * Update embed timestamp.
      * @description Chance timestamp in embed or set it if not exists or remove. (false)
-     * @param {Date | string | boolean} timestamp 
+     * @param {Date | string | boolean} timestamp - New timestamp.
      */
     timestamp (timestamp: Date | boolean) {
         if (typeof timestamp == 'boolean' && timestamp) this.data.timestamp = new Date()
@@ -141,8 +141,8 @@ export default class Embed {
 
     /**
      * Update embed color.
-     * @param {string | number} color
      * @description Set new color of embed or set it if not exists. 
+     * @param {string | number} color - New color.
      */
     color (color: string | number) {
         this.data.color = color
@@ -151,10 +151,10 @@ export default class Embed {
     /**
      * Update embed footer.
      * @description Change embed footer values of set it if not exists.
-     * @param {EmbedOptions.footer} footer
-     * @param {string} footer.text 
-     * @param {string} footer.icon
-     * @param {string} footer.proxyIcon
+     * @param {EmbedOptions.footer} footer - New footer.
+     * @param {string} footer.text - New footer text.
+     * @param {string} footer.icon - New footer icon.
+     * @param {string} footer.proxyIcon - New footer proxy icon.
      */
     footer(footer: EmbedOptions['footer']) {
         this.data.footer ? null : this.data.footer = {}
@@ -166,10 +166,10 @@ export default class Embed {
     /**
      * Update embed field.
      * @description Change embed field content.
-     * @param {EmbedOptions.field} field
-     * @param {string} field.name 
-     * @param {string} field.value
-     * @param {boolean} field.inline
+     * @param {EmbedOptions.field} field - New field.
+     * @param {string} field.name - New field name.
+     * @param {string} field.value - New field value.
+     * @param {boolean} field.inline - Field inline?.
      */
     field(field: EmbedOptions['field']) {
         this.data.fields ? null : this.data.fields = []
@@ -183,11 +183,11 @@ export default class Embed {
     /**
      * Update embed image.
      * @description Change embed image.
-     * @param {EmbedOptions.image} image
-     * @param {string} image.url 
-     * @param {string} image.proxyUrl
-     * @param {number} image.height
-     * @param {number} image.width
+     * @param {EmbedOptions.image} image - New image.
+     * @param {string} image.url - New image URL.
+     * @param {string} image.proxyUrl - New image proxy URL.
+     * @param {number} image.height - New image height.
+     * @param {number} image.width - New image width.
      */
     image(image: EmbedOptions['image']) {
         this.data.image ? null : this.data.image = {}
@@ -200,11 +200,11 @@ export default class Embed {
     /**
      * Update embed thumbnail.
      * @description Change embed thumbnail.
-     * @param {EmbedOptions.thumbnail} thumbnail
-     * @param {string} thumbnail.url 
-     * @param {string} thumbnail.proxyUrl
-     * @param {number} thumbnail.width
-     * @param {number} thumbnail.height
+     * @param {EmbedOptions.thumbnail} thumbnail - New thumbnail.
+     * @param {string} thumbnail.url - New thumbnail URL.
+     * @param {string} thumbnail.proxyUrl - New thumbnail proxy URL.
+     * @param {number} thumbnail.width - New thumbnail width.
+     * @param {number} thumbnail.height - New thumbnail height.
      */
     thumbnail(thumbnail: EmbedOptions['thumbnail']) {
         this.data.thumbnail ? null : this.data.thumbnail = {}
@@ -217,10 +217,10 @@ export default class Embed {
     /**
      * Update embed video.
      * @description Change embed video.
-     * @param {EmbedOptions.video} video
-     * @param {string} video.url 
-     * @param {number} video.height
-     * @param {number} video.width
+     * @param {EmbedOptions.video} video - New video.
+     * @param {string} video.url - New video URL.
+     * @param {number} video.height - New video height.
+     * @param {number} video.width - New video width.
      */
     video(video: EmbedOptions['video']) {
         this.data.video ? null : this.data.video = {}
@@ -232,9 +232,9 @@ export default class Embed {
     /**
      * Update embed provider.
      * @description Change embed provider.
-     * @param {EmbedOptions.provider} provider
-     * @param {string} provider.name
-     * @param {string} provider.url
+     * @param {EmbedOptions.provider} provider - New provider.
+     * @param {string} provider.name - New provider name.
+     * @param {string} provider.url - New provider URL.
      */
     provider(provider: EmbedOptions['provider']) {
         this.data.provider ? null : this.data.provider = {}
@@ -245,11 +245,11 @@ export default class Embed {
     /**
      * Update embed author.
      * @description Change embed author.
-     * @param {EmbedOptions.author} author
-     * @param {string} author.name 
-     * @param {string} author.url
-     * @param {string} author.iconUrl
-     * @param {string} author.proxyIconUrl
+     * @param {EmbedOptions.author} author - New author.
+     * @param {string} author.name - New author name.
+     * @param {string} author.url - New author URL.
+     * @param {string} author.iconUrl - New author icon URL.
+     * @param {string} author.proxyIconUrl - New author proxy icon URL.
      */
     author(author: EmbedOptions['author']) {
         this.data.author ? null : this.data.author = {}

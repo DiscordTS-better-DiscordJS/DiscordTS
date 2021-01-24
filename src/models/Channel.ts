@@ -37,7 +37,7 @@ export default class Channel {
      * Create a Channel
      * @param {string} channelID - Channel ID.
      * @param {Client} client - Client.
-     * @param {*} [fromFetch]
+     * @param {*} [fromFetch] - Data from fetchChannel().
      */
     constructor(channelID: string, client: Client, fromFetch?: any) {
 
@@ -75,7 +75,7 @@ export default class Channel {
 
     /**
      * Fetch message from Discord API.
-     * @param {string} id
+     * @param {string} id - Channel ID.
      * @returns {Promise<Message>} Message object
      * @description Fetch message from channel. 
      */
@@ -86,7 +86,7 @@ export default class Channel {
 
     /**
      * Set new channel name.
-     * @param {string} newName
+     * @param {string} newName - New channel name.
      * @returns {Promise<Channel>} Channel objet
      * @description Change channel name.
      */

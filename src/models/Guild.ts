@@ -110,6 +110,7 @@ export default class Guild {
     /**
      * Leave guild.
      * @description Use this method to leave guild.
+     * @example message.guild.leave()
      */
     async leave() {
         await fetchClientLeave(this.id)

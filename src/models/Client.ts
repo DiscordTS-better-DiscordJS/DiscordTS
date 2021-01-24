@@ -81,8 +81,7 @@ export default class Client extends EventEmitter {
 
     /**
      * Change client user avatar
-     * @param {string} avatarURL
-     * @returns null
+     * @param {string} avatarURL - Url to avatar.
      * @description Change client user avatar 
      */
     setAvatar(avatarURL: string) {
