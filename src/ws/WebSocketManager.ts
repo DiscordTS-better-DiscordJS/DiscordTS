@@ -22,9 +22,9 @@ export default class WebSocketManager extends EventEmitter {
 
     /**
      * Create WebSocket Manager.
-     * @param {boolean} reconnect 
-     * @param {string} token 
-     * @param {Client} client 
+     * @param {boolean} reconnect - Reconnect to gateway?
+     * @param {string} token - Bot token.
+     * @param {Client} client - Client.
      */
     constructor (reconnect: boolean, token: string, client: Client) {
         super()
@@ -36,11 +36,6 @@ export default class WebSocketManager extends EventEmitter {
         this.sessionID = 0
         this.client = client
         this.socket = new WebSocket(Constants.GATEWAY)
-
-        console.log(events)
-
-        // try {
-        // } catch (error) { error && console.log(`>> SOCKET ASSIGN ERROR: ${error}`) }
 
         this.socket?.addEventListener('open', () => {
             this.debug && console.log('WebSocket send OPEN')
