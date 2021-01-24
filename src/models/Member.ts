@@ -1,6 +1,8 @@
 import { banMember, fetchMember, kickMember } from '../fetch/member.ts'
 import Client from './Client.ts'
 import User from "./User.ts"
+import Permissions from './Permissions.ts'
+import Role from './Role.ts'
 
 export interface BanOptions {
     reason?: string
@@ -12,7 +14,7 @@ export interface BanOptions {
  */
 export default class Member {
     nickname: string
-    roles!: string[]
+    roles!: Array<Role>
     joinedAt: string
     mute: boolean
     deaf: boolean
@@ -22,6 +24,7 @@ export default class Member {
     passed!: boolean
     fetched: any
     user: User
+    permissions: Permissions
 
     /**
      * Create a Member.
@@ -29,9 +32,16 @@ export default class Member {
      * @param {Client} client - Client.
      */
     constructor (data: any, client: Client) {
+
+        const isOwner_guild = client.cache.guilds.get(data.guild.id).ownerID == data.author.id ? true : false
+
+        let roles: Array<Role> = client.cache.guilds.get(data.guild.id).roles
+        roles.filter((r: Role) => data.member.roles.includes(r.id))
+
         /**
          * @TODO fetch nickname and createdAt from API.
          */
+        console.log(data)
         this.nickname = ''
         this.roles = data.member.roles
         this.joinedAt = data.member.joined_at
@@ -42,6 +52,7 @@ export default class Member {
         this.guildID = data.guild_id
         this.id = data.author.id
         this.user = client.cache.users.get(this.id)
+        this.permissions = new Permissions(isOwner_guild, undefined, this.roles)
     }
 
     /**
