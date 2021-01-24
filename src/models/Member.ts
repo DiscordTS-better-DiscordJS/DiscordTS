@@ -24,7 +24,7 @@ export default class Member {
     passed!: boolean
     fetched: any
     user: User
-    permissions: Permissions
+    // permissions: Permissions
 
     /**
      * Create a Member.
@@ -52,7 +52,7 @@ export default class Member {
         this.guildID = data.guild_id
         this.id = data.author.id
         this.user = client.cache.users.get(this.id)
-        this.permissions = new Permissions(isOwner_guild, undefined, this.roles)
+        // this.permissions = new Permissions(isOwner_guild, undefined, this.roles)
     }
 
     /**

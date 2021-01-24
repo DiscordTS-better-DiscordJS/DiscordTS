@@ -10,15 +10,15 @@ export default class Permissions {
     #DEFAULT = 104324673
     #ALL = Object.values(PermissionFlags).reduce((all, p) => all | p, 0)
 
-    constructor(isOwner: boolean, bits: number | undefined, roles?: Array<Role>) {
+    constructor(bit: number) {
         
         this.permissions = []
         this.permissionsINT = this.toByte()
 
-        if (isOwner) this.permissions.push(this.#ALL)
-        else if (roles && roles.find((bit: any) => Perms.ADMINISTRATOR >> bit)) this.permissions.push(Perms.ADMINISTRATOR)
-        else if (roles) roles.forEach((bit: any) => this.permissions.push(bit))
-        else this.permissions.push(this.#DEFAULT)
+        // if (isOwner) this.permissions.push(this.#ALL)
+        // else if (roles && roles.find((bit: any) => Perms.ADMINISTRATOR >> bit)) this.permissions.push(Perms.ADMINISTRATOR)
+        // else if (roles) roles.forEach((bit: any) => this.permissions.push(bit))
+        // else this.permissions.push(this.#DEFAULT)
 
         console.log(this.permissions)
 
