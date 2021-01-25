@@ -25,5 +25,12 @@ export default class Permissions extends PermissionsBitField {
         return ( (checkAdmin && this.hasByBit(this.flags.ADMINISTRATOR)) ||  this.hasByBit(permission as any) )
     }
 
+    kickable(checkAdmin = false): boolean {
+        return !( (checkAdmin && this.hasByBit(this.flags.KICK_MEMBERS)) || this.has('KICK_MEMBERS') )
+    }
+
+    bannable(checkAdmin = false): boolean {
+        return !( (checkAdmin && this.hasByBit(this.flags.BAN_MEMBERS)) || this.has('BAN_MEMBERS') )
+    }
 
 }

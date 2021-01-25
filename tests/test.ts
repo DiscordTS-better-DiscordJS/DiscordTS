@@ -31,7 +31,8 @@ class bot extends Client {
       switch (args[0]) {
         case 'test':
 
-            message.channel.send(`Hm: ${message.member.permissions?.has('MANAGE_ROLES')}`)
+            if (message.member.permissions?.kickable()) message.reply('kickable')
+            else message.channel.send(`Roles: ${message.member.roles.toArrayAll().map((r: Role) => r.name)}`)
 
           break;
       }
