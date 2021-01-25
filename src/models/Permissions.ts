@@ -5,8 +5,8 @@ export type PermissionResolvable = string | number | Permissions | PermissionRes
 
 export default class Permissions extends PermissionsBitField {
 
-    #DEFAULT = 104324673
-    #ALL = Object.values(PermissionFlags).reduce((all, p) => all | p, 0)
+    static DEFAULT = 104324673
+    static ALL = Object.values(PermissionFlags).reduce((all, p) => all | p, 0)
 
     constructor(bits: any) {
 

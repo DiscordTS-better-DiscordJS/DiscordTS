@@ -3,6 +3,7 @@ import Client from './Client.ts'
 import User from "./User.ts"
 import Permissions from './Permissions.ts'
 import Role from './Role.ts'
+import Guild from './Guild.ts'
 
 export interface BanOptions {
     reason?: string
@@ -38,11 +39,13 @@ export default class Member {
         // let roles: Array<Role> = client.cache.guilds.get(data.guild.id).roles
         // roles.filter((r: Role) => data.member.roles.includes(r.id))
 
+        const guild: Guild = client.cache.guilds.get(data.guild_id)
+
         /**
          * @TODO fetch nickname and createdAt from API.
          */
         this.nickname = ''
-        this.roles = data.member.roles
+        // this.roles = guild.roles.filter((r: Role) => data.member.roles.includes(r.id))
         this.joinedAt = data.member.joined_at
         this.deaf = data.member.deaf
         this.mute = data.member.mute
@@ -51,7 +54,7 @@ export default class Member {
         this.guildID = data.guild_id
         this.id = data.author.id
         this.user = client.cache.users.get(this.id)
-        // this.permissions = new Permissions(isOwner_guild, undefined, this.roles)
+        // if (client.)
 
     }
 
