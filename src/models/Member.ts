@@ -25,7 +25,7 @@ export default class Member {
     premiumSince!: string 
     passed!: boolean
     fetched: any
-    user?: User
+    user: User
     permissions?: Permissions
 
     /**
@@ -41,14 +41,14 @@ export default class Member {
          * @TODO fetch nickname and createdAt from API.
          */
         this.nickname = ''
-        this.joinedAt = data.member.joined_at
-        this.deaf = data.member.deaf
-        this.mute = data.member.mute
-        this.premiumSince = data.member.premiumSince
-        this.passed = data.member.pending
+        this.joinedAt = data.member.joined_at || data.joined_at
+        this.deaf = data.member.deaf || data.deaf
+        this.mute = data.member.mute || data.mute
+        this.premiumSince = data.member.premiumSince || data.premiumSince
+        this.passed = data.member.pending || data.pending
         this.guildID = data.guild_id
-        this.id = data.author.id
-        this.user = client.cache.users.get(this.id)
+        this.id = data.author.id || data.user.id
+        this.user = client.cache.users.get(this.id) || new User(data.user)
         this.roles = new MemberRolesManager(this, guild, data.member.roles)
         if (guild.ownerID === data.author.id) this.permissions = new Permissions(Permissions.ALL)
         else if (this.roles.toArrayAll().length >= 1) this.permissions = new Permissions(this.roles.toArrayAll().map((r: Role) => r.permissions.bitfield))

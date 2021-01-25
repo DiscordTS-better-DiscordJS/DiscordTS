@@ -18,4 +18,9 @@ export default class Collection<K, V> extends Map<K ,V> {
             if (method(k, v, this)) return v
         }
     }
+
+    get(value: K): V{
+        return this.get(value)
+    }
+
 }

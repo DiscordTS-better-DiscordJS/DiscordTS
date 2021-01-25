@@ -6,6 +6,7 @@ import { ClientOptions } from '../types/ClientOptions.ts'
 import { Cache } from '../types/Cache.ts'
 import { changeClientAvatar } from '../fetch/Client.ts'
 // import { StatusOptions } from '../types/StatusOptions'
+import User from './User.ts'
 
 class Options {
     token: string
@@ -31,6 +32,7 @@ export default class Client extends EventEmitter {
     cache: Cache
     token!: string
     options: any
+    user!: User
 
     /**
      * Create a Client.
@@ -52,6 +54,7 @@ export default class Client extends EventEmitter {
         this.options.cache.messages = options?.cache?.messages == false ? false : true
         this.options.cache.guilds = options?.cache?.guilds == false ? false : true
         this.options.cache.users = options?.cache?.users == false ? false : true
+
 
     }
 

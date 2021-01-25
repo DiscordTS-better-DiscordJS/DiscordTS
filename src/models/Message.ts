@@ -50,8 +50,8 @@ export default class Message {
         this.mentionEveryone = data.mentionEveryone
         this.channel = client.cache.channels.get(data.channel_id)
         this.guild = client.cache.guilds.get(data.guild_id)
-        this.member = new Member(data, client)
-    
+        this.member = this.guild.members.get(this.id)
+        
     }
 
     /**

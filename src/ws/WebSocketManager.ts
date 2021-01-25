@@ -8,6 +8,7 @@ import { Constants } from '../constants/constants.ts'
 import { OPCODES } from '../constants/opcodes.ts'
 import { Heartbeat, Identify } from '../constants/payloads.ts'
 import { EVENTS } from '../constants/events.ts'
+import User from '../models/User.ts'
 
 /**
  * WebSocket class.
@@ -82,11 +83,12 @@ export default class WebSocketManager extends EventEmitter {
                 case 'READY':
                     this.debug && console.log(`Connected to gateway!`)
                     this.emit('ready')
+                    client.user = new User(d.user)
                     break
 
                 case 'GUILD_CREATE':
                     if (!client.cache.guilds.get(d.id) && client.options?.cache?.guilds) {
-                        const new_d = new Guild(d)
+                        const new_d = new Guild(d, client)
                         client.cache.guilds.set(d.id, new_d)
                     }
                     break

@@ -1,6 +1,9 @@
 import Role from './Role.ts'
 import { fetchClientLeave } from '../fetch/Client.ts'
 import Collection from './Collection.ts'
+import Member from './Member.ts'
+import { fetchMember } from '../fetch/member.ts'
+import Client from './Client.ts'
 
 export interface guildHashes {
     version: number,
@@ -39,7 +42,7 @@ export default class Guild {
     banner: any
     afkChannelID: string | null
     aplicationID: string | null
-    members: Map<string, any> // soon members model
+    members: Collection<string, Member>
     large: boolean
     memberCount: number
     joinedAt: string
@@ -54,12 +57,13 @@ export default class Guild {
     presences: any[]
     systemChannelID: string
     verificationLevel: number
+    me: Member | undefined
 
     /**
      * Create a Guild.
      * @param {*} data - Data from Discord API.
      */
-    constructor(data: any) {
+    constructor(data: any, client: Client) {
 
         this.description = data.description
         this.discoverySplash = data.discovery_splash
@@ -68,7 +72,16 @@ export default class Guild {
         this.systemChannelFlag = data.system_channel_flags
         this.guildHashes = data.guild_hashes
         this.features = data.features
-        this.members = data.members
+        console.log('a')
+        this.members = new Collection()
+        console.log('b')
+        data.members.forEach((m: any) => {
+            let member: Member = new Member(m, client)
+            if (client.user.id == member.user.id) this.me = member
+            console.log(`${member.user.id}`)
+            if (!this.members.get(member.user.id)) this.members.set(m.user.id, member)
+        })
+        console.log('c')
         this.voiceStates = data.voice_states
         this.emojis = data.emojis
         this.aplicationID = data.application_id
