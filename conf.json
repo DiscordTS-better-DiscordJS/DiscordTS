@@ -12,14 +12,17 @@
     },
     "plugins": [],
     "templates": {
-        "cleverLinks": false,
-        "monospaceLinks": false,
+        "cleverLinks": true,
+        "monospaceLinks": true,
         "systemName": "Discord.ts",
         "copyright": "Nimplex & Mateuszkdev",
         "theme": "Simplex",
         "includeDate": false
     },
     "opts": {
+        "recurse": true,
+        "template": "./node_modules/better-docs",
+        "readme": "readme.md",
         "destination": "./docs/",
         "encoding": "utf8"
     }

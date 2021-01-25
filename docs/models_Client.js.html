@@ -143,6 +143,7 @@ class Client extends events_ts_1.default {
     }
     /**
      * Connect with Discord WebSocket.
+     * @async
      * @param {string} token - Bot token.
      */
     connect(token) {
@@ -165,7 +166,7 @@ class Client extends events_ts_1.default {
     }
     /**
      * Change client user avatar
-     * @param {string} avatarURL - URL to avatar.
+     * @param {string} avatarURL - Url to avatar.
      * @description Change client user avatar
      */
     setAvatar(avatarURL) {

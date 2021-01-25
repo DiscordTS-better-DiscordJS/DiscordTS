@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> models/Member.js</title>
+  <title> models/PermissionsBitField.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Embed.html">Embed</a></li><li><a href="Guild.html">Guild</a></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Role.html">Role</a></li><li><a href="SlashCommand.html">SlashCommand</a></li><li><a href="User.html">User</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Channel.html">Channel</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="Embed.html">Embed</a></li><li><a href="Guild.html">Guild</a></li><li><a href="Member.html">Member</a></li><li><a href="Message.html">Message</a></li><li><a href="Permissions.html">Permissions</a></li><li><a href="Role.html">Role</a></li><li><a href="SlashCommand.html">SlashCommand</a></li><li><a href="User.html">User</a></li><li><a href="WebSocketManager.html">WebSocketManager</a></li></ul></div>
                 
             </nav>
         </div>
@@ -76,7 +76,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>models/Member.js</h1>
+                    <h1>models/PermissionsBitField.js</h1>
                 </header>
                 
 
@@ -86,75 +86,59 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
-var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
-    return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
-};
+var _temp;
 Object.defineProperty(exports, "__esModule", { value: true });
-const member_ts_1 = require("../fetch/member.ts");
-const GuildMemberRolesUtil_ts_1 = __importDefault(require("../utils/GuildMemberRolesUtil.ts"));
-/**
- * Class representing a Guild member.
- */
-class Member {
-    // permissions: Permissions
-    /**
-     * Create a Member.
-     * @param {*} data - Data from Discord API.
-     * @param {Client} client - Client.
-     */
-    constructor(data, client) {
-        const guild = client.cache.guilds.get(data.guild_id);
-        /**
-         * @TODO fetch nickname and createdAt from API.
-         */
-        this.nickname = '';
-        this.joinedAt = data.member.joined_at;
-        this.deaf = data.member.deaf;
-        this.mute = data.member.mute;
-        this.premiumSince = data.member.premiumSince;
-        this.passed = data.member.pending;
-        this.guildID = data.guild_id;
-        this.id = data.author.id;
-        this.user = client.cache.users.get(this.id);
-        this.roles = new GuildMemberRolesUtil_ts_1.default(this, guild);
-        // if (client.)
+class PermissionsBitField {
+    constructor(bit, flags) {
+        this.flags = {};
+        // permissionsINT: string
+        _temp.set(this, 0);
+        this.flags = flags;
+        this.bitfield = PermissionsBitField.resolve(bit, this.flags);
+        // this.permissionsINT = this.toByte()
     }
     /**
-     * Kick member.
-     * @async
-     * @returns {Member} Member
+     * @TODO Check if permissions equals this.permissions.
+     * @param {PermissionsType} permissions array.
      */
-    kick() {
-        return __awaiter(this, void 0, void 0, function* () {
-            member_ts_1.kickMember(this.guildID, this.id);
-            return this;
-        });
-    }
+    // check(permissions: PermissionsType) {
+    // }
     /**
-     * Ban member.
-     * @async
-     * @param {object} [param] - Options.
-     * @param {string} [param.reason] - Reason.
-     * @param {number} [param.del] - delete messages from last X days by that user.
-     * @returns {Member} Member
+     * Convert permissions array to int.
+     * @param {PermissionsType} permissions array or this.
+     * @returns {string} permissions int.
      */
-    ban(options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            member_ts_1.banMember(this.guildID, this.id, options);
-            return this;
-        });
+    // toByte(permissions?: PermissionsType): string {
+    //     const Permissions = permissions || this.flags   
+    //     this.#temp = 0
+    //     Permissions.forEach(permission => this.#temp += permission)
+    //     return this.#temp.toString()
+    // }
+    /**
+     * @TODO Convert permissions int to array.
+     * @param {string} permissions int.
+     * @returns {PermissionsType} permissions array.
+     */
+    // toArray(permissions: string): PermissionsType {
+    //     return []
+    // }
+    static resolve(bit = 0, flags) {
+        if (typeof bit === 'string' &amp;&amp; !isNaN(parseInt(bit)))
+            return parseInt(bit);
+        if (typeof bit === 'number' &amp;&amp; bit >= 0)
+            return bit;
+        if (bit instanceof PermissionsBitField)
+            return bit.bitfield;
+        if (Array.isArray(bit))
+            return bit.map((p) => this.resolve(p, flags)).reduce((prev, p) => prev | p, 0);
+        if (typeof bit === 'string' &amp;&amp; typeof flags[bit] !== 'undefined')
+            return flags[bit];
+        else
+            throw new RangeError('Invalid BitField');
     }
 }
-exports.default = Member;
+exports.default = PermissionsBitField;
+_temp = new WeakMap();
 </code></pre>
         </article>
     </section>

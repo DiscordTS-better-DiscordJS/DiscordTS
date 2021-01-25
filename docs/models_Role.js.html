@@ -86,7 +86,11 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>"use strict";
+var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
+    return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const Permissions_ts_1 = __importDefault(require("./Permissions.ts"));
 /**
  * Class representing a Role.
  */
@@ -97,7 +101,7 @@ class Role {
      */
     constructor(data) {
         this.position = data.position;
-        this.permissions = data.permissions;
+        this.permissions = new Permissions_ts_1.default(data.permissions);
         this.name = data.name;
         this.mention = `@${data.name}`;
         this.mentionable = data.mentionable;

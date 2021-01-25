@@ -167,6 +167,7 @@ class Channel {
     }
     /**
      * Fetch message from Discord API.
+     * @async
      * @param {string} id - Channel ID.
      * @returns {Promise&lt;Message>} Message object
      * @description Fetch message from channel.
@@ -179,6 +180,7 @@ class Channel {
     }
     /**
      * Set new channel name.
+     * @async
      * @param {string} newName - New channel name.
      * @returns {Promise&lt;Channel>} Channel objet
      * @description Change channel name.

@@ -101,6 +101,7 @@ var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Role_ts_1 = __importDefault(require("./Role.ts"));
 const Client_ts_1 = require("../fetch/Client.ts");
+const Collection_ts_1 = __importDefault(require("./Collection.ts"));
 /**
  * Class representing a Guild.
  */
@@ -149,7 +150,7 @@ class Guild {
         this.id = data.id;
         this.vanityUrlCode = data.vanity_url_code;
         this.threads = data.threads;
-        this.roles = new Map();
+        this.roles = new Collection_ts_1.default();
         data.roles.forEach((r) => {
             let newRole = new Role_ts_1.default(r);
             if (!this.roles.get(r.id))
@@ -158,6 +159,7 @@ class Guild {
     }
     /**
      * Leave guild.
+     * @async
      * @description Use this method to leave guild.
      * @example message.guild.leave()
      */
