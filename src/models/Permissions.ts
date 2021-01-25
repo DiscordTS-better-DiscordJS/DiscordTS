@@ -1,5 +1,7 @@
 import PermissionsBitField from './PermissionsBitField.ts'
-import { PermissionFlags, Perms } from '../types/PermissionsTypes.ts'
+import { PermissionFlags } from '../types/PermissionsTypes.ts'
+
+export type PermissionResolvable = string | number | Permissions | PermissionResolvable[]
 
 export default class Permissions extends PermissionsBitField {
 
@@ -10,9 +12,12 @@ export default class Permissions extends PermissionsBitField {
 
         super(bits, PermissionFlags)
 
-        console.log(this.bitfield)
-        console.log(Perms[this.bitfield])
-
     }
+
+
+    has(permission: PermissionResolvable, checkAdmin = true): boolean {
+        return ( (checkAdmin && this.hasByBit(this.flags.ADMINISTRATOR)) ||  this.hasByBit(permission as any) )
+    }
+
 
 }

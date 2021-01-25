@@ -4,7 +4,6 @@ import Role from './Role.ts'
 export default class PermissionsBitField {
 
     flags: { [name: string]: number } = {}
-    // permissionsINT: string
     #temp: number = 0
     bitfield: number
 
@@ -13,38 +12,12 @@ export default class PermissionsBitField {
         this.flags = flags
         this.bitfield = PermissionsBitField.resolve(bit, this.flags)
         
-        // this.permissionsINT = this.toByte()
     }
 
-    /**
-     * @TODO Check if permissions equals this.permissions.
-     * @param {PermissionsType} permissions array.
-     */
-    // check(permissions: PermissionsType) {
-    // }
-
-    /**
-     * Convert permissions array to int.
-     * @param {PermissionsType} permissions array or this.
-     * @returns {string} permissions int.
-     */
-    // toByte(permissions?: PermissionsType): string {
-    //     const Permissions = permissions || this.flags   
-    //     this.#temp = 0
-
-    //     Permissions.forEach(permission => this.#temp += permission)
-
-    //     return this.#temp.toString()
-    // }
-
-    /**
-     * @TODO Convert permissions int to array.
-     * @param {string} permissions int.
-     * @returns {PermissionsType} permissions array.
-     */
-    // toArray(permissions: string): PermissionsType {
-    //     return []
-    // }
+    hasByBit(bit: BitFieldResolvable, ...args: any[]): boolean {
+        if (Array.isArray(bit)) return bit.every((p) => this.hasByBit(p))
+        return (this.bitfield & PermissionsBitField.resolve(bit, this.flags)) === bit
+      }
 
     static resolve (bit: BitFieldResolvable = 0, flags: any): number {
         if (typeof bit === 'string' && !isNaN(parseInt(bit))) return parseInt(bit)

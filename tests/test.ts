@@ -9,8 +9,10 @@ import {
   Permissions,
   Perms,
   Member,
-  fMember
+  fMember,
+  Role
 } from '../src/index.ts';
+import { moveSync } from "https://deno.land/std@0.84.0/fs/move.ts";
 
 class bot extends Client {
   constructor(options?: ClientOptions) {
@@ -21,8 +23,6 @@ class bot extends Client {
     this.on('message', async (message: Message) => {
       const prefix: string = '!!';
 
-      console.log(message)
-
       if (message.author?.bot) return;
       if (!message.content.startsWith(prefix)) return;
 
@@ -30,19 +30,14 @@ class bot extends Client {
 
       switch (args[0]) {
         case 'test':
-          // const newNameChannel: Channel = await message.channel.setName(
-          //   'test123',
-          // );
-          // message.reply(
-          //   `Renamed from ${message.channel.name} to ${newNameChannel.name}`,
-          // );
 
-          // const member = message.member.ban()
-          // console.log(member)
-
-          // message.channel.send('123')
-
-          console.log(message)
+          message.guild.roles.forEach((r: Role) => {
+            if (r.permissions.has('ADMINISTRATOR')){
+              message.reply('yes')
+            } else {
+              message.channel.send('no')
+            }
+          })
 
           break;
       }
