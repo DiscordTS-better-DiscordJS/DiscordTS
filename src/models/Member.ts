@@ -4,6 +4,7 @@ import User from "./User.ts"
 import Permissions from './Permissions.ts'
 import Role from './Role.ts'
 import Guild from './Guild.ts'
+import MemberRolesManager from '../utils/GuildMemberRolesUtil.ts'
 
 export interface BanOptions {
     reason?: string
@@ -15,7 +16,7 @@ export interface BanOptions {
  */
 export default class Member {
     nickname: string
-    roles!: Array<Role>
+    roles!: MemberRolesManager
     joinedAt: string
     mute: boolean
     deaf: boolean
@@ -34,18 +35,12 @@ export default class Member {
      */
     constructor (data: any, client: Client) {
 
-        // const isOwner_guild = client.cache.guilds.get(data.guild.id).ownerID == data.author.id ? true : false
-
-        // let roles: Array<Role> = client.cache.guilds.get(data.guild.id).roles
-        // roles.filter((r: Role) => data.member.roles.includes(r.id))
-
         const guild: Guild = client.cache.guilds.get(data.guild_id)
 
         /**
          * @TODO fetch nickname and createdAt from API.
          */
         this.nickname = ''
-        // this.roles = guild.roles.filter((r: Role) => data.member.roles.includes(r.id))
         this.joinedAt = data.member.joined_at
         this.deaf = data.member.deaf
         this.mute = data.member.mute
@@ -54,6 +49,7 @@ export default class Member {
         this.guildID = data.guild_id
         this.id = data.author.id
         this.user = client.cache.users.get(this.id)
+        this.roles = new MemberRolesManager(this, guild)
         // if (client.)
 
     }

@@ -1,5 +1,6 @@
 import Role from './Role.ts'
 import { fetchClientLeave } from '../fetch/Client.ts'
+import Collection from './Collection.ts'
 
 export interface guildHashes {
     version: number,
@@ -99,8 +100,8 @@ export default class Guild {
         this.id = data.id
         this.vanityUrlCode = data.vanity_url_code
         this.threads = data.threads
-        this.roles = new Map()
-        data.roles.forEach((r: any) => {
+        this.roles = new Collection<string, Role>()
+        data.roles.forEach((r: Role) => {
             let newRole = new Role(r)
             if (!this.roles.get(r.id)) this.roles.set(r.id, newRole)
         })
