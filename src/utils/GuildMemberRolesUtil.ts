@@ -11,7 +11,7 @@ export default class MemberRolesManager {
         this.guild = guild
         this.member = member
 
-        const roles = this.guild.roles
+        const roles: Collection<string, Role> = this.guild.roles
 
         roles.forEach((r: Role) => {
             console.log(r.permissions.flags)

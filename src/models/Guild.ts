@@ -33,7 +33,7 @@ export default class Guild {
     discoverySplash: any
     unavailable: boolean
     explicitContentFilter: number
-    roles: Map<string, Role>
+    roles: Collection<string, Role>
     channels: string[]
     ownerID: number
     banner: any
