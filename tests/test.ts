@@ -31,13 +31,7 @@ class bot extends Client {
       switch (args[0]) {
         case 'test':
 
-          message.guild.roles.forEach((r: Role) => {
-            if (r.permissions.has('ADMINISTRATOR')){
-              message.reply('yes')
-            } else {
-              message.channel.send('no')
-            }
-          })
+            message.channel.send(`Hm: ${message.member.permissions?.has('MANAGE_ROLES')}`)
 
           break;
       }

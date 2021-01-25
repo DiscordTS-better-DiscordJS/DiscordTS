@@ -26,7 +26,7 @@ export default class Member {
     passed!: boolean
     fetched: any
     user?: User
-    // permissions: Permissions
+    permissions?: Permissions
 
     /**
      * Create a Member.
@@ -49,8 +49,10 @@ export default class Member {
         this.guildID = data.guild_id
         this.id = data.author.id
         this.user = client.cache.users.get(this.id)
-        this.roles = new MemberRolesManager(this, guild)
-        // if (client.)
+        this.roles = new MemberRolesManager(this, guild, data.member.roles)
+        if (guild.ownerID === data.author.id) this.permissions = new Permissions(Permissions.ALL)
+        else if (this.roles.toArrayAll().length >= 1) this.permissions = new Permissions(this.roles.toArrayAll().map((r: Role) => r.permissions.bitfield))
+        else this.permissions = new Permissions(Permissions.DEFAULT)
 
     }
 
