@@ -14,7 +14,13 @@ export default class Permissions extends PermissionsBitField {
 
     }
 
-
+    /**
+     * Check permissions
+     * @param {PermissionResolvable} permission 
+     * @param {boolean} checkAdmin 
+     * @returns {boolean} boolean
+     * @description Check permissions for role or member
+     */
     has(permission: PermissionResolvable, checkAdmin = true): boolean {
         return ( (checkAdmin && this.hasByBit(this.flags.ADMINISTRATOR)) ||  this.hasByBit(permission as any) )
     }

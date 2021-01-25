@@ -6,8 +6,8 @@ import Embed from './models/Embed.ts'
 import Channel from './models/Channel.ts'
 import Guild from './models/Guild.ts'
 import Message from './models/Message.ts'
-import Permissions from './models/PermissionsBitField.ts'
-import { Perms } from './types/PermissionsTypes.ts'
+import PermissionsBitField from './models/PermissionsBitField.ts'
+import Permissions from './models/Permissions.ts'
 import Role from './models/Role.ts'
 import User from './models/User.ts'
 import Member from './models/Member.ts'
@@ -26,6 +26,7 @@ export {
     Channel,
     Guild,
     Message,
+    PermissionsBitField,
     Permissions,
     Role,
     User,
