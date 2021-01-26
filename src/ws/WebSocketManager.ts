@@ -2,13 +2,13 @@ import Client from '../models/Client.ts'
 import EventEmitter from 'https://deno.land/std@0.84.0/node/events.ts'
 import Guild from '../models/Guild.ts'
 import * as events from '../events/eventsExports.ts'
-import { ensureFileSync } from 'https://deno.land/std@0.84.0/fs/mod.ts'
+// import { ensureFileSync } from 'https://deno.land/std@0.84.0/fs/mod.ts'
 // import { WebSocket } from 'https://deno.land/x/websocket@v0.0.6/mod.ts'
 import { Constants } from '../constants/constants.ts'
 import { OPCODES } from '../constants/opcodes.ts'
 import { Heartbeat, Identify } from '../constants/payloads.ts'
 import { EVENTS } from '../constants/events.ts'
-import User from '../models/User.ts'
+// import User from '../models/User.ts'
 
 /**
  * WebSocket class.
@@ -83,14 +83,14 @@ export default class WebSocketManager extends EventEmitter {
                 case 'READY':
                     this.debug && console.log(`Connected to gateway!`)
                     this.emit('ready')
-                    client.user = new User(d.user)
+                    // client.user = new User(d.user)
                     break
 
                 case 'GUILD_CREATE':
-                    if (!client.cache.guilds.get(d.id) && client.options?.cache?.guilds) {
+                    // if (client.options?.cache?.guilds) {
                         const new_d = new Guild(d, client)
                         client.cache.guilds.set(d.id, new_d)
-                    }
+                    // }
                     break
             }
 

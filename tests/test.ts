@@ -12,7 +12,6 @@ import {
   fMember,
   Role
 } from '../src/index.ts';
-import { moveSync } from "https://deno.land/std@0.84.0/fs/move.ts";
 
 class bot extends Client {
   constructor(options?: ClientOptions) {
@@ -31,8 +30,8 @@ class bot extends Client {
       switch (args[0]) {
         case 'test':
 
-            if (message.member.permissions?.kickable()) message.reply('kickable')
-            else message.channel.send(`Roles: ${message.member.roles.toArrayAll().map((r: Role) => r.name)}`)
+            if (message.member?.permissions?.kickable()) message.reply('kickable')
+            else message.channel.send(`Roles: ${message.member?.roles.toArrayAll().map((r: Role) => r.name)}`)
 
           break;
       }

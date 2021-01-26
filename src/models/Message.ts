@@ -27,7 +27,7 @@ export default class Message {
     createdTimestamp: Date
     editedTimestamp: Date | null
     pinned: boolean
-    member: Member
+    member: Member | undefined
     // mentions: Mentions[]
     mentionEveryone: boolean
 

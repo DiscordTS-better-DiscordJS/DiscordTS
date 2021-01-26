@@ -37,17 +37,19 @@ export default class Member {
 
         const guild: Guild = client.cache.guilds.get(data.guild_id)
 
+        data.member ? null : data.member = data
+
         /**
          * @TODO fetch nickname and createdAt from API.
          */
         this.nickname = ''
-        this.joinedAt = data.member.joined_at || data.joined_at
-        this.deaf = data.member.deaf || data.deaf
-        this.mute = data.member.mute || data.mute
-        this.premiumSince = data.member.premiumSince || data.premiumSince
-        this.passed = data.member.pending || data.pending
+        this.joinedAt = data.member.joined_at
+        this.deaf = data.member.deaf
+        this.mute = data.member.mute 
+        this.premiumSince = data.member.premiumSince
+        this.passed = data.member.pending
         this.guildID = data.guild_id
-        this.id = data.author.id || data.user.id
+        this.id = data.user.id || data.author.id
         this.user = client.cache.users.get(this.id) || new User(data.user)
         this.roles = new MemberRolesManager(this, guild, data.member.roles)
         if (guild.ownerID === data.author.id) this.permissions = new Permissions(Permissions.ALL)
