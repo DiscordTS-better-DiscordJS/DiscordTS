@@ -12,6 +12,7 @@ export default class MemberRolesManager {
         this.guild = guild
         this.member = member
 
+        console.log(this.guild)
         const roles: Collection<string, Role> = this.guild.roles
 
         this.roles = new Collection()

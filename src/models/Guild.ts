@@ -56,7 +56,7 @@ export default class Guild {
     presences: any[]
     systemChannelID: string
     verificationLevel: number
-    me: Member | undefined
+    me!: Member | undefined
 
     /**
      * Create a Guild.
@@ -75,7 +75,6 @@ export default class Guild {
         data.members.forEach((m: any) => {
             let member: Member = new Member(m, client)
             if (client.user.id == member.user.id) this.me = member
-            console.log(`${member.user.id}`)
             if (!this.members.get(member.user.id)) this.members.set(m.user.id, member)
         })
         this.voiceStates = data.voice_states

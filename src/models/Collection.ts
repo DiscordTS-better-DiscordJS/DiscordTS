@@ -19,8 +19,8 @@ export default class Collection<K, V> extends Map<K ,V> {
         }
     }
 
-    // get(value: K): V{
-    //     return this.get(value)
-    // }
+    getOne(value: K): V | undefined {
+        return this.get(value)
+    }
 
 }
