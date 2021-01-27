@@ -30,10 +30,20 @@ class bot extends Client {
       switch (args[0]) {
         case 'test':
 
-            if (message.member?.permissions?.kickable()) message.reply('kickable')
-            else message.channel.send(`Roles: ${message.member?.roles.toArrayAll().map((r: Role) => r.name)}`)
+            message.channel.send(`${message.member?.roles.toArrayAll()}`)
 
           break;
+
+        case 'eval':
+          const code = args.slice(1).join(" ")
+          let evaled: any
+          try {
+            evaled = await eval(code)
+          } catch (e) {
+            e && message.reply(`> ${e}`)
+          }
+
+          if (evaled) return message.channel.send(`\`\`\`${evaled}\`\`\``)
       }
     });
 

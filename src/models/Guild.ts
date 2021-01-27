@@ -57,6 +57,7 @@ export default class Guild {
     systemChannelID: string
     verificationLevel: number
     me!: Member | undefined
+    #helper: Array<any> = []
 
     /**
      * Create a Guild.
@@ -65,15 +66,22 @@ export default class Guild {
     constructor(data: any, client: Client) {
 
         this.description = data.description
+        this.ownerID = data.owner_id
         this.discoverySplash = data.discovery_splash
         this.afkChannelID = data.afk_channel_id
         this.unavailable = data.unavailable
         this.systemChannelFlag = data.system_channel_flags
         this.guildHashes = data.guild_hashes
         this.features = data.features
+        this.roles = new Collection<string, Role>()
+        data.roles.forEach((r: Role) => {
+            let newRole = new Role(r)
+            this.#helper.push(newRole)
+            if (!this.roles.get(r.id)) this.roles.set(r.id, newRole)
+        })
         this.members = new Collection()
         data.members.forEach((m: any) => {
-            let member: Member = new Member(m, client)
+            let member: Member = new Member(m, client, this.#helper, this.ownerID)
             if (client.user.id == member.user.id) this.me = member
             if (!this.members.get(member.user.id)) this.members.set(m.user.id, member)
         })
@@ -91,7 +99,6 @@ export default class Guild {
         this.region = data.region
         this.verificationLevel = data.verification_level
         this.banner = data.banner
-        this.ownerID = data.owner_id
         this.maxMembers = data.max_members
         this.memberCount = data.member_count
         this.joinedAt = data.joined_at
@@ -108,11 +115,6 @@ export default class Guild {
         this.id = data.id
         this.vanityUrlCode = data.vanity_url_code
         this.threads = data.threads
-        this.roles = new Collection<string, Role>()
-        data.roles.forEach((r: Role) => {
-            let newRole = new Role(r)
-            if (!this.roles.get(r.id)) this.roles.set(r.id, newRole)
-        })
 
     }
 
